@@ -1,7 +1,7 @@
-import { CardStyled } from './styles'
 import { FaCalendarDay } from 'react-icons/fa'
+import { CardStyled } from './styles.js'
 
-export const Card = ({ date, author, title, description, body }) => {
+export const Card = ({ date, author, title, description }) => {
     return (
         <CardStyled>
             <div className="card-header">

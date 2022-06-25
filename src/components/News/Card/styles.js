@@ -1,11 +1,8 @@
 import styled from 'styled-components'
 
-export const CardStyled = styled.div`
-    padding: 1rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    border-radius: 0.3rem;
-    background-color: #f2f2f2;
+import { CardStyled as BaseCard } from '../../Common/Card'
 
+export const CardStyled = styled(BaseCard)`
     .card-header {
         display: flex;
         justify-content: space-between;

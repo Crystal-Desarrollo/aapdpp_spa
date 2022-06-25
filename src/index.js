@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
       min-height: calc(100vh - 260px);
     }
 
-    .font-blue{
+    i{
         color: #142B4B;
     }
 
