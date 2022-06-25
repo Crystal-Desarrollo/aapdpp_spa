@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch } from 'react-redux'
+import { Header } from './components/Header/index.jsx'
+import { Hero } from './components/Hero/index.jsx'
+import { About } from './components/About/index.jsx'
+import { News } from './components/News/index.jsx'
+import { Login } from './pages/auth/Login/index.jsx'
+import { logout } from './store/slices/authSlice.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export function App() {
+    const dispatch = useDispatch()
+
+    const handleLogout = () => {
+        dispatch(logout())
+    }
+
+    return (
+        // <div>
+        //     <Login />
+        //     <button onClick={handleLogout}>Cerrar sesion</button>
+        // </div>
+        <>
+            <Header />
+            <Hero />
+            <About />
+            <News />
+        </>
+    )
 }
-
-export default App;
