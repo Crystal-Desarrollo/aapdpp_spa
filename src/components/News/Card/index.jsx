@@ -1,15 +1,11 @@
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 import { FaCalendarDay } from 'react-icons/fa'
 import { CardStyled } from './styles.js'
 
-export const Card = ({
-    date,
-    author,
-    title,
-    description,
-    url = '',
-    imageUrl
-}) => {
+export const Card = props => {
+    const { created_at, author, title, description, id, imageUrl } = props
+
     return (
         <CardStyled>
             <div className="card-header">
@@ -17,7 +13,7 @@ export const Card = ({
                     <i>
                         <FaCalendarDay />
                     </i>
-                    {date}
+                    {moment(created_at).format('DD-MM-YYYY')}
                 </span>
                 <span>{author}</span>
             </div>
@@ -25,11 +21,11 @@ export const Card = ({
                 <img src={imageUrl} alt="Foto ilustrativa de la noticia" />
             </div>
             <h3>
-                <Link to={`/noticia/${url}`}>{title}</Link>
+                <Link to={`/noticia/${id}`}>{title}</Link>
             </h3>
             <p>
                 {description} <br />
-                <Link to={`/noticia/${url}`}>Seguir leyendo</Link>
+                <Link to={`/noticia/${id}`}>Seguir leyendo</Link>
             </p>
         </CardStyled>
     )

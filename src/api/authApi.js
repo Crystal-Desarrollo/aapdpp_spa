@@ -2,12 +2,11 @@ import axiosInstance from './apiHelper.js'
 
 class AuthApi {
     login(userData) {
-        console.log(axiosInstance)
-        return axiosInstance.post('/api/login', userData)
+        return axiosInstance.post('/login', userData)
     }
 
     logout() {
-        return axiosInstance.post('/api/logout')
+        return axiosInstance.post('/logout')
     }
 }
 
