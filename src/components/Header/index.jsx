@@ -10,19 +10,19 @@ const headerLinks = [
     },
     {
         text: 'Nosotros',
-        url: '/nosotros'
+        url: '/#nosotros'
     },
     {
         text: 'Noticias',
-        url: '/noticias'
+        url: '/#noticias'
     },
     {
         text: 'Enlaces de interés',
-        url: '/enlaces-de-interes'
+        url: '/#enlaces-de-interes'
     },
     {
         text: 'Contacto',
-        url: '/contacto'
+        url: '/#contacto'
     },
     {
         text: 'Ingresar',

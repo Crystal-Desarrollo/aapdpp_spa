@@ -51,7 +51,7 @@ export const Links = () => {
     }, [])
 
     return (
-        <Section>
+        <Section id="enlaces-de-interes">
             <H2>Enlaces de interés</H2>
 
             {links.length > 0 ? (

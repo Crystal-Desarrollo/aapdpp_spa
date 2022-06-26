@@ -6,7 +6,7 @@ import { FormStyled } from './styles.js'
 import { MessageLabel } from '../Common/MessageLabel.jsx'
 export const Contact = () => {
     return (
-        <Section>
+        <Section id="contacto">
             <H2>¿Querés formar parte?</H2>
             <H3>Dejanos tus datos y te responderemos lo antes posible</H3>
             <FormStyled>

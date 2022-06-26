@@ -15,6 +15,6 @@ const SectionStyled = styled.section`
     }
 `
 
-export const Section = ({ children }) => {
-    return <SectionStyled>{children}</SectionStyled>
+export const Section = ({ children, ...rest }) => {
+    return <SectionStyled {...rest}>{children}</SectionStyled>
 }

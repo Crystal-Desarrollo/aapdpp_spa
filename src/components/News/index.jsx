@@ -49,7 +49,7 @@ export const News = () => {
     }, [])
 
     return (
-        <Section>
+        <Section id="noticias">
             <H2>Noticias mas recientes</H2>
             {news.length > 0 ? (
                 <Grid>

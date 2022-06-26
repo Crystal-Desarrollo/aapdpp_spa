@@ -14,7 +14,7 @@ const goals = [
 
 export const About = () => {
     return (
-        <Section>
+        <Section id="nosotros">
             <H2>Nuestros objetivos</H2>
 
             <Grid>

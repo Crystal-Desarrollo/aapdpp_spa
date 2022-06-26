@@ -1,3 +1,4 @@
+import { HashLink } from 'react-router-hash-link'
 import { StyledMenu } from './styles'
 export const Menu = props => {
     const { items = [] } = props
@@ -7,7 +8,7 @@ export const Menu = props => {
             {items.map(item => {
                 return (
                     <li>
-                        <a href={item.url}>{item.text}</a>
+                        <HashLink to={item.url}>{item.text}</HashLink>
                     </li>
                 )
             })}
