@@ -1,3 +1,10 @@
+import { Guest } from '../layouts/Guest.jsx'
+import { News } from '../../components/News/index.jsx'
+
 export const AllNews = () => {
-    return <h1>Todas las noticias</h1>
+    return (
+        <Guest>
+            <News title="Todas las noticias" full={true} />
+        </Guest>
+    )
 }

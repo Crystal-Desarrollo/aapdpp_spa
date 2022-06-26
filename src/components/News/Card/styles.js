@@ -37,10 +37,31 @@ export const CardStyled = styled(BaseCard)`
     h3 {
         margin: 1rem 0;
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: 600;
     }
 
     p {
         font-size: 0.875rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        a {
+            margin: 1rem 0 0 0;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: #1d3557;
+        border-bottom: 1px solid transparent;
+
+        transition: all ease 0.2s;
+
+        &:hover {
+            border-bottom-color: #1d3557;
+            color: #082041;
+            transition: all ease 0.3s;
+        }
     }
 `

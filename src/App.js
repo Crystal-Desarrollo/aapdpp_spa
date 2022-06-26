@@ -41,9 +41,9 @@ export function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/ingresar" element={<Login />} />
 
-                <Route element={<MemberMiddleware />}>
-                    <Route path="noticias" element={<AllNews />} />
-                </Route>
+                {/* <Route element={<MemberMiddleware />}> */}
+                <Route path="noticias" element={<AllNews />} />
+                {/* </Route> */}
 
                 <Route element={<AdminMiddleware />}>
                     <Route path="/registrar" element={<Home />} />
