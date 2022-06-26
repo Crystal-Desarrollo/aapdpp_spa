@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import AuthApi from '../../pages/api/authApi'
+import AuthApi from '../../api/authApi.js'
 
 const authSlice = createSlice({
     name: 'auth',

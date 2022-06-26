@@ -21,8 +21,10 @@ const GlobalStyle = createGlobalStyle`
     }
 
     main{
-      width: 100%;
-      min-height: calc(100vh - 260px);
+        height: calc(100vh - 60px);
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
     }
 
     i{

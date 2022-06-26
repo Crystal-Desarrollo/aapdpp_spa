@@ -4,7 +4,7 @@ export const Guest = ({ children }) => {
     return (
         <>
             <Header />
-            {children}
+            <main>{children}</main>
         </>
     )
 }

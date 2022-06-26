@@ -3,6 +3,7 @@ import { H2, H3 } from '../Common/Texts.jsx'
 import { TextField } from '../Common/Inputs/TextField.jsx'
 import { Button } from '../Common/Inputs/Button.jsx'
 import { FormStyled } from './styles.js'
+import { MessageLabel } from '../Common/MessageLabel.jsx'
 export const Contact = () => {
     return (
         <Section>
@@ -29,9 +30,11 @@ export const Contact = () => {
                     id="body"
                 />
                 <Button>Enviar</Button>
-                <div className="msg-box success">
-                    Lo sentimos, algo salió mal
-                </div>
+                <MessageLabel
+                    className="msg-box"
+                    text="Success message very long text"
+                    status="error"
+                />
             </FormStyled>
         </Section>
     )

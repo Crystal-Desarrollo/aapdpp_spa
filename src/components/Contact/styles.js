@@ -34,16 +34,5 @@ export const FormStyled = styled.form`
 
     .msg-box {
         grid-column: 2 / 7;
-
-        display: flex;
-        align-items: center;
-
-        &.error {
-            color: red;
-        }
-
-        &.success {
-            color: darkgreen;
-        }
     }
 `

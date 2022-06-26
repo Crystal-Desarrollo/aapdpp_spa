@@ -73,7 +73,8 @@ const FieldStyled = styled.div`
             outline: none;
         }
 
-        &.error {
+        &.error,
+        &:invalid {
             border-color: red;
 
             ~ label,
