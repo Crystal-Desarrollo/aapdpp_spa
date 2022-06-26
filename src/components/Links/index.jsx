@@ -57,7 +57,7 @@ export const Links = () => {
             {links.length > 0 ? (
                 <Grid elementWidth="250px">
                     {links.map(link => (
-                        <Link {...link} />
+                        <Link {...link} key={link.id} />
                     ))}
                 </Grid>
             ) : (

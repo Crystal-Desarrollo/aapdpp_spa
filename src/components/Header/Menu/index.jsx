@@ -7,7 +7,7 @@ export const Menu = props => {
         <StyledMenu>
             {items.map(item => {
                 return (
-                    <li>
+                    <li key={item.text}>
                         <HashLink to={item.url}>{item.text}</HashLink>
                     </li>
                 )

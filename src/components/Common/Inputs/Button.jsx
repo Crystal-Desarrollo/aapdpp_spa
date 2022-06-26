@@ -10,6 +10,7 @@ const ButtonStyled = styled.button`
     border-radius: 0.2rem;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
+    text-decoration: none;
 
     :hover {
         background-color: #142b4b;
@@ -23,10 +24,10 @@ const ButtonStyled = styled.button`
 `
 
 export const Button = props => {
-    const { children, type = 'button', onClick } = props
+    const { children, type = 'button', onClick, ...rest } = props
 
     return (
-        <ButtonStyled type={type} onClick={onClick}>
+        <ButtonStyled type={type} onClick={onClick} {...rest}>
             {children}
         </ButtonStyled>
     )

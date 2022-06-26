@@ -10,7 +10,7 @@ export function Home() {
         <Guest>
             <Hero />
             <About />
-            <News />
+            <News title="Noticias mas recientes" full={false} />
             <Links />
             <Contact />
         </Guest>
