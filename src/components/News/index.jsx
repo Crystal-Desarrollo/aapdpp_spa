@@ -20,9 +20,6 @@ export const News = ({ title, full }) => {
         } else {
             setDisplayableNews(news)
         }
-
-        console.log(news)
-        console.log(displayableNews)
     }, [news, full])
 
     return (
