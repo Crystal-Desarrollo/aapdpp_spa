@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
 
     main{
         height: calc(100vh - 60px);
+        margin-top:60px;
         display: flex;
         flex-direction: column;
         /* justify-content: center; */
@@ -32,14 +33,16 @@ const GlobalStyle = createGlobalStyle`
     }
 
     &::-webkit-scrollbar {
-      width: 16px;
+      width: 10px;
     }
 
     &::-webkit-scrollbar-track {
+        background: #dddddd;
     }
 
     &::-webkit-scrollbar-thumb {
       background: #142B4B;
+      border-radius: .2rem;
     }
 
     &::-webkit-scrollbar-thumb:hover {
