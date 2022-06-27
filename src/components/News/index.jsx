@@ -11,24 +11,15 @@ import { Button } from '../Common/Inputs/Button.jsx'
 import { useGetAll } from '../../hooks/articles/useGetAll.js'
 
 export const News = ({ title, full }) => {
-    const news = useGetAll()
-    const [displayableNews, setDisplayableNews] = useState([])
-
-    useEffect(() => {
-        if (!full && news.length > 6) {
-            setDisplayableNews(news.slice(0, 6))
-        } else {
-            setDisplayableNews(news)
-        }
-    }, [news, full])
+    const news = useGetAll(full)
 
     return (
         <Section id="noticias">
             <H2>{title}</H2>
-            {displayableNews.length > 0 ? (
+            {news.length > 0 ? (
                 <ArticlesSectionStyled>
                     <Grid>
-                        {displayableNews.map(article => (
+                        {news.map(article => (
                             <Card {...article} key={article.id} />
                         ))}
                     </Grid>
