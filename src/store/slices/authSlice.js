@@ -14,12 +14,15 @@ const authSlice = createSlice({
         },
         logoutAction() {
             return null
+        },
+        meAction(_, action) {
+            return action.payload
         }
     }
 })
 export default authSlice.reducer
 
-const { loginAction, logoutAction } = authSlice.actions
+const { loginAction, logoutAction, meAction } = authSlice.actions
 
 export const login = userData => async dispatch => {
     try {
@@ -40,6 +43,24 @@ export const logout = () => async dispatch => {
 
         localStorage.removeItem('aapdpp-token')
         dispatch(logoutAction())
+    } catch (err) {
+        //TODO: handle error
+    }
+}
+
+export const me = () => async dispatch => {
+    try {
+        const token = localStorage.getItem('aapdpp-token')
+
+        if (token) {
+            const response = await AuthApi.me(token)
+            dispatch(
+                meAction({
+                    user: response.data,
+                    token
+                })
+            )
+        }
     } catch (err) {
         //TODO: handle error
     }

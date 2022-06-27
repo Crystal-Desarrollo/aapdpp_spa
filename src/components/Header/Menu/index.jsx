@@ -1,17 +1,31 @@
 import { HashLink } from 'react-router-hash-link'
 import { StyledMenu } from './styles'
-export const Menu = props => {
-    const { items = [] } = props
+
+import { useAuth } from '../../../hooks/auth/useAuth'
+
+export const Menu = () => {
+    const { user } = useAuth()
 
     return (
         <StyledMenu>
-            {items.map(item => {
-                return (
-                    <li key={item.text}>
-                        <HashLink to={item.url}>{item.text}</HashLink>
-                    </li>
-                )
-            })}
+            <li>
+                <HashLink to="/">Inicio</HashLink>
+            </li>
+            <li>
+                <HashLink to="/#nosotros">Nosotros</HashLink>
+            </li>
+            <li>
+                <HashLink to="/#noticias">Noticias</HashLink>
+            </li>
+            <li>
+                <HashLink to="/#enlaces-de-interes">
+                    Enlaces de interés
+                </HashLink>
+            </li>
+            <li>
+                <HashLink to="/#contacto">Contacto</HashLink>
+            </li>
+            <li>{!user && <HashLink to="/ingresar">Ingresar</HashLink>}</li>
         </StyledMenu>
     )
 }

@@ -8,6 +8,10 @@ class AuthApi {
     logout() {
         return axiosInstance.post('/logout')
     }
+
+    me(token) {
+        return axiosInstance.get('/user', { token })
+    }
 }
 
 export default new AuthApi()
