@@ -9,6 +9,7 @@ import {
 import { Home } from './pages/guest/Home.jsx'
 import { Login } from './pages/guest/Login.jsx'
 import { AllNews } from './pages/member/AllNews.jsx'
+import { FullArticle } from './pages/guest/FullArticle.jsx'
 import { BecomeMember } from './pages/error/BecomeMember.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
@@ -42,7 +43,8 @@ export function App() {
                 <Route path="/ingresar" element={<Login />} />
 
                 {/* <Route element={<MemberMiddleware />}> */}
-                <Route path="noticias" element={<AllNews />} />
+                <Route path="/noticias" element={<AllNews />} />
+                <Route path="/noticias/:id" element={<FullArticle />} />
                 {/* </Route> */}
 
                 <Route element={<AdminMiddleware />}>

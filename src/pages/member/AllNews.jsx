@@ -1,5 +1,5 @@
 import { Guest } from '../layouts/Guest.jsx'
-import { News } from '../../components/News/index.jsx'
+import { News } from '../../components/News/NewsList/index.jsx'
 
 export const AllNews = () => {
     return (

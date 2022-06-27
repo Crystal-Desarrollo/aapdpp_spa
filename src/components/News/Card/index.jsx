@@ -21,11 +21,11 @@ export const Card = props => {
                 <img src={imageUrl} alt="Foto ilustrativa de la noticia" />
             </div>
             <h3>
-                <Link to={`/noticia/${id}`}>{title}</Link>
+                <Link to={`/noticias/${id}`}>{title}</Link>
             </h3>
             <p>
                 {description} <br />
-                <Link to={`/noticia/${id}`}>Seguir leyendo</Link>
+                <Link to={`/noticias/${id}`}>Seguir leyendo</Link>
             </p>
         </CardStyled>
     )

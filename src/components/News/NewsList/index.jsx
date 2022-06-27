@@ -1,14 +1,13 @@
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { ArticlesSectionStyled } from './styles.js'
-import { Section } from '../Common/Section.jsx'
-import { Grid } from '../Common/Grid.jsx'
-import { H2 } from '../Common/Texts.jsx'
-import { NoContent } from '../Common/NoContent.jsx'
-import { Card } from './Card/index.jsx'
-import { Button } from '../Common/Inputs/Button.jsx'
-import { useGetAll } from '../../hooks/articles/useGetAll.js'
+import { Section } from '../../Common/Section.jsx'
+import { Grid } from '../../Common/Grid.jsx'
+import { H2 } from '../../Common/Texts.jsx'
+import { NoContent } from '../../Common/NoContent.jsx'
+import { Card } from '../Card/index.jsx'
+import { Button } from '../../Common/Inputs/Button.jsx'
+import { useGetAll } from '../../../hooks/articles/useGetAll.js'
 
 export const News = ({ title, full }) => {
     const news = useGetAll(full)
