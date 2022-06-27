@@ -3,52 +3,10 @@ import { H2 } from '../Common/Texts'
 import { Grid } from '../Common/Grid'
 import { NoContent } from '../Common/NoContent'
 import { Link } from './Link'
-import { useEffect, useState } from 'react'
-
-const testLinks = [
-    {
-        icon: 'faLink',
-        text: 'This is a test',
-        url: 'https://youtube.com'
-    },
-    {
-        icon: 'faLink',
-        text: 'This is a test',
-        url: 'https://youtube.com'
-    },
-    {
-        icon: 'faLink',
-        text: 'This is a test',
-        url: 'https://youtube.com'
-    },
-    {
-        icon: 'faLink',
-        text: 'This is a test',
-        url: 'https://youtube.com'
-    },
-    {
-        icon: 'faLink',
-        text: 'This is a test',
-        url: 'https://youtube.com'
-    },
-    {
-        icon: 'faLink',
-        text: 'This is a test',
-        url: 'https://youtube.com'
-    },
-    {
-        icon: 'faLink',
-        text: 'This is a test',
-        url: 'https://youtube.com'
-    }
-]
+import { useGetAll } from '../../hooks/links/useGetAll'
 
 export const Links = () => {
-    const [links, setLinks] = useState([])
-
-    useEffect(() => {
-        setLinks(testLinks)
-    }, [])
+    const links = useGetAll()
 
     return (
         <Section id="enlaces-de-interes">

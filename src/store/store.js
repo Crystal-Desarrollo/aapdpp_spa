@@ -3,10 +3,12 @@ import { compose, combineReducers } from 'redux'
 
 import authReducer from './slices/authSlice.js'
 import newsReducer from './slices/articlesSlice.js'
+import linksReducer from './slices/linksSlice.js'
 
 const reducer = combineReducers({
     auth: authReducer,
-    news: newsReducer
+    news: newsReducer,
+    links: linksReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -15,7 +17,8 @@ const initialState = window.__PRELOADED_STATE__ || {
         user: null,
         token: localStorage.getItem('aapdpp-token')
     },
-    news: []
+    news: [],
+    links: []
 }
 
 const store = configureStore({ reducer }, initialState, composeEnhancers())
