@@ -5,7 +5,7 @@ import { MessageLabel } from '../../Common/MessageLabel'
 
 import Logo from '../../../asssets/img/logo_apdp.jpg'
 
-export const LoginForm = ({ onChange, onSubmit }) => {
+export const LoginForm = ({ onChange, onSubmit, error }) => {
     return (
         <LoginFormStyled>
             <img
@@ -30,10 +30,7 @@ export const LoginForm = ({ onChange, onSubmit }) => {
                 <div className="form-footer">
                     <Button onClick={onSubmit}>Ingresar</Button>
 
-                    <MessageLabel
-                        text="Crendenciales invalidas"
-                        status="error"
-                    />
+                    {error && <MessageLabel text={error} status="error" />}
                 </div>
             </LoginCardStyled>
         </LoginFormStyled>

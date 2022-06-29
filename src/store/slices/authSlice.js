@@ -33,7 +33,7 @@ export const login = userData => async dispatch => {
             return
         }
     } catch (err) {
-        // TODO:handle error
+        return Promise.reject(err.message)
     }
 }
 

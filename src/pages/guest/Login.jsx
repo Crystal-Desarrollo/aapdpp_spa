@@ -10,6 +10,7 @@ import { useAuth } from '../../hooks/auth/useAuth'
 
 export function Login() {
     const [data, setData] = useState({})
+    const [error, setError] = useState('')
     const dispatch = useDispatch()
     const { user } = useAuth()
 
@@ -22,8 +23,9 @@ export function Login() {
 
     const handleSubmit = e => {
         e.preventDefault()
+        setError('')
 
-        dispatch(login(data))
+        dispatch(login(data)).catch(() => setError('Credenciales Inválidas'))
     }
 
     if (user) {
@@ -32,7 +34,11 @@ export function Login() {
 
     return (
         <Guest>
-            <LoginForm onChange={handleChange} onSubmit={handleSubmit} />
+            <LoginForm
+                onChange={handleChange}
+                onSubmit={handleSubmit}
+                error={error}
+            />
         </Guest>
     )
 }
