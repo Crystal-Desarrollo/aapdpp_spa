@@ -12,8 +12,11 @@ const authSlice = createSlice({
         loginAction: (_, action) => {
             return action.payload
         },
-        logoutAction() {
-            return null
+        logoutAction(_, action) {
+            return {
+                user: null,
+                token: null
+            }
         },
         meAction(_, action) {
             return action.payload
