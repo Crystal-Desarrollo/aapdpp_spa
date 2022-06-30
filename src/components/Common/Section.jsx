@@ -9,6 +9,8 @@ const SectionStyled = styled.section`
     display: flex;
     flex-direction: column;
 
+    position: relative;
+
     @media screen and (max-width: 1200px) {
         padding-left: 1rem;
         padding-right: 1rem;

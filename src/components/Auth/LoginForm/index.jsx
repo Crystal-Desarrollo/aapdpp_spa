@@ -2,10 +2,11 @@ import { LoginFormStyled, LoginCardStyled } from './styles'
 import { TextField } from '../../Common/Inputs/TextField'
 import { Button } from '../../Common/Inputs/Button'
 import { MessageLabel } from '../../Common/MessageLabel'
+import { Loader } from '../../Loader'
 
 import Logo from '../../../asssets/img/logo_apdp.jpg'
 
-export const LoginForm = ({ onChange, onSubmit, error }) => {
+export const LoginForm = ({ onChange, onSubmit, error, loading }) => {
     return (
         <LoginFormStyled>
             <img
@@ -14,6 +15,8 @@ export const LoginForm = ({ onChange, onSubmit, error }) => {
             />
 
             <LoginCardStyled>
+                {loading && <Loader />}
+
                 <TextField
                     type="email"
                     onChange={onChange}

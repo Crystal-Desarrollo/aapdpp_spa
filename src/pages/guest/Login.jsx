@@ -11,6 +11,7 @@ import { useAuth } from '../../hooks/auth/useAuth'
 export function Login() {
     const [data, setData] = useState({})
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const { user } = useAuth()
 
@@ -22,10 +23,13 @@ export function Login() {
     }
 
     const handleSubmit = e => {
+        setLoading(true)
         e.preventDefault()
         setError('')
 
-        dispatch(login(data)).catch(() => setError('Credenciales Inválidas'))
+        dispatch(login(data))
+            .catch(() => setError('Credenciales Inválidas'))
+            .finally(() => setLoading(false))
     }
 
     if (user) {
@@ -38,6 +42,7 @@ export function Login() {
                 onChange={handleChange}
                 onSubmit={handleSubmit}
                 error={error}
+                loading={loading}
             />
         </Guest>
     )

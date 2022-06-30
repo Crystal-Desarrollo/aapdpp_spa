@@ -28,4 +28,6 @@ export const LoginCardStyled = styled(CardStyled)`
             margin-right: 1rem;
         }
     }
+
+    position: relative;
 `

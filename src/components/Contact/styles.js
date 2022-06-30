@@ -9,6 +9,8 @@ export const FormStyled = styled.form`
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 1rem;
 
+    position: relative;
+
     > :nth-child(1) {
         grid-column: 1 / 3;
     }

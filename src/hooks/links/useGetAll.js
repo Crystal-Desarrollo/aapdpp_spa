@@ -4,11 +4,11 @@ import { getAll } from '../../store/slices/linksSlice'
 
 export const useGetAll = () => {
     const dispatch = useDispatch()
-    const links = useSelector(store => store.links)
+    const state = useSelector(store => store.links)
 
     useEffect(() => {
         dispatch(getAll())
     }, [dispatch])
 
-    return links
+    return state
 }

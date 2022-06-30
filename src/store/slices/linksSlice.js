@@ -3,10 +3,16 @@ import LinksApi from '../../api/linksApi'
 
 const linksSlice = createSlice({
     name: 'links',
-    initialState: [],
+    initialState: {
+        loading: false,
+        data: []
+    },
     reducers: {
-        getAllAction: (_, action) => {
-            return action.payload
+        setLoadingAction: (state, action) => {
+            state.loading = action.payload
+        },
+        getAllAction: (state, action) => {
+            state.data = action.payload
         },
         getOneAction: (store, action) => {
             const { payload } = action
@@ -18,10 +24,11 @@ const linksSlice = createSlice({
 })
 export default linksSlice.reducer
 
-const { getAllAction, getOneAction } = linksSlice.actions
+const { getAllAction, getOneAction, setLoadingAction } = linksSlice.actions
 
 export const getAll = () => async dispatch => {
     try {
+        dispatch(setLoadingAction(true))
         const response = await LinksApi.getAll()
         if (response.status === 200) {
             dispatch(getAllAction(response.data))
@@ -29,6 +36,8 @@ export const getAll = () => async dispatch => {
         }
     } catch (err) {
         // TODO:handle error
+    } finally {
+        dispatch(setLoadingAction(false))
     }
 }
 

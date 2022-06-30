@@ -4,20 +4,23 @@ import { getAll } from '../../store/slices/articlesSlice'
 
 export const useGetAll = full => {
     const dispatch = useDispatch()
-    const news = useSelector(store => store.news)
-    const [displayableNews, setDisplayableNews] = useState([])
+    const { loading, data } = useSelector(store => store.news)
+    const [news, setNews] = useState({})
 
     useEffect(() => {
         dispatch(getAll())
     }, [dispatch])
 
     useEffect(() => {
-        if (!full && news.length > 6) {
-            setDisplayableNews(news.slice(0, 6))
+        if (!full && data.length > 6) {
+            setNews({
+                data: data.slice(0, 6),
+                loading
+            })
         } else {
-            setDisplayableNews(news)
+            setNews({ loading, data })
         }
-    }, [news, full])
+    }, [data, loading, full])
 
-    return displayableNews
+    return news
 }

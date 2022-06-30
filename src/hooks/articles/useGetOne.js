@@ -12,7 +12,7 @@ export const useGetOne = id => {
     }, [dispatch, id])
 
     useEffect(() => {
-        setArticle(news.find(x => x.id === Number(id)))
+        setArticle(news.data.find(x => x.id === Number(id)))
     }, [news, id])
 
     return article
