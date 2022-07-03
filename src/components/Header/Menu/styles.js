@@ -25,6 +25,14 @@ export const StyledMenu = styled.ul`
         background: none;
         border: none;
         cursor: pointer;
+
+        i {
+            margin-right: 0.5rem;
+            color: #fff;
+
+            display: flex;
+            align-items: center;
+        }
     }
 
     //TODO: responsive

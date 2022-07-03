@@ -1,5 +1,6 @@
 import { HashLink } from 'react-router-hash-link'
 import { useDispatch } from 'react-redux'
+import { FaSignOutAlt } from 'react-icons/fa'
 
 import { StyledMenu } from './styles'
 import { useAuth } from '../../../hooks/auth/useAuth'
@@ -11,6 +12,39 @@ export const Menu = () => {
 
     const signOff = () => {
         dispatch(logout())
+    }
+
+    const renderUserBasedLinks = () => {
+        if (!user) {
+            return (
+                <li>
+                    <HashLink to="/ingresar">Ingresar</HashLink>
+                </li>
+            )
+        }
+
+        return (
+            <>
+                {user.role?.name === 'admin' && (
+                    <li>
+                        <HashLink to="/dashboard">Administrar</HashLink>
+                    </li>
+                )}
+                {user.role?.name === 'member' && (
+                    <li>
+                        <HashLink to="/perfil">Mi perfil</HashLink>
+                    </li>
+                )}
+                <li>
+                    <button as="button" onClick={signOff}>
+                        <i>
+                            <FaSignOutAlt />
+                        </i>
+                        Salir
+                    </button>
+                </li>
+            </>
+        )
     }
 
     return (
@@ -32,15 +66,7 @@ export const Menu = () => {
             <li>
                 <HashLink to="/#contacto">Contacto</HashLink>
             </li>
-            <li>
-                {user ? (
-                    <button as="button" onClick={signOff}>
-                        Cerrar Sesión
-                    </button>
-                ) : (
-                    <HashLink to="/ingresar">Ingresar</HashLink>
-                )}
-            </li>
+            {renderUserBasedLinks()}
         </StyledMenu>
     )
 }
