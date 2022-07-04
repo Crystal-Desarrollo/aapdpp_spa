@@ -20,6 +20,10 @@ class AuthApi {
 
         return axiosInstance.get('/user', { token })
     }
+
+    async update(data) {
+        return axiosInstance.put('/users', data)
+    }
 }
 
 export default new AuthApi()

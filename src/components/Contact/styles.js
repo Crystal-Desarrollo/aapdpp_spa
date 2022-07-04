@@ -1,10 +1,6 @@
 import styled from 'styled-components'
 
 export const FormStyled = styled.form`
-    background-color: #f2f2f2;
-    border-radius: 0.2rem;
-    padding: 2rem;
-
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 1rem;

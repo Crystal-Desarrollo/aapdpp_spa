@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
-import { Guest } from '../layouts/Guest'
 import { LoginForm } from '../../components/Auth/LoginForm'
 
 import { login } from '../../store/slices/authSlice'
@@ -37,13 +36,11 @@ export function Login() {
     }
 
     return (
-        <Guest>
-            <LoginForm
-                onChange={handleChange}
-                onSubmit={handleSubmit}
-                error={error}
-                loading={loading}
-            />
-        </Guest>
+        <LoginForm
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            error={error}
+            loading={loading}
+        />
     )
 }

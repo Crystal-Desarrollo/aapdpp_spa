@@ -1,10 +1,10 @@
+import { Outlet } from 'react-router-dom'
 import { Header } from '../../components/Header/index.jsx'
-
-export const Guest = ({ children }) => {
+export const Guest = () => {
     return (
         <>
             <Header />
-            <main>{children}</main>
+            <main>{<Outlet />}</main>
         </>
     )
 }

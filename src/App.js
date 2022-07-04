@@ -6,19 +6,21 @@ import {
     useLocation
 } from 'react-router-dom'
 
+import { Guest } from './pages/layouts/Guest.jsx'
 import { Home } from './pages/guest/Home.jsx'
 import { Login } from './pages/guest/Login.jsx'
 import { AllNews } from './pages/member/AllNews.jsx'
 import { FullArticle } from './pages/guest/FullArticle.jsx'
 import { BecomeMember } from './pages/error/BecomeMember.jsx'
+import { Profile } from './pages/member/Profile.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
 
 function AdminMiddleware({ children }) {
-    const { user, token } = useAuth()
+    const { user } = useAuth()
     const location = useLocation()
 
-    if (!user && !token) {
+    if (user?.role?.name !== 'admin') {
         return <Navigate to="/ingresar" state={{ from: location }} replace />
     }
 
@@ -26,9 +28,9 @@ function AdminMiddleware({ children }) {
 }
 
 function MemberMiddleware({ children }) {
-    const { user, token } = useAuth()
+    const auth = useAuth()
 
-    if (!user && !token) {
+    if (!auth.user || !auth.token) {
         return <BecomeMember />
     }
 
@@ -39,17 +41,46 @@ export function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/ingresar" element={<Login />} />
+                <Route element={<Guest />}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/ingresar" element={<Login />} />
 
-                {/* <Route element={<MemberMiddleware />}> */}
-                <Route path="/noticias" element={<AllNews />} />
-                <Route path="/noticias/:id" element={<FullArticle />} />
-                {/* </Route> */}
+                    {/* Member only routes */}
 
-                <Route element={<AdminMiddleware />}>
-                    <Route path="/registrar" element={<Home />} />
+                    <Route
+                        path="/noticias/:id"
+                        element={
+                            <MemberMiddleware>
+                                <FullArticle />
+                            </MemberMiddleware>
+                        }
+                    />
+                    <Route
+                        path="/noticias"
+                        element={
+                            <MemberMiddleware>
+                                <AllNews />
+                            </MemberMiddleware>
+                        }
+                    />
+                    <Route
+                        path="/perfil"
+                        element={
+                            <MemberMiddleware>
+                                <Profile />
+                            </MemberMiddleware>
+                        }
+                    />
                 </Route>
+
+                <Route
+                    path="/registrar"
+                    element={
+                        <AdminMiddleware>
+                            <h1>Registro</h1>
+                        </AdminMiddleware>
+                    }
+                />
             </Routes>
         </Router>
     )

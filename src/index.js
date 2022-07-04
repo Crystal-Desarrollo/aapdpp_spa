@@ -4,8 +4,10 @@ import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import { createGlobalStyle } from 'styled-components'
 import { App } from './App'
+import { ToastContainer } from 'react-toastify'
 
 import store from './store/store.js'
+import 'react-toastify/dist/ReactToastify.min.css'
 
 const GlobalStyle = createGlobalStyle`
     *{
@@ -25,7 +27,6 @@ const GlobalStyle = createGlobalStyle`
         margin-top:60px;
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
     }
 
     i{
@@ -54,6 +55,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <Provider store={store}>
         <React.StrictMode>
+            <ToastContainer
+                position="bottom-left"
+                hideProgressBar={true}
+                pauseOnHover
+                theme="colored"
+            />
             <GlobalStyle />
             <App />
         </React.StrictMode>

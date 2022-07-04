@@ -1,34 +1,46 @@
 import { createSlice } from '@reduxjs/toolkit'
 import AuthApi from '../../api/authApi.js'
+import { toast } from 'react-toastify'
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        user: null,
-        token: null
+        loading: false,
+        data: {
+            user: null,
+            token: null
+        }
     },
     reducers: {
-        register(state, action) {},
-        loginAction: (_, action) => {
-            return action.payload
+        setLoadingAction: (state, action) => {
+            state.loading = action.payload
         },
-        logoutAction(_, action) {
-            return {
+        register(state, action) {},
+        loginAction: (state, action) => {
+            state.data = action.payload
+        },
+        logoutAction(state, action) {
+            state.data = {
                 user: null,
                 token: null
             }
         },
-        meAction(_, action) {
-            return action.payload
+        meAction(state, action) {
+            state.data = action.payload
+        },
+        updateAction(state, action) {
+            state.data.user = action.payload
         }
     }
 })
 export default authSlice.reducer
 
-const { loginAction, logoutAction, meAction } = authSlice.actions
+const { loginAction, logoutAction, meAction, updateAction, setLoadingAction } =
+    authSlice.actions
 
 export const login = userData => async dispatch => {
     try {
+        dispatch(setLoadingAction(true))
         const response = await AuthApi.login(userData)
         if (response.status === 200) {
             localStorage.setItem('aapdpp-token', response.data.token)
@@ -37,24 +49,28 @@ export const login = userData => async dispatch => {
         }
     } catch (err) {
         return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
     }
 }
 
 export const logout = () => async dispatch => {
     try {
+        dispatch(setLoadingAction(true))
         await AuthApi.logout()
-
         localStorage.removeItem('aapdpp-token')
         dispatch(logoutAction())
     } catch (err) {
         //TODO: handle error
+    } finally {
+        dispatch(setLoadingAction(false))
     }
 }
 
 export const me = () => async dispatch => {
     try {
+        dispatch(setLoadingAction(true))
         const token = localStorage.getItem('aapdpp-token')
-
         if (token) {
             const response = await AuthApi.me(token)
             dispatch(
@@ -66,5 +82,20 @@ export const me = () => async dispatch => {
         }
     } catch (err) {
         //TODO: handle error
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+
+export const update = data => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await AuthApi.update(data)
+        dispatch(updateAction(response.data))
+        toast.success('Información actualizada')
+    } catch (err) {
+        //TODO: handle error
+    } finally {
+        dispatch(setLoadingAction(false))
     }
 }

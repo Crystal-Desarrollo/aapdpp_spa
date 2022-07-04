@@ -82,6 +82,10 @@ const FieldStyled = styled.div`
                 color: red;
             }
         }
+
+        :disabled {
+            border: none;
+        }
     }
 `
 
@@ -89,7 +93,7 @@ export const TextField = props => {
     const {
         type = 'text',
         name,
-        id,
+        id = name,
         labelText,
         placeholder = ' ',
         tag = 'input',
