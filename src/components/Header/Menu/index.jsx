@@ -25,11 +25,6 @@ export const Menu = () => {
 
         return (
             <>
-                {user.role?.name === 'admin' && (
-                    <li>
-                        <HashLink to="/dashboard">Administrar</HashLink>
-                    </li>
-                )}
                 {user.role?.name === 'member' && (
                     <li>
                         <HashLink to="/perfil">Mi perfil</HashLink>

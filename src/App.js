@@ -13,6 +13,8 @@ import { AllNews } from './pages/member/AllNews.jsx'
 import { FullArticle } from './pages/guest/FullArticle.jsx'
 import { BecomeMember } from './pages/error/BecomeMember.jsx'
 import { Profile } from './pages/member/Profile.jsx'
+import { AddArticle } from './pages/admin/AddArticle.jsx'
+import { Dashboard } from './pages/admin/Dashboard.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
 
@@ -71,16 +73,36 @@ export function App() {
                             </MemberMiddleware>
                         }
                     />
-                </Route>
 
-                <Route
-                    path="/registrar"
-                    element={
-                        <AdminMiddleware>
-                            <h1>Registro</h1>
-                        </AdminMiddleware>
-                    }
-                />
+                    <Route
+                        path="/registrar"
+                        element={
+                            <AdminMiddleware>
+                                <h1>Registro de usuarios</h1>
+                            </AdminMiddleware>
+                        }
+                    />
+
+                    <Route path="/admin">
+                        <Route
+                            path="/admin/panel-general"
+                            element={
+                                <AdminMiddleware>
+                                    <Dashboard />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
+                            path="/admin/agregar-noticia"
+                            element={
+                                <AdminMiddleware>
+                                    <AddArticle />
+                                </AdminMiddleware>
+                            }
+                        />
+                    </Route>
+                </Route>
             </Routes>
         </Router>
     )

@@ -1,9 +1,13 @@
 import { HeaderStyled } from './styles'
 import { Menu } from './Menu/index.jsx'
+import { AdminHeader } from './AdminHeader'
 
 import Logo from '../../asssets/img/logo_apdp.jpg'
+import { useAuth } from '../../hooks/auth/useAuth'
 
 export function Header() {
+    const { user } = useAuth()
+
     return (
         <HeaderStyled>
             <div className="content">
@@ -17,6 +21,8 @@ export function Header() {
 
                 <Menu />
             </div>
+
+            {user?.role?.name === 'admin' && <AdminHeader />}
         </HeaderStyled>
     )
 }

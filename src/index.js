@@ -23,8 +23,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     main{
-        height: calc(100vh - 60px);
-        margin-top:60px;
+        height: calc(100vh - 100px);
+        margin-top:100px;
         display: flex;
         flex-direction: column;
     }

@@ -1,3 +1,3 @@
-export function Index() {
+export function AddArticle() {
     return <div>Logged in</div>
 }
