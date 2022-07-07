@@ -40,13 +40,30 @@ function MemberMiddleware({ children }) {
     return children
 }
 
+function GuestMiddleWare({ children }) {
+    const auth = useAuth()
+
+    if (auth.user || auth.token) {
+        return <Navigate to="/" replace />
+    }
+
+    return children
+}
+
 export function App() {
     return (
         <Router>
             <Routes>
                 <Route element={<Guest />}>
                     <Route path="/" element={<Home />} />
-                    <Route path="/ingresar" element={<Login />} />
+                    <Route
+                        path="/ingresar"
+                        element={
+                            <GuestMiddleWare>
+                                <Login />
+                            </GuestMiddleWare>
+                        }
+                    />
 
                     {/* Member only routes */}
 
