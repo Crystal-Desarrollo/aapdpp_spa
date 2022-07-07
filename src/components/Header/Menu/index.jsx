@@ -5,15 +5,17 @@ import { FaSignOutAlt } from 'react-icons/fa'
 import { StyledMenu } from './styles'
 import { Confirm } from '../../Common/modals/Confirm'
 import { logout } from '../../../store/slices/authSlice'
-import { useIsMember } from '../../../hooks/auth/useIsMember'
 import { useAuth } from '../../../hooks/auth/useAuth'
 import { useState } from 'react'
 
 export const Menu = () => {
     const dispatch = useDispatch()
-    const { data } = useAuth()
-    const isMember = useIsMember()
+    const {
+        data: { user }
+    } = useAuth()
     const [confirmShown, setConfirmShown] = useState(false)
+
+    const isMember = user?.roole?.name === 'member'
 
     const signOff = () => {
         dispatch(logout())
@@ -21,7 +23,7 @@ export const Menu = () => {
     }
 
     const renderUserBasedLinks = () => {
-        if (!data.user) {
+        if (!user) {
             return (
                 <li>
                     <HashLink to="/ingresar">Ingresar</HashLink>

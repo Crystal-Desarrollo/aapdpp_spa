@@ -17,16 +17,17 @@ import { Dashboard } from './pages/admin/Dashboard.jsx'
 import { AddArticle } from './pages/admin/Articles/AddArticle.jsx'
 import { Articles } from './pages/admin/Articles/Articles.jsx'
 import { Register } from './pages/admin/Users/Register.jsx'
+import { UsersList } from './pages/admin/Users/List.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
-import { useIsAdmin } from './hooks/auth/useIsAdmin.js'
-import { useIsMember } from './hooks/auth/useIsMember.js'
 
 function AdminMiddleware({ children }) {
-    const isAdmin = useIsAdmin()
+    const {
+        data: { user }
+    } = useAuth()
     const location = useLocation()
 
-    if (!isAdmin) {
+    if (user?.role?.name !== 'admin') {
         return <Navigate to="/ingresar" state={{ from: location }} replace />
     }
 
@@ -34,10 +35,12 @@ function AdminMiddleware({ children }) {
 }
 
 function MemberMiddleware({ children }) {
-    const isMember = useIsMember()
-    const isAdmin = useIsAdmin()
+    const {
+        data: { user }
+    } = useAuth()
+    const userRole = user?.role?.name
 
-    if (isMember || isAdmin) {
+    if (userRole === 'admin' || userRole === 'member') {
         return children
     }
 
@@ -120,6 +123,15 @@ export function App() {
                             element={
                                 <AdminMiddleware>
                                     <AddArticle />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
+                            path="/admin/miembros"
+                            element={
+                                <AdminMiddleware>
+                                    <UsersList />
                                 </AdminMiddleware>
                             }
                         />

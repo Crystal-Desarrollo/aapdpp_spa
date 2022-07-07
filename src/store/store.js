@@ -4,11 +4,13 @@ import { compose, combineReducers } from 'redux'
 import authReducer from './slices/authSlice.js'
 import newsReducer from './slices/articlesSlice.js'
 import linksReducer from './slices/linksSlice.js'
+import usersReducer from './slices/usersSlice.js'
 
 const reducer = combineReducers({
     auth: authReducer,
     news: newsReducer,
-    links: linksReducer
+    links: linksReducer,
+    users: usersReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

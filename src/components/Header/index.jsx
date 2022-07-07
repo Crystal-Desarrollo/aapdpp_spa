@@ -3,10 +3,14 @@ import { Menu } from './Menu/index.jsx'
 import { AdminHeader } from './AdminHeader'
 
 import Logo from '../../asssets/img/logo_apdp.jpg'
-import { useIsAdmin } from '../../hooks/auth/useIsAdmin'
+import { useAuth } from '../../hooks/auth/useAuth'
 
 export function Header() {
-    const isAdmin = useIsAdmin()
+    const {
+        data: { user }
+    } = useAuth()
+
+    const isAdmin = user?.role?.name === 'admin'
 
     return (
         <HeaderStyled>
