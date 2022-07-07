@@ -36,7 +36,7 @@ function AdminMiddleware({ children }) {
 function MemberMiddleware({ children }) {
     const isMember = useIsMember()
 
-    if (isMember) {
+    if (!isMember) {
         return <BecomeMember />
     }
 
