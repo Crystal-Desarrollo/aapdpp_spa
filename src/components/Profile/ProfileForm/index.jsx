@@ -14,7 +14,9 @@ import AVATAR from '../../../asssets/img/default_avatar.png'
 export const ProfileForm = () => {
     const { loading } = useSelector(store => store.auth)
     const dispatch = useDispatch()
-    const { user } = useAuth()
+    const {
+        data: { user }
+    } = useAuth()
     const [data, setData] = useState(user)
 
     const handleChange = e => {
