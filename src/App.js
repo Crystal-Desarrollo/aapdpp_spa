@@ -35,12 +35,13 @@ function AdminMiddleware({ children }) {
 
 function MemberMiddleware({ children }) {
     const isMember = useIsMember()
+    const isAdmin = useIsAdmin()
 
-    if (!isMember) {
-        return <BecomeMember />
+    if (isMember || isAdmin) {
+        return children
     }
 
-    return children
+    return <BecomeMember />
 }
 
 function GuestMiddleWare({ children }) {
