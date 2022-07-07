@@ -1,11 +1,17 @@
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
+
+export const AdminHeaderStyle = createGlobalStyle`
+    *{
+        --header-height: 100px;
+    }
+`
 
 export const HeaderStyled = styled.header`
     width: 100%;
     height: 60px;
     background-color: #1d3557;
 
-    position: fixed;
+    position: sticky;
     top: 0;
     z-index: 999999;
 

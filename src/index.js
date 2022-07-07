@@ -16,6 +16,8 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         font-family: 'Open Sans', sans-serif;
         scroll-behavior: smooth;
+
+        --header-height: 60px;
     }
 
     body{
@@ -23,8 +25,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     main{
-        height: calc(100vh - 100px);
-        margin-top:100px;
+        height: calc(100vh - var(--header-height));
         display: flex;
         flex-direction: column;
     }

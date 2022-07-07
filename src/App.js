@@ -13,8 +13,9 @@ import { AllNews } from './pages/member/AllNews.jsx'
 import { FullArticle } from './pages/guest/FullArticle.jsx'
 import { BecomeMember } from './pages/error/BecomeMember.jsx'
 import { Profile } from './pages/member/Profile.jsx'
-import { AddArticle } from './pages/admin/AddArticle.jsx'
 import { Dashboard } from './pages/admin/Dashboard.jsx'
+import { AddArticle } from './pages/admin/Articles/AddArticle.jsx'
+import { Articles } from './pages/admin/Articles/Articles.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
 
@@ -89,6 +90,15 @@ export function App() {
                             element={
                                 <AdminMiddleware>
                                     <Dashboard />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
+                            path="/admin/noticias"
+                            element={
+                                <AdminMiddleware>
+                                    <Articles />
                                 </AdminMiddleware>
                             }
                         />

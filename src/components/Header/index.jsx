@@ -1,4 +1,4 @@
-import { HeaderStyled } from './styles'
+import { HeaderStyled, AdminHeaderStyle } from './styles'
 import { Menu } from './Menu/index.jsx'
 import { AdminHeader } from './AdminHeader'
 
@@ -22,7 +22,12 @@ export function Header() {
                 <Menu />
             </div>
 
-            {user?.role?.name === 'admin' && <AdminHeader />}
+            {user?.role?.name === 'admin' && (
+                <>
+                    <AdminHeaderStyle />
+                    <AdminHeader />
+                </>
+            )}
         </HeaderStyled>
     )
 }
