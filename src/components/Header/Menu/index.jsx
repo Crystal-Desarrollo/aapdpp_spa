@@ -3,19 +3,21 @@ import { useDispatch } from 'react-redux'
 import { FaSignOutAlt } from 'react-icons/fa'
 
 import { StyledMenu } from './styles'
-import { useAuth } from '../../../hooks/auth/useAuth'
 import { logout } from '../../../store/slices/authSlice'
+import { useIsMember } from '../../../hooks/auth/useIsMember'
+import { useAuth } from '../../../hooks/auth/useAuth'
 
 export const Menu = () => {
     const dispatch = useDispatch()
-    const { user } = useAuth()
+    const { data } = useAuth()
+    const isMember = useIsMember()
 
     const signOff = () => {
         dispatch(logout())
     }
 
     const renderUserBasedLinks = () => {
-        if (!user) {
+        if (!data.user) {
             return (
                 <li>
                     <HashLink to="/ingresar">Ingresar</HashLink>
@@ -25,7 +27,7 @@ export const Menu = () => {
 
         return (
             <>
-                {user.role?.name === 'member' && (
+                {isMember && (
                     <li>
                         <HashLink to="/perfil">Mi perfil</HashLink>
                     </li>

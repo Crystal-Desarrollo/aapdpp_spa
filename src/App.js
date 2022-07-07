@@ -16,14 +16,17 @@ import { Profile } from './pages/member/Profile.jsx'
 import { Dashboard } from './pages/admin/Dashboard.jsx'
 import { AddArticle } from './pages/admin/Articles/AddArticle.jsx'
 import { Articles } from './pages/admin/Articles/Articles.jsx'
+import { Register } from './pages/admin/Users/Register.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
+import { useIsAdmin } from './hooks/auth/useIsAdmin.js'
+import { useIsMember } from './hooks/auth/useIsMember.js'
 
 function AdminMiddleware({ children }) {
-    const { user } = useAuth()
+    const isAdmin = useIsAdmin()
     const location = useLocation()
 
-    if (user?.role?.name !== 'admin') {
+    if (!isAdmin) {
         return <Navigate to="/ingresar" state={{ from: location }} replace />
     }
 
@@ -31,9 +34,9 @@ function AdminMiddleware({ children }) {
 }
 
 function MemberMiddleware({ children }) {
-    const auth = useAuth()
+    const isMember = useIsMember()
 
-    if (!auth.user || !auth.token) {
+    if (isMember) {
         return <BecomeMember />
     }
 
@@ -41,7 +44,7 @@ function MemberMiddleware({ children }) {
 }
 
 function GuestMiddleWare({ children }) {
-    const auth = useAuth()
+    const { data: auth } = useAuth()
 
     if (auth.user || auth.token) {
         return <Navigate to="/" replace />
@@ -92,15 +95,6 @@ export function App() {
                         }
                     />
 
-                    <Route
-                        path="/registrar"
-                        element={
-                            <AdminMiddleware>
-                                <h1>Registro de usuarios</h1>
-                            </AdminMiddleware>
-                        }
-                    />
-
                     <Route path="/admin">
                         <Route
                             path="/admin/panel-general"
@@ -125,6 +119,15 @@ export function App() {
                             element={
                                 <AdminMiddleware>
                                     <AddArticle />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
+                            path="/admin/miembros/agregar"
+                            element={
+                                <AdminMiddleware>
+                                    <Register />
                                 </AdminMiddleware>
                             }
                         />
