@@ -8,17 +8,16 @@ export const AdminHeaderStyle = createGlobalStyle`
 
 export const HeaderStyled = styled.header`
     width: 100%;
-    height: 60px;
+    height: var(--header-height);
     background-color: #1d3557;
 
     position: sticky;
     top: 0;
-    z-index: 999999;
+    z-index: 99;
 
     .content {
         width: 100%;
         max-width: 1200px;
-        height: 100%;
         margin: 0 auto;
 
         display: flex;
@@ -32,7 +31,7 @@ export const HeaderStyled = styled.header`
             align-items: center;
 
             img {
-                height: 100%;
+                height: 60px;
                 margin-right: 1rem;
             }
 

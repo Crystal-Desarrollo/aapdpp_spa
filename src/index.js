@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     main{
-        height: calc(100vh - var(--header-height));
+        min-height: calc(100vh - var(--header-height));
         display: flex;
         flex-direction: column;
     }

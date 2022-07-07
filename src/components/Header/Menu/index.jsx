@@ -3,17 +3,21 @@ import { useDispatch } from 'react-redux'
 import { FaSignOutAlt } from 'react-icons/fa'
 
 import { StyledMenu } from './styles'
+import { Confirm } from '../../Common/modals/Confirm'
 import { logout } from '../../../store/slices/authSlice'
 import { useIsMember } from '../../../hooks/auth/useIsMember'
 import { useAuth } from '../../../hooks/auth/useAuth'
+import { useState } from 'react'
 
 export const Menu = () => {
     const dispatch = useDispatch()
     const { data } = useAuth()
     const isMember = useIsMember()
+    const [confirmShown, setConfirmShown] = useState(false)
 
     const signOff = () => {
         dispatch(logout())
+        setConfirmShown(false)
     }
 
     const renderUserBasedLinks = () => {
@@ -33,7 +37,7 @@ export const Menu = () => {
                     </li>
                 )}
                 <li>
-                    <button as="button" onClick={signOff}>
+                    <button as="button" onClick={() => setConfirmShown(true)}>
                         <i>
                             <FaSignOutAlt />
                         </i>
@@ -45,25 +49,36 @@ export const Menu = () => {
     }
 
     return (
-        <StyledMenu>
-            <li>
-                <HashLink to="/">Inicio</HashLink>
-            </li>
-            <li>
-                <HashLink to="/#nosotros">Nosotros</HashLink>
-            </li>
-            <li>
-                <HashLink to="/#noticias">Noticias</HashLink>
-            </li>
-            <li>
-                <HashLink to="/#enlaces-de-interes">
-                    Enlaces de interés
-                </HashLink>
-            </li>
-            <li>
-                <HashLink to="/#contacto">Contacto</HashLink>
-            </li>
-            {renderUserBasedLinks()}
-        </StyledMenu>
+        <>
+            <Confirm
+                shown={confirmShown}
+                title="Cerrar sesión"
+                description="Estas por cerrar tu sesión ¿Deseas continuar?"
+                acceptText="Cerrar sesión"
+                cancelText="Cancelar"
+                onCancel={() => setConfirmShown(false)}
+                onAccept={signOff}
+            />
+            <StyledMenu>
+                <li>
+                    <HashLink to="/">Inicio</HashLink>
+                </li>
+                <li>
+                    <HashLink to="/#nosotros">Nosotros</HashLink>
+                </li>
+                <li>
+                    <HashLink to="/#noticias">Noticias</HashLink>
+                </li>
+                <li>
+                    <HashLink to="/#enlaces-de-interes">
+                        Enlaces de interés
+                    </HashLink>
+                </li>
+                <li>
+                    <HashLink to="/#contacto">Contacto</HashLink>
+                </li>
+                {renderUserBasedLinks()}
+            </StyledMenu>
+        </>
     )
 }

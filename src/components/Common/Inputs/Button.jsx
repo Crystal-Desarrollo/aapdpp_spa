@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const ButtonStyled = styled.button`
     width: max-content;
-    padding: 0.875rem 2rem;
+    ${({ dense }) => (dense ? 'padding: 0.5rem;' : 'padding: 0.875rem 2rem;')}
 
     background-color: #1d3557;
     color: #fff;
@@ -24,10 +24,10 @@ const ButtonStyled = styled.button`
 `
 
 export const Button = props => {
-    const { children, type = 'button', onClick, ...rest } = props
+    const { children, type = 'button', onClick, dense, ...rest } = props
 
     return (
-        <ButtonStyled type={type} onClick={onClick} {...rest}>
+        <ButtonStyled type={type} onClick={onClick} {...rest} dense={dense}>
             {children}
         </ButtonStyled>
     )
