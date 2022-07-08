@@ -78,7 +78,7 @@ export const remove = id => async dispatch => {
         const response = await UsersApi.delete(id)
         if (response.status === 204) {
             dispatch(deleteAction(id))
-            toast.success('Usuario eliminad0')
+            toast.success('Usuario eliminado')
             return
         }
     } catch (err) {

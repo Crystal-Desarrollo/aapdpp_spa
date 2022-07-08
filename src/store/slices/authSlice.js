@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import AuthApi from '../../api/authApi.js'
-import { toast } from 'react-toastify'
 
 const authSlice = createSlice({
     name: 'auth',
