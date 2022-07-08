@@ -7,22 +7,13 @@ import {
     FaNewspaper,
     FaLink,
     FaCalendar,
-    FaBook,
-    FaTable
+    FaBook
 } from 'react-icons/fa'
 
 export const AdminHeader = () => {
     return (
         <AdminHeaderStyled>
             <ul>
-                <li>
-                    <Link to="/admin/panel-general">
-                        <i>
-                            <FaTable />
-                        </i>
-                        Panel general
-                    </Link>
-                </li>
                 <li>
                     <Link to="/admin/miembros">
                         <i>

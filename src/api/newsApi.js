@@ -8,6 +8,10 @@ class NewsApi {
     getOne(id) {
         return axiosInstance.get(`/articles/${id}`)
     }
+
+    delete(id) {
+        return axiosInstance.delete(`/articles/${id}`)
+    }
 }
 
 export default new NewsApi()

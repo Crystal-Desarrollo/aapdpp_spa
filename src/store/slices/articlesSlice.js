@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 import NewsApi from '../../api/newsApi'
 
 const articlesSlice = createSlice({
@@ -14,18 +15,24 @@ const articlesSlice = createSlice({
         getAllAction: (state, action) => {
             state.data = action.payload
         },
-        getOneAction: (store, action) => {
+        getOneAction: (state, action) => {
             const { payload } = action
-            if (!store.findIndex(x => x.id === payload.id)) {
-                store.data.push(action.payload)
+            if (!state.findIndex(x => x.id === payload.id)) {
+                state.data.push(action.payload)
             }
+        },
+        deleteAction: (state, action) => {
+            const index = state.data.findIndex(
+                x => Number(x.id) === Number(action.payload)
+            )
+            state.data.splice(index, 1)
         }
     }
 })
 export default articlesSlice.reducer
 
-const { getAllAction, getOneAction, setLoadingAction } = articlesSlice.actions
-
+const { getAllAction, getOneAction, setLoadingAction, deleteAction } =
+    articlesSlice.actions
 export const getAll = () => async dispatch => {
     try {
         dispatch(setLoadingAction(true))
@@ -35,7 +42,7 @@ export const getAll = () => async dispatch => {
             return
         }
     } catch (err) {
-        // TODO:handle error
+        return Promise.reject(err.message)
     } finally {
         dispatch(setLoadingAction(false))
     }
@@ -43,12 +50,31 @@ export const getAll = () => async dispatch => {
 
 export const getOne = id => async dispatch => {
     try {
+        dispatch(setLoadingAction(true))
         const response = await NewsApi.getOne(id)
         if (response.status === 200) {
             dispatch(getOneAction(response.data))
             return
         }
     } catch (err) {
-        // TODO:handle error
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+
+export const remove = id => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await NewsApi.delete(id)
+        if (response.status === 204) {
+            dispatch(deleteAction(id))
+            toast.success('Noticia eliminada')
+            return
+        }
+    } catch (err) {
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
     }
 }

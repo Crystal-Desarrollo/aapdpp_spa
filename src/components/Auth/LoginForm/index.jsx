@@ -3,10 +3,35 @@ import { TextField } from '../../Common/Inputs/TextField'
 import { Button } from '../../Common/Inputs/Button'
 import { MessageLabel } from '../../Common/MessageLabel'
 import { Loader } from '../../Loader'
+import { login } from '../../../store/slices/authSlice'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 import Logo from '../../../asssets/img/logo_apdp.jpg'
 
-export const LoginForm = ({ onChange, onSubmit, error, loading }) => {
+export const LoginForm = () => {
+    const dispatch = useDispatch()
+    const [data, setData] = useState({})
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
+
+    const handleChange = e => {
+        setData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    const handleSubmit = e => {
+        setLoading(true)
+        e.preventDefault()
+        setError('')
+
+        dispatch(login(data))
+            .catch(() => setError('Credenciales Inválidas'))
+            .finally(() => setLoading(false))
+    }
+
     return (
         <LoginFormStyled>
             <img
@@ -19,19 +44,21 @@ export const LoginForm = ({ onChange, onSubmit, error, loading }) => {
 
                 <TextField
                     type="email"
-                    onChange={onChange}
+                    onChange={handleChange}
                     name="email"
                     labelText="Correo electrónico"
+                    value={data.email}
                 />
                 <TextField
                     name="password"
                     type="password"
-                    onChange={onChange}
+                    onChange={handleChange}
                     labelText="Contraseña"
+                    value={data.password}
                 />
 
                 <div className="form-footer">
-                    <Button onClick={onSubmit}>Ingresar</Button>
+                    <Button onClick={handleSubmit}>Ingresar</Button>
 
                     {error && <MessageLabel text={error} status="error" />}
                 </div>
