@@ -15,7 +15,6 @@ const authSlice = createSlice({
         setLoadingAction: (state, action) => {
             state.loading = action.payload
         },
-        register(state, action) {},
         loginAction: (state, action) => {
             state.data = action.payload
         },
@@ -27,15 +26,12 @@ const authSlice = createSlice({
         },
         meAction(state, action) {
             state.data = action.payload
-        },
-        updateAction(state, action) {
-            state.data.user = action.payload
         }
     }
 })
 export default authSlice.reducer
 
-const { loginAction, logoutAction, meAction, updateAction, setLoadingAction } =
+const { loginAction, logoutAction, meAction, setLoadingAction } =
     authSlice.actions
 
 export const login = userData => async dispatch => {
@@ -61,7 +57,7 @@ export const logout = () => async dispatch => {
         localStorage.removeItem('aapdpp-token')
         dispatch(logoutAction())
     } catch (err) {
-        //TODO: handle error
+        return Promise.reject(err.message)
     } finally {
         dispatch(setLoadingAction(false))
     }
@@ -81,20 +77,7 @@ export const me = () => async dispatch => {
             )
         }
     } catch (err) {
-        //TODO: handle error
-    } finally {
-        dispatch(setLoadingAction(false))
-    }
-}
-
-export const update = data => async dispatch => {
-    try {
-        dispatch(setLoadingAction(true))
-        const response = await AuthApi.update(data)
-        dispatch(updateAction(response.data))
-        toast.success('Información actualizada')
-    } catch (err) {
-        //TODO: handle error
+        return Promise.reject(err.message)
     } finally {
         dispatch(setLoadingAction(false))
     }

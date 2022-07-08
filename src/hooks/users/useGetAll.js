@@ -7,10 +7,8 @@ export const useGetAll = () => {
     const state = useSelector(store => store.users)
 
     useEffect(() => {
-        if (state.data?.length === 0) {
-            dispatch(getAll())
-        }
-    }, [dispatch, state.data])
+        dispatch(getAll())
+    }, [dispatch])
 
     return state
 }

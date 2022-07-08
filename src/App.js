@@ -91,7 +91,7 @@ export function App() {
                         }
                     />
                     <Route
-                        path="/perfil"
+                        path="/miembros/:id"
                         element={
                             <MemberMiddleware>
                                 <Profile />
@@ -141,6 +141,15 @@ export function App() {
                             element={
                                 <AdminMiddleware>
                                     <Register />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
+                            path="/admin/miembros/:id"
+                            element={
+                                <AdminMiddleware>
+                                    <Profile />
                                 </AdminMiddleware>
                             }
                         />

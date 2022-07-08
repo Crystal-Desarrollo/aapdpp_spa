@@ -1,23 +1,23 @@
-import { useAuth } from '../../../hooks/auth/useAuth'
 import { useDispatch, useSelector } from 'react-redux'
-import { update } from '../../../store/slices/authSlice'
+import { update } from '../../../store/slices/usersSlice'
 import { H2, H3 } from '../../Common/Texts'
 import { TextField } from '../../Common/Inputs/TextField'
 import { Button } from '../../Common/Inputs/Button'
 import { Box } from '../../Common/Box'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Loader } from '../../Loader'
+import { useGetOne } from '../../../hooks/users/useGetOne'
 
 import { ProfileFormStyled } from './styles'
 
 import AVATAR from '../../../asssets/img/default_avatar.png'
-export const ProfileForm = () => {
-    const { loading } = useSelector(store => store.auth)
+export const ProfileForm = ({ userId }) => {
+    const { loading } = useSelector(store => store.users)
     const dispatch = useDispatch()
-    const {
-        data: { user }
-    } = useAuth()
+    const user = useGetOne(userId)
     const [data, setData] = useState(user)
+
+    useEffect(() => setData(user), [user])
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -30,7 +30,7 @@ export const ProfileForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        dispatch(update(data))
+        dispatch(update(user.id, data))
     }
 
     return (
@@ -59,33 +59,33 @@ export const ProfileForm = () => {
                             name="name"
                             onChange={handleChange}
                             labelText="Nombre"
-                            value={data?.name}
+                            value={data?.name || ''}
                         />
                         <TextField
                             name="address"
                             onChange={handleChange}
                             labelText="Dirección"
-                            value={data?.address}
+                            value={data?.address || ''}
                         />
                         <TextField
                             name="email"
                             type="email"
                             onChange={handleChange}
                             labelText="Correo eletrónico"
-                            value={data?.email}
+                            value={data?.email || ''}
                         />
                         <TextField
                             tag="textarea"
                             name="additional_info"
                             onChange={handleChange}
                             labelText="Información Adicional"
-                            value={data?.additional_info}
+                            value={data?.additional_info || ''}
                         />
                         <TextField
                             name="phone"
                             onChange={handleChange}
                             labelText="Teléfono"
-                            value={data?.phone}
+                            value={data?.phone || ''}
                         />
                         {/* <TextField
                             name="password"

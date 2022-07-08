@@ -91,6 +91,7 @@ const FieldStyled = styled.div`
 
 export const TextField = props => {
     const {
+        value = '',
         type = 'text',
         name,
         id = name,
@@ -109,6 +110,7 @@ export const TextField = props => {
         <FieldStyled>
             {tag === 'input' && (
                 <input
+                    value={value}
                     type={type}
                     name={name}
                     id={id}
@@ -120,6 +122,7 @@ export const TextField = props => {
             )}
             {tag === 'textarea' && (
                 <textarea
+                    value={value}
                     name={name}
                     id={id}
                     placeholder={placeholder}

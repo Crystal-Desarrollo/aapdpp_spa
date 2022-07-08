@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import { MembersListStyled, MainActionsStyled } from './styles'
-import { Section } from '../Common/Section'
-import { Button } from '../Common/Inputs/Button'
+import { Section } from '../../Common/Section'
+import { Button } from '../../Common/Inputs/Button'
 import { FaTrash, FaPen } from 'react-icons/fa'
-import { Loader } from '../Loader'
+import { Loader } from '../../Loader'
 
-import { useGetAll } from '../../hooks/users/useGetAll'
-import { useAuth } from '../../hooks/auth/useAuth'
+import { useGetAll } from '../../../hooks/users/useGetAll'
+import { useAuth } from '../../../hooks/auth/useAuth'
+import { useDispatch } from 'react-redux'
+import { remove } from '../../../store/slices/usersSlice'
 
 const mapUserRole = role => {
     if (role === 'admin') return 'Administrador'
@@ -14,15 +16,20 @@ const mapUserRole = role => {
 }
 
 export const MembersList = () => {
+    const dispatch = useDispatch()
     const { data, loading } = useGetAll()
     const {
         data: { user: loggedUser }
     } = useAuth()
 
+    const handleDelete = id => {
+        dispatch(remove(id))
+    }
+
     return (
         <Section>
             <MainActionsStyled>
-                <Button dense as={Link} to="/admin/miembros/agregar">
+                <Button as={Link} to="/admin/miembros/agregar">
                     Agregar miembro
                 </Button>
             </MainActionsStyled>
@@ -50,11 +57,12 @@ export const MembersList = () => {
                                 <td>{user.email}</td>
                                 <td>{mapUserRole(user.role?.name)}</td>
                                 <td>
-                                    <Link to="">
+                                    <Link to={`/admin/miembros/${user.id}`}>
                                         <FaPen />
                                     </Link>
                                     <button
                                         disabled={user.id === loggedUser.id}
+                                        onClick={() => handleDelete(user.id)}
                                     >
                                         <FaTrash />
                                     </button>

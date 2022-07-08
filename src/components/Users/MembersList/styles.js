@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { BoxStyled } from '../Common/Box'
+import { BoxStyled } from '../../Common/Box'
 export const MembersListStyled = styled(BoxStyled)`
     table {
         width: 100%;

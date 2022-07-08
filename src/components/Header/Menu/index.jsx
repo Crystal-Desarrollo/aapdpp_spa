@@ -15,7 +15,7 @@ export const Menu = () => {
     } = useAuth()
     const [confirmShown, setConfirmShown] = useState(false)
 
-    const isMember = user?.roole?.name === 'member'
+    const isMember = user?.role?.name === 'member'
 
     const signOff = () => {
         dispatch(logout())
@@ -35,7 +35,9 @@ export const Menu = () => {
             <>
                 {isMember && (
                     <li>
-                        <HashLink to="/perfil">Mi perfil</HashLink>
+                        <HashLink to={`/miembros/${user.id}`}>
+                            Mi perfil
+                        </HashLink>
                     </li>
                 )}
                 <li>
