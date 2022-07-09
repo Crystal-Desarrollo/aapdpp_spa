@@ -42,7 +42,7 @@ export const ProfileForm = ({ userId }) => {
                     <div className="change-picture">
                         <div className="picture">
                             <img
-                                src={AVATAR}
+                                src={data?.avatar?.path || AVATAR}
                                 alt="Imagen de perfil del usuario"
                             />
                         </div>

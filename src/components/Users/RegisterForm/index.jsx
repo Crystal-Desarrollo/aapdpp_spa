@@ -46,9 +46,10 @@ export const RegisterForm = () => {
             formData.append(x[0], x[1])
         })
 
-        dispatch(register(data))
+        dispatch(register(formData))
             .then(() => {
                 setData({})
+                setPicturePreview('')
                 toast.success(
                     'Usuario creado. Se le envió un email con instrucciones.'
                 )

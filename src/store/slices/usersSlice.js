@@ -61,7 +61,7 @@ export const register = data => async dispatch => {
     try {
         dispatch(setLoadingAction(true))
         const response = await UsersApi.register(data)
-        if (response.status === 200) {
+        if (response.status === 201) {
             dispatch(registerAction(response.data))
             return
         }
