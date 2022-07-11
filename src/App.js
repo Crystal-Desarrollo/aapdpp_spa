@@ -18,6 +18,8 @@ import { AddArticle } from './pages/admin/Articles/AddArticle.jsx'
 import { Articles } from './pages/admin/Articles/Articles.jsx'
 import { Register } from './pages/admin/Users/Register.jsx'
 import { UsersList } from './pages/admin/Users/List.jsx'
+import { LinksList } from './pages/admin/Links/LinksList.jsx'
+import { AddLink } from './pages/admin/Links/AddLink.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
 
@@ -123,6 +125,24 @@ export function App() {
                             element={
                                 <AdminMiddleware>
                                     <AddArticle />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
+                            path="/admin/enlaces"
+                            element={
+                                <AdminMiddleware>
+                                    <LinksList />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
+                            path="/admin/enlaces/agregar"
+                            element={
+                                <AdminMiddleware>
+                                    <AddLink />
                                 </AdminMiddleware>
                             }
                         />
