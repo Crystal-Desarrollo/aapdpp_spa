@@ -16,6 +16,10 @@ class UsersApi {
     async update(id, data) {
         return axiosInstance.put(`/users/${id}`, data)
     }
+
+    async updateStatus(id, status) {
+        return axiosInstance.put(`/users/${id}/status`, status)
+    }
 }
 
 export default new UsersApi()

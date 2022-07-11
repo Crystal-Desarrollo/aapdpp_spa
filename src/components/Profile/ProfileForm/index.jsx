@@ -1,20 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { update } from '../../../store/slices/usersSlice'
 import { H2, H3 } from '../../Common/Texts'
 import { TextField } from '../../Common/Inputs/TextField'
 import { Button } from '../../Common/Inputs/Button'
 import { Box } from '../../Common/Box'
 import { useEffect, useState } from 'react'
-import { Loader } from '../../Loader'
-import { useGetOne } from '../../../hooks/users/useGetOne'
 
 import { ProfileFormStyled } from './styles'
 
 import AVATAR from '../../../asssets/img/default_avatar.png'
-export const ProfileForm = ({ userId }) => {
-    const { loading } = useSelector(store => store.users)
+export const ProfileForm = ({ user }) => {
     const dispatch = useDispatch()
-    const user = useGetOne(userId)
     const [data, setData] = useState(user)
 
     useEffect(() => setData(user), [user])
@@ -51,8 +47,6 @@ export const ProfileForm = ({ userId }) => {
                 </Box>
 
                 <Box>
-                    {loading && <Loader />}
-
                     <div className="grid">
                         <H3>Mis datos</H3>
                         <TextField

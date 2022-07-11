@@ -17,7 +17,7 @@ const authSlice = createSlice({
         loginAction: (state, action) => {
             state.data = action.payload
         },
-        logoutAction(state, action) {
+        logoutAction(state) {
             state.data = {
                 user: null,
                 token: null
@@ -35,7 +35,6 @@ const { loginAction, logoutAction, meAction, setLoadingAction } =
 
 export const login = userData => async dispatch => {
     try {
-        dispatch(setLoadingAction(true))
         const response = await AuthApi.login(userData)
         if (response.status === 200) {
             localStorage.setItem('aapdpp-token', response.data.token)
@@ -43,9 +42,7 @@ export const login = userData => async dispatch => {
             return
         }
     } catch (err) {
-        return Promise.reject(err.message)
-    } finally {
-        dispatch(setLoadingAction(false))
+        return Promise.reject(err.response.data)
     }
 }
 

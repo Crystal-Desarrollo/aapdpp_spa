@@ -9,7 +9,6 @@ import { FaUpload } from 'react-icons/fa'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { register } from '../../../store/slices/usersSlice'
-import { toast } from 'react-toastify'
 
 export const RegisterForm = () => {
     const dispatch = useDispatch()
@@ -47,15 +46,14 @@ export const RegisterForm = () => {
         })
 
         dispatch(register(formData))
-            .then(() => {
-                setData({})
-                setPicturePreview('')
-                toast.success(
-                    'Usuario creado. Se le envió un email con instrucciones.'
-                )
-            })
+            .then(clearData)
             .catch(e => setError(e))
             .finally(() => setLoading(false))
+    }
+
+    const clearData = () => {
+        setData({})
+        setPicturePreview('')
     }
 
     return (

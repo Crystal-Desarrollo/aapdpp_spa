@@ -59,16 +59,16 @@ export const getAll = () => async dispatch => {
 
 export const register = data => async dispatch => {
     try {
-        dispatch(setLoadingAction(true))
         const response = await UsersApi.register(data)
         if (response.status === 201) {
             dispatch(registerAction(response.data))
+            toast.success(
+                'Usuario creado. Se le envió un email con instrucciones.'
+            )
             return
         }
     } catch (err) {
         return Promise.reject(err.response.data.message)
-    } finally {
-        dispatch(setLoadingAction(false))
     }
 }
 
@@ -94,6 +94,20 @@ export const update = (id, data) => async dispatch => {
         const response = await UsersApi.update(id, data)
         dispatch(updateAction(response.data))
         toast.success('Información actualizada')
+    } catch (err) {
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+
+export const updateStatus = (id, data) => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await UsersApi.updateStatus(id, data)
+        dispatch(updateAction(response.data))
+        toast.success(`Membresia ${data.active ? 'activada' : 'desactivada'}`)
+        return Promise.resolve()
     } catch (err) {
         return Promise.reject(err.message)
     } finally {

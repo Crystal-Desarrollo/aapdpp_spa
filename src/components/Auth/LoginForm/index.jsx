@@ -24,11 +24,10 @@ export const LoginForm = () => {
 
     const handleSubmit = e => {
         setLoading(true)
-        e.preventDefault()
-        setError('')
-
         dispatch(login(data))
-            .catch(() => setError('Credenciales Inválidas'))
+            .catch(e => {
+                setError(e)
+            })
             .finally(() => setLoading(false))
     }
 
@@ -41,7 +40,6 @@ export const LoginForm = () => {
 
             <LoginCardStyled>
                 {loading && <Loader />}
-
                 <TextField
                     type="email"
                     onChange={handleChange}
