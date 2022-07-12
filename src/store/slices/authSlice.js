@@ -73,6 +73,10 @@ export const me = () => async dispatch => {
             )
         }
     } catch (err) {
+        if (err.response.status === 401) {
+            localStorage.removeItem('aapdpp-token')
+        }
+
         return Promise.reject(err.message)
     } finally {
         dispatch(setLoadingAction(false))
