@@ -1,16 +1,13 @@
 import { HeroStyled } from './styles'
 
 import HeroImage from '../../asssets/img/hero_image.webp'
-export const Hero = () => {
+export const Hero = ({imageHero, imageAlt, text}) => {
     return (
         <HeroStyled>
-            <img
-                src={HeroImage}
-                alt="Estudiante sentado con una notebook sobre las piernas"
-            />
+            <img src={imageHero} alt={imageAlt} />
             <div>
                 <p>
-                    Asociación Argentina de Profesores de Derecho Procesal Penal
+                    {text}
                 </p>
             </div>
         </HeroStyled>
