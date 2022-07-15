@@ -3,6 +3,7 @@ import { About } from '../../components/About/index.jsx'
 import { News } from '../../components/News/NewsList/index.jsx'
 import { Links } from '../../components/Links/index.jsx'
 import { Contact } from '../../components/Contact/index.jsx'
+import { Estatuto } from '../../components/Estatuto/index.jsx'
 import HeroImage from '../../asssets/img/hero_image.webp'
 
 export function Home() {
@@ -16,6 +17,7 @@ export function Home() {
             <About />
             <News title="Noticias mas recientes" full={false} />
             <Links />
+            <Estatuto />
             <Contact />
         </>
     )

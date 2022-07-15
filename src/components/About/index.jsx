@@ -3,6 +3,10 @@ import { Goal } from './Goal/index.jsx'
 import { Grid } from '../Common/Grid.jsx'
 import { Section } from '../Common/Section.jsx'
 import { PeopleCard } from '../PeopleCard/index.jsx'
+import { useGetAll } from '../../hooks/users/useGetAll.js'
+import { useEffect, useState } from 'react'
+import moment from 'moment'
+import { Loader } from '../Loader'
 
 const goals = [
     'Optimizar el proceso de enseñanza y aprendizaje del derecho procesal penal en todas las facultades de derecho de la República Argentina.',
@@ -13,93 +17,65 @@ const goals = [
     'Participar en la propuesta de temas para los Congresos Nacionales de Derecho Penal y Derecho Procesal.'
 ]
 
-const Picture =
-    'https://1.bp.blogspot.com/-W_7SWMP5Rag/YTuyV5XvtUI/AAAAAAAAuUQ/hm6bYcvlFgQqgv1uosog6K8y0dC9eglTQCLcBGAsYHQ/s880/Best-Profile-Pic-For-Boys%2B%25281%2529.jpg'
-
-const Name = 'Nombre Apellidossssss'
-
-const Joined = 'Se unio hace 3 dias'
-
 export const About = () => {
+    const { data: users, loading } = useGetAll()
+    const [adminUsers, setAdminUsers] = useState([])
+
+    useEffect(() => {
+        setAdminUsers(() =>
+            users.filter(x => x.role?.name === 'admin').map(x => x.id)
+        )
+    }, [users])
+
     return (
-        <Section id="nosotros">
-            <H2>Autoridades de la asociación</H2>
-            <Grid>
-                <PeopleCard
-                    profilePicture={Picture}
-                    name={Name}
-                    joined={Joined}
-                    isActive
-                />
-                <PeopleCard
-                    profilePicture={Picture}
-                    name={Name}
-                    joined={Joined}
-                    isActive
-                />
-                <PeopleCard
-                    profilePicture={Picture}
-                    name={Name}
-                    joined={Joined}
-                    isActive
-                />
-                <PeopleCard
-                    profilePicture={Picture}
-                    name={Name}
-                    joined={Joined}
-                    isActive
-                />
-                <PeopleCard
-                    profilePicture={Picture}
-                    name={Name}
-                    joined={Joined}
-                    isActive
-                />
-                <PeopleCard
-                    profilePicture={Picture}
-                    name={Name}
-                    joined={Joined}
-                    isActive
-                />
-                <PeopleCard
-                    profilePicture={Picture}
-                    name={Name}
-                    joined={Joined}
-                    isActive
-                />
-                <PeopleCard
-                    profilePicture={Picture}
-                    name={Name}
-                    joined={Joined}
-                    isActive
-                />
-                <PeopleCard
-                    profilePicture={Picture}
-                    name={Name}
-                    joined={Joined}
-                    isActive
-                />
-            </Grid>
-
-            <H2>Listado de asociados</H2>
-            <Grid>
-                <PeopleCard name={Name} joined={Joined} isActive={false} />
-                <PeopleCard name={Name} joined={Joined} isActive={false} />
-                <PeopleCard name={Name} joined={Joined} isActive={false} />
-                <PeopleCard name={Name} joined={Joined} isActive={false} />
-                <PeopleCard name={Name} joined={Joined} isActive={false} />
-                <PeopleCard name={Name} joined={Joined} isActive={false} />
-                <PeopleCard name={Name} joined={Joined} isActive={false} />
-                <PeopleCard name={Name} joined={Joined} isActive={false} />
-                <PeopleCard name={Name} joined={Joined} isActive={false} />
-            </Grid>
-
-            <H2>Nuestros objetivos</H2>
-            <Grid>
-                {goals.map((goal, i) => (
-                    <Goal text={goal} key={i} />
-                ))}
-            </Grid>
-        </Section>
+        <>
+            {loading && <Loader />}
+            <Section>
+                <H2>Autoridades de la asociación</H2>
+                <Grid>
+                    {users.map(
+                        user =>
+                            adminUsers.includes(user.id) && (
+                                <PeopleCard
+                                    key={user.id}
+                                    profilePicture={user?.avatar?.path}
+                                    name={user.name}
+                                    joined={moment(user.created_at).format(
+                                        'DD-MM-YYYY'
+                                    )}
+                                    isActive
+                                />
+                            )
+                    )}
+                </Grid>
+            </Section>
+            <Section>
+                <H2>Listado de asociados</H2>
+                <Grid>
+                    {users.map(
+                        user =>
+                            !adminUsers.includes(user.id) && (
+                                <PeopleCard
+                                    key={user.id}
+                                    profilePicture={user?.avatar?.path}
+                                    name={user.name}
+                                    joined={moment(user.created_at).format(
+                                        'DD-MM-YYYY'
+                                    )}
+                                    isActive={user.active}
+                                />
+                            )
+                    )}
+                </Grid>
+            </Section>
+            <Section id="nosotros">
+                <H2>Nuestros objetivos</H2>
+                <Grid>
+                    {goals.map((goal, i) => (
+                        <Goal text={goal} key={i} />
+                    ))}
+                </Grid>
+            </Section>
+        </>
     )
 }
