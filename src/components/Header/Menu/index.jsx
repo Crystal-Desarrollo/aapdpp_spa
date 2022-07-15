@@ -81,6 +81,10 @@ export const Menu = () => {
                 <li>
                     <HashLink to="/#contacto">Contacto</HashLink>
                 </li>
+
+                <li>
+                    <HashLink to="/eventos">Eventos</HashLink>
+                </li>
                 {renderUserBasedLinks()}
             </StyledMenu>
         </>
