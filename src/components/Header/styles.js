@@ -13,7 +13,7 @@ export const HeaderStyled = styled.header`
 
     position: sticky;
     top: 0;
-    z-index: 99;
+    z-index: 9999;
 
     .content {
         width: 100%;
