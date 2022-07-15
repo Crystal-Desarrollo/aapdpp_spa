@@ -124,7 +124,7 @@ export function App() {
                         />
 
                         <Route
-                            path="/admin/agregar-noticia"
+                            path="/admin/noticias/agregar"
                             element={
                                 <AdminMiddleware>
                                     <AddArticle />

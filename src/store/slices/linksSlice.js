@@ -34,8 +34,13 @@ const linksSlice = createSlice({
 })
 export default linksSlice.reducer
 
-const { getAllAction, getOneAction, setLoadingAction, deleteAction } =
-    linksSlice.actions
+const {
+    getAllAction,
+    getOneAction,
+    setLoadingAction,
+    deleteAction,
+    createAction
+} = linksSlice.actions
 
 export const getAll = () => async dispatch => {
     try {
@@ -85,7 +90,7 @@ export const create = data => async dispatch => {
         dispatch(setLoadingAction(true))
         const response = await LinksApi.create(data)
         if (response.status === 201) {
-            dispatch(deleteAction(response.data))
+            dispatch(createAction(response.data))
             toast.success('Enlace agregado')
             return
         }

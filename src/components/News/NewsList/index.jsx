@@ -25,7 +25,11 @@ export const News = ({ title, full }) => {
                         <ArticlesSectionStyled>
                             <Grid>
                                 {news.map(article => (
-                                    <Card {...article} key={article.id} />
+                                    <Card
+                                        {...article}
+                                        imageUrl={article?.cover?.path}
+                                        key={article.id}
+                                    />
                                 ))}
                             </Grid>
                             {!full && (

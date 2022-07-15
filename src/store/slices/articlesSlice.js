@@ -26,13 +26,21 @@ const articlesSlice = createSlice({
                 x => Number(x.id) === Number(action.payload)
             )
             state.data.splice(index, 1)
+        },
+        createAction: (state, action) => {
+            state.data.push(action.payload)
         }
     }
 })
 export default articlesSlice.reducer
 
-const { getAllAction, getOneAction, setLoadingAction, deleteAction } =
-    articlesSlice.actions
+const {
+    getAllAction,
+    getOneAction,
+    setLoadingAction,
+    deleteAction,
+    createAction
+} = articlesSlice.actions
 export const getAll = () => async dispatch => {
     try {
         dispatch(setLoadingAction(true))
@@ -70,6 +78,22 @@ export const remove = id => async dispatch => {
         if (response.status === 204) {
             dispatch(deleteAction(id))
             toast.success('Noticia eliminada')
+            return
+        }
+    } catch (err) {
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+
+export const create = data => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await NewsApi.create(data)
+        if (response.status === 201) {
+            dispatch(createAction(response.data))
+            toast.success('Noticia agregada')
             return
         }
     } catch (err) {

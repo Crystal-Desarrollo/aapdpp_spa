@@ -1,3 +1,5 @@
+import { AddNewForm } from '../../../components/News/AddForm'
+
 export function AddArticle() {
-    return <div>Logged in</div>
+    return <AddNewForm />
 }

@@ -12,6 +12,10 @@ class NewsApi {
     delete(id) {
         return axiosInstance.delete(`/articles/${id}`)
     }
+
+    create(data) {
+        return axiosInstance.post('/articles', data)
+    }
 }
 
 export default new NewsApi()
