@@ -21,6 +21,7 @@ import { LinksList } from './pages/admin/Links/LinksList.jsx'
 import { AddLink } from './pages/admin/Links/AddLink.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
+import { Events } from './pages/guest/Events.jsx'
 
 function AdminMiddleware({ children }) {
     const {
@@ -91,6 +92,9 @@ export function App() {
                             </MemberMiddleware>
                         }
                     />
+
+                    <Route path="/eventos" element={<Events />} />
+
                     <Route
                         path="/miembros/:id"
                         element={
