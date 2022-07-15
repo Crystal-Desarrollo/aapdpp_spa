@@ -1,0 +1,120 @@
+import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
+import FilesApi from '../../api/filesApi'
+import FoldersApi from '../../api/foldersApi'
+
+const filesSlice = createSlice({
+    name: 'files',
+    initialState: {
+        loading: false,
+        data: []
+    },
+    reducers: {
+        setLoadingAction: (state, action) => {
+            state.loading = action.payload
+        },
+        getAllAction: (state, action) => {
+            state.data = action.payload
+        },
+        deleteFileAction: (state, action) => {
+            const folderIndex = state.data.findIndex(
+                x => x.id === action.payload.folderId
+            )
+            const fileIndex = state.data[folderIndex].files?.findIndex(
+                x => x.id === action.payload.fileId
+            )
+            state.data[folderIndex].files?.splice(fileIndex, 1)
+        },
+        createFileAction: (state, action) => {
+            state.data.push(action.payload)
+        },
+        deleteFolderAction: (state, action) => {
+            const index = state.data.findIndex(
+                x => Number(x.id) === Number(action.payload)
+            )
+            state.data.splice(index, 1)
+        }
+    }
+})
+export default filesSlice.reducer
+
+const { setLoadingAction, deleteFileAction, createFileAction, getAllAction } =
+    filesSlice.actions
+
+export const getAll = () => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await FoldersApi.getAll()
+        if (response.status === 200) {
+            dispatch(getAllAction(response.data))
+            return
+        }
+    } catch (err) {
+        // TODO:handle error
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+export const removeFile = (fileId, folderId) => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await FilesApi.delete(fileId)
+        if (response.status === 204) {
+            dispatch(deleteFileAction({ fileId, folderId }))
+            toast.success('Archivo eliminado')
+            return
+        }
+    } catch (err) {
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+
+export const createFile = data => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await FilesApi.create(data)
+        if (response.status === 201) {
+            dispatch(createFileAction(response.data))
+            toast.success('Archivo agregado')
+            return
+        }
+    } catch (err) {
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+
+export const removeFolder = id => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await FoldersApi.delete(id)
+        if (response.status === 204) {
+            dispatch(deleteFileAction(id))
+            toast.success('Carpeta eliminada')
+            return
+        }
+    } catch (err) {
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+
+export const createFolder = data => async dispatch => {
+    // try {
+    //     dispatch(setLoadingAction(true))
+    //     const response = await FilesApi.create(data)
+    //     if (response.status === 201) {
+    //         dispatch(createFileAction(response.data))
+    //         toast.success('Archivo agregado')
+    //         return
+    //     }
+    // } catch (err) {
+    //     return Promise.reject(err.message)
+    // } finally {
+    //     dispatch(setLoadingAction(false))
+    // }
+}

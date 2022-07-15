@@ -34,7 +34,10 @@ export const AddNewForm = () => {
 
     const onSubmit = e => {
         e.preventDefault()
-        dispatch(create(data))
+        dispatch(create(data)).then(() => {
+            setData({})
+            setPicturePreview('')
+        })
     }
 
     return (

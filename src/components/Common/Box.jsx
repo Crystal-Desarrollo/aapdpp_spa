@@ -9,6 +9,7 @@ export const BoxStyled = styled.div`
 
     position: relative;
     background-color: #fff;
+    width: 100%;
 `
 
 export const Box = ({ children }) => {

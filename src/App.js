@@ -19,6 +19,7 @@ import { Register } from './pages/admin/Users/Register.jsx'
 import { UsersList } from './pages/admin/Users/List.jsx'
 import { LinksList } from './pages/admin/Links/LinksList.jsx'
 import { AddLink } from './pages/admin/Links/AddLink.jsx'
+import { FileList } from './pages/admin/Library/FilesList.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
 import { Events } from './pages/guest/Events.jsx'
@@ -105,6 +106,15 @@ export function App() {
                     />
 
                     <Route path="/admin">
+                        <Route
+                            path="/admin/biblioteca"
+                            element={
+                                <AdminMiddleware>
+                                    <FileList />
+                                </AdminMiddleware>
+                            }
+                        />
+
                         <Route
                             path="/admin/panel-general"
                             element={
