@@ -12,6 +12,10 @@ class FoldersApi {
     create(data) {
         return axiosInstance.post('/folders', data)
     }
+
+    update(data, id) {
+        return axiosInstance.put(`/folders/${id}`, data)
+    }
 }
 
 export default new FoldersApi()

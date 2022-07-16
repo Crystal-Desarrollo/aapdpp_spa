@@ -26,20 +26,36 @@ const filesSlice = createSlice({
             state.data[folderIndex].files?.splice(fileIndex, 1)
         },
         createFileAction: (state, action) => {
-            state.data.push(action.payload)
+            // state.data.push(action.payload)
         },
         deleteFolderAction: (state, action) => {
             const index = state.data.findIndex(
                 x => Number(x.id) === Number(action.payload)
             )
             state.data.splice(index, 1)
+        },
+        createFolderAction: (state, action) => {
+            state.data.push(action.payload)
+        },
+        updateFolderAction: (state, action) => {
+            const index = state.data.findIndex(
+                x => Number(x.id) === Number(action.payload.id)
+            )
+            state.data.splice(index, 1, action.payload)
         }
     }
 })
 export default filesSlice.reducer
 
-const { setLoadingAction, deleteFileAction, createFileAction, getAllAction } =
-    filesSlice.actions
+const {
+    setLoadingAction,
+    deleteFileAction,
+    createFileAction,
+    getAllAction,
+    deleteFolderAction,
+    createFolderAction,
+    updateFolderAction
+} = filesSlice.actions
 
 export const getAll = () => async dispatch => {
     try {
@@ -92,7 +108,7 @@ export const removeFolder = id => async dispatch => {
         dispatch(setLoadingAction(true))
         const response = await FoldersApi.delete(id)
         if (response.status === 204) {
-            dispatch(deleteFileAction(id))
+            dispatch(deleteFolderAction(id))
             toast.success('Carpeta eliminada')
             return
         }
@@ -104,17 +120,33 @@ export const removeFolder = id => async dispatch => {
 }
 
 export const createFolder = data => async dispatch => {
-    // try {
-    //     dispatch(setLoadingAction(true))
-    //     const response = await FilesApi.create(data)
-    //     if (response.status === 201) {
-    //         dispatch(createFileAction(response.data))
-    //         toast.success('Archivo agregado')
-    //         return
-    //     }
-    // } catch (err) {
-    //     return Promise.reject(err.message)
-    // } finally {
-    //     dispatch(setLoadingAction(false))
-    // }
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await FoldersApi.create(data)
+        if (response.status === 201) {
+            dispatch(createFolderAction(response.data))
+            toast.success('Carpeta creada')
+            return
+        }
+    } catch (err) {
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+
+export const updateFolder = (data, id) => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await FoldersApi.update(data, id)
+        if (response.status === 200) {
+            dispatch(updateFolderAction(response.data))
+            toast.success('Carpeta actualizada')
+            return
+        }
+    } catch (err) {
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
 }

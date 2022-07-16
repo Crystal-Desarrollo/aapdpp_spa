@@ -6,7 +6,7 @@ import { Button } from '../Inputs/Button'
 import { H4 } from '../Texts'
 
 const ConfirmStyled = styled.div`
-    z-index: 999;
+    z-index: 99999;
     position: fixed;
     top: 0;
     left: 0;
@@ -19,6 +19,7 @@ const ConfirmStyled = styled.div`
 
     ${BoxStyled} {
         padding: 1rem;
+        max-width: max-content;
 
         p {
             margin-bottom: 1rem;
