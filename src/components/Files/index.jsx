@@ -1,9 +1,17 @@
-import { Link } from 'react-router-dom'
 import { FileCardStyled } from './styles'
-export const FilePDF = ({ type, downloadUrl }) => {
+import { FaFileAlt } from 'react-icons/fa'
+
+export const TYPES = {
+    excel: 'xlsx',
+    word: 'docx',
+    powerpoint: 'pptx',
+    pdf: 'pdf',
+    generic: 'generic'
+}
+export const FileCard = ({ type, downloadUrl }) => {
     return (
         <FileCardStyled type={type} to={downloadUrl}>
-            {type === 'pdf' && (
+            {type === TYPES.pdf && (
                 <svg
                     width="75"
                     height="100"
@@ -18,7 +26,7 @@ export const FilePDF = ({ type, downloadUrl }) => {
                 </svg>
             )}
 
-            {type === 'word' && (
+            {type === TYPES.word && (
                 <svg
                     width="75"
                     height="100"
@@ -33,7 +41,7 @@ export const FilePDF = ({ type, downloadUrl }) => {
                 </svg>
             )}
 
-            {type === 'pp' && (
+            {type === TYPES.powerpoint && (
                 <svg
                     width="75"
                     height="100"
@@ -48,7 +56,7 @@ export const FilePDF = ({ type, downloadUrl }) => {
                 </svg>
             )}
 
-            {type === 'excel' && (
+            {type === TYPES.excel && (
                 <svg
                     width="70"
                     height="93"
@@ -63,7 +71,12 @@ export const FilePDF = ({ type, downloadUrl }) => {
                 </svg>
             )}
 
-            <br />
+            {type === TYPES.generic && (
+                <i>
+                    <FaFileAlt />
+                </i>
+            )}
+
             <p>Descargar</p>
         </FileCardStyled>
     )
