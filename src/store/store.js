@@ -6,13 +6,15 @@ import newsReducer from './slices/articlesSlice.js'
 import linksReducer from './slices/linksSlice.js'
 import usersReducer from './slices/usersSlice.js'
 import libraryReducer from './slices/librarySlice.js'
+import eventsSlice from './slices/eventsSlice.js'
 
 const reducer = combineReducers({
     auth: authReducer,
     news: newsReducer,
     links: linksReducer,
     users: usersReducer,
-    library: libraryReducer
+    library: libraryReducer,
+    events: eventsSlice
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

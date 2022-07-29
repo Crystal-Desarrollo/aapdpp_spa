@@ -20,9 +20,11 @@ import { UsersList } from './pages/admin/Users/List.jsx'
 import { LinksList } from './pages/admin/Links/LinksList.jsx'
 import { AddLink } from './pages/admin/Links/AddLink.jsx'
 import { FileList } from './pages/admin/Library/FilesList.jsx'
+import { Events as AdminEvents } from './pages/admin/Events/Events'
+import { AddEvent } from './pages/admin/Events/AddEvent.jsx'
+import { Events } from './pages/guest/Events.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
-import { Events } from './pages/guest/Events.jsx'
 
 function AdminMiddleware({ children }) {
     const {
@@ -138,6 +140,24 @@ export function App() {
                             element={
                                 <AdminMiddleware>
                                     <AddArticle />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
+                            path="/admin/eventos"
+                            element={
+                                <AdminMiddleware>
+                                    <AdminEvents />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
+                            path="/admin/eventos/agregar"
+                            element={
+                                <AdminMiddleware>
+                                    <AddEvent />
                                 </AdminMiddleware>
                             }
                         />
