@@ -21,7 +21,7 @@ export const EventsList = () => {
     return (
         <Section>
             <MainActionsStyled>
-                <Button as={Link} to="/admin/noticias/agregar">
+                <Button as={Link} to="/admin/eventos/agregar">
                     Agregar evento
                 </Button>
             </MainActionsStyled>

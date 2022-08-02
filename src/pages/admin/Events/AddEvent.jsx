@@ -1,5 +1,5 @@
-import { AddEvent as AddEventForm } from '../../../components/Events/AddEvent/styles'
+import { EventForm } from '../../../components/Events/AddEvent'
 
 export const AddEvent = () => {
-    return <AddEventForm />
+    return <EventForm />
 }
