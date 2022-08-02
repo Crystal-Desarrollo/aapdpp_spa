@@ -4,12 +4,11 @@ import { H2 } from '../../Common/Texts'
 import { FullViewStyled } from './styles'
 import { FaCalendarDay } from 'react-icons/fa'
 
-import hero_image from '../../../asssets/img/hero_image.webp'
 export const FullView = props => {
-    const { created_at, body, description, title } = props
+    const { created_at, body, description, title, cover } = props
     return (
         <FullViewStyled>
-            <img src={hero_image} alt="Imagen ilustrativa de la noticia" />
+            <img src={cover?.path} alt="Imagen ilustrativa de la noticia" />
             <section>
                 <span>
                     <i>
