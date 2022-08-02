@@ -16,6 +16,10 @@ class NewsApi {
     create(data) {
         return axiosInstance.post('/meetings', data)
     }
+
+    edit(data) {
+        return axiosInstance.put(`/meetings/${data.id}`, data)
+    }
 }
 
 export default new NewsApi()

@@ -45,9 +45,15 @@ export const EventsList = () => {
                                 <td>{event.id}</td>
                                 <td>{event.location}</td>
                                 <td>{event.description}</td>
-                                <td>{moment(event.date).format('d/M/yyyy')}</td>
                                 <td>
-                                    <Link to={`/admin/eventos/${event.id}`}>
+                                    {moment(event.date).format(
+                                        'DD/MM/YYYY h:mm a'
+                                    )}
+                                </td>
+                                <td>
+                                    <Link
+                                        to={`/admin/eventos/agregar/${event.id}`}
+                                    >
                                         <FaPen />
                                     </Link>
                                     <button

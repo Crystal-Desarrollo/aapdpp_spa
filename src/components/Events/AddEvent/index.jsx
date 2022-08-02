@@ -1,16 +1,25 @@
 import { EventCardStyled, EventFormStyled } from './styles'
 import { H2 } from '../../Common/Texts'
 import { TextField } from '../../Common/Inputs/TextField'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../../Common/Inputs/Button'
 import { useSelector, useDispatch } from 'react-redux'
-import { create } from '../../../store/slices/eventsSlice'
+import { create, edit } from '../../../store/slices/eventsSlice'
 import { Loader } from '../../Loader'
+import { useParams } from 'react-router-dom'
 
 export const EventForm = () => {
+    const { id } = useParams()
     const [data, setData] = useState({})
-    const { loading } = useSelector(store => store.events)
+    const { loading, data: events } = useSelector(store => store.events)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (!id) return
+        const event = events.find(x => x.id === Number(id))
+        if (!event) return
+        setData(event)
+    }, [id, events])
 
     const onChange = e => {
         setData(prev => ({
@@ -21,7 +30,12 @@ export const EventForm = () => {
 
     const onSubmit = e => {
         e.preventDefault()
-        dispatch(create(data)).then(() => setData({}))
+
+        if (!id) {
+            dispatch(create(data)).then(() => setData({}))
+        } else {
+            dispatch(edit(data))
+        }
     }
 
     return (
@@ -29,7 +43,7 @@ export const EventForm = () => {
             {loading && <Loader />}
 
             <EventFormStyled>
-                <H2>Agregar evento</H2>
+                <H2> {id ? 'Editar Evento' : 'Agregar evento'}</H2>
                 <EventCardStyled>
                     <TextField
                         name="location"
@@ -38,7 +52,7 @@ export const EventForm = () => {
                         value={data?.location}
                     />
                     <TextField
-                        type="date"
+                        type="datetime-local"
                         name="date"
                         labelText="Fecha y hora"
                         onChange={onChange}

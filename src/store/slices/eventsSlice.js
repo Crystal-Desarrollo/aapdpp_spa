@@ -29,6 +29,12 @@ const eventsSlice = createSlice({
         },
         createAction: (state, action) => {
             state.data.push(action.payload)
+        },
+        editAction: (state, action) => {
+            const index = state.data.findIndex(
+                x => Number(x.id) === Number(action.payload.id)
+            )
+            state.data.splice(index, action.payload.data)
         }
     }
 })
@@ -39,7 +45,8 @@ const {
     getOneAction,
     setLoadingAction,
     deleteAction,
-    createAction
+    createAction,
+    editAction
 } = eventsSlice.actions
 export const getAll = () => async dispatch => {
     try {
@@ -77,7 +84,7 @@ export const remove = id => async dispatch => {
         const response = await EventsApi.delete(id)
         if (response.status === 204) {
             dispatch(deleteAction(id))
-            toast.success('Noticia eliminada')
+            toast.success('Evento eliminado')
             return
         }
     } catch (err) {
@@ -93,7 +100,23 @@ export const create = data => async dispatch => {
         const response = await EventsApi.create(data)
         if (response.status === 201) {
             dispatch(createAction(response.data))
-            toast.success('Noticia agregada')
+            toast.success('Evento agregado')
+            return
+        }
+    } catch (err) {
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+
+export const edit = data => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await EventsApi.edit(data)
+        if (response.status === 200) {
+            dispatch(editAction(response.data))
+            toast.success('Evento actualizado')
             return
         }
     } catch (err) {

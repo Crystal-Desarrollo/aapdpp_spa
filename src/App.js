@@ -154,7 +154,16 @@ export function App() {
                         />
 
                         <Route
-                            path="/admin/eventos/agregar"
+                            path="/admin/eventos/agregar/"
+                            element={
+                                <AdminMiddleware>
+                                    <AddEvent />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
+                            path="/admin/eventos/agregar/:id"
                             element={
                                 <AdminMiddleware>
                                     <AddEvent />
