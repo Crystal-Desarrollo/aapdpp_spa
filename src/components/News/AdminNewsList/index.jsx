@@ -44,7 +44,9 @@ export const ArticlesList = () => {
                                 <td>{article.title}</td>
                                 <td>{article.description}</td>
                                 <td>
-                                    <Link to={`/admin/noticias/${article.id}`}>
+                                    <Link
+                                        to={`/admin/noticias/agregar/${article.id}`}
+                                    >
                                         <FaPen />
                                     </Link>
                                     <button

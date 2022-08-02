@@ -5,14 +5,27 @@ import { FaUpload } from 'react-icons/fa'
 import { useState } from 'react'
 import { Button } from '../../Common/Inputs/Button'
 import { useSelector, useDispatch } from 'react-redux'
-import { create } from '../../../store/slices/articlesSlice'
+import { create, edit } from '../../../store/slices/articlesSlice'
 import { Loader } from '../../Loader'
+import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export const AddNewForm = () => {
+    const { id } = useParams()
     const [data, setData] = useState({})
     const [picturePreview, setPicturePreview] = useState('')
-    const { loading } = useSelector(store => store.news)
+    const { loading, data: news } = useSelector(store => store.news)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (!id) return
+        const article = news.find(x => x.id === Number(id))
+        if (!article) return
+        setData(article)
+        setPicturePreview(article.cover?.path)
+    }, [id, news])
+
+    console.log(data)
 
     const handleUploadPicture = e => {
         const file = e.target.files[0]
@@ -34,15 +47,22 @@ export const AddNewForm = () => {
 
     const onSubmit = e => {
         e.preventDefault()
-        dispatch(create(data)).then(() => {
-            setData({})
-            setPicturePreview('')
-        })
+
+        if (!id) {
+            dispatch(create(data)).then(clearForm)
+        } else {
+            dispatch(edit(data))
+        }
+    }
+
+    const clearForm = () => {
+        setData({})
+        setPicturePreview('')
     }
 
     return (
         <NewsFormStyled>
-            <H2>Agregar noticia</H2>
+            <H2>{id ? 'Editar noticia' : 'Agregar noticia'}</H2>
             <NewsCardStyled>
                 {loading && <Loader />}
                 <div className="picture">

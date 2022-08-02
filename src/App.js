@@ -145,6 +145,15 @@ export function App() {
                         />
 
                         <Route
+                            path="/admin/noticias/agregar/:id"
+                            element={
+                                <AdminMiddleware>
+                                    <AddArticle />
+                                </AdminMiddleware>
+                            }
+                        />
+
+                        <Route
                             path="/admin/eventos"
                             element={
                                 <AdminMiddleware>

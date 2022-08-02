@@ -29,6 +29,12 @@ const articlesSlice = createSlice({
         },
         createAction: (state, action) => {
             state.data.push(action.payload)
+        },
+        editAction: (state, action) => {
+            const index = state.data.findIndex(
+                x => Number(x.id) === Number(action.payload.id)
+            )
+            state.data.splice(index, 1, action.payload)
         }
     }
 })
@@ -39,7 +45,8 @@ const {
     getOneAction,
     setLoadingAction,
     deleteAction,
-    createAction
+    createAction,
+    editAction
 } = articlesSlice.actions
 export const getAll = () => async dispatch => {
     try {
@@ -94,6 +101,22 @@ export const create = data => async dispatch => {
         if (response.status === 201) {
             dispatch(createAction(response.data))
             toast.success('Noticia agregada')
+            return
+        }
+    } catch (err) {
+        return Promise.reject(err.message)
+    } finally {
+        dispatch(setLoadingAction(false))
+    }
+}
+
+export const edit = data => async dispatch => {
+    try {
+        dispatch(setLoadingAction(true))
+        const response = await NewsApi.edit(data)
+        if (response.status === 200) {
+            dispatch(editAction(response.data))
+            toast.success('Noticia actualizada')
             return
         }
     } catch (err) {
