@@ -29,7 +29,7 @@ export const DocumentRow = ({ file, folderId }) => {
                     <i>
                         <FaFile />
                     </i>
-                    <p>{file.name}</p>
+                    <p>{file.original_name}</p>
                 </span>
 
                 <button onClick={() => setOpen(true)}>

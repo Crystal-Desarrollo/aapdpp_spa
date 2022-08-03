@@ -8,7 +8,7 @@ import { FolderRowStyled } from './styles'
 import { NewFolderForm } from '../NewFolderForm'
 import { Modal } from '../../../Common/modals/Modal'
 
-export const FolderRow = ({ folder }) => {
+export const FolderRow = ({ folder, onSelect }) => {
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
     const [editOpen, setEditOpen] = useState(false)
@@ -46,6 +46,7 @@ export const FolderRow = ({ folder }) => {
                         type="radio"
                         name="folder"
                         value={folder.id}
+                        onChange={onSelect}
                     />
 
                     {folder.name}
@@ -67,7 +68,11 @@ export const FolderRow = ({ folder }) => {
             {folder?.files?.length > 0 && (
                 <ul className="folder-content">
                     {folder.files.map(file => (
-                        <DocumentRow file={file} folderId={folder.id} />
+                        <DocumentRow
+                            key={file.name}
+                            file={file}
+                            folderId={folder.id}
+                        />
                     ))}
                 </ul>
             )}

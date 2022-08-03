@@ -9,10 +9,13 @@ import { useGetAll } from '../../../hooks/library/useGetAll'
 import { FolderRow } from './FolderRow'
 import { Modal } from '../../Common/modals/Modal'
 import { NewFolderForm } from './NewFolderForm'
+import { useDispatch } from 'react-redux'
+import { createFile } from '../../../store/slices/librarySlice'
 export const Library = () => {
-    const [data, setData] = useState()
+    const [data, setData] = useState({})
     const [modalOpen, setModalOpen] = useState(false)
     const { data: folders, loading } = useGetAll()
+    const dispatch = useDispatch()
 
     const onChange = e => {
         const chosenFiles = Array.prototype.slice.call(e.target.files)
@@ -23,7 +26,20 @@ export const Library = () => {
         }))
     }
 
-    const handleSubmit = () => {}
+    const handleSubmit = () => {
+        const formData = new FormData()
+        data.files?.forEach(file => formData.append('files[]', file))
+        formData.append('folder', data.folder)
+
+        dispatch(createFile(formData)).then(() => setData({}))
+    }
+
+    const handleSelectFolder = e => {
+        setData(prev => ({
+            ...prev,
+            folder: e.target.value
+        }))
+    }
 
     return (
         <>
@@ -63,7 +79,7 @@ export const Library = () => {
                     <H3>Archivos elegidos</H3>
                     {data?.files
                         ? data.files.map((file, i) => (
-                              <p className="uploaded-files">
+                              <p className="uploaded-files" key={file.name}>
                                   {i + 1}. {file.name?.split('\\').pop()}
                               </p>
                           ))
@@ -78,7 +94,11 @@ export const Library = () => {
                     </div>
                     <ul>
                         {folders.map(folder => (
-                            <FolderRow key={folder.id} folder={folder} />
+                            <FolderRow
+                                key={folder.id}
+                                folder={folder}
+                                onSelect={handleSelectFolder}
+                            />
                         ))}
                     </ul>
                 </Box>
