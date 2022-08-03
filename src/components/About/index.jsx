@@ -43,7 +43,7 @@ export const About = () => {
                                     joined={moment(user.created_at).format(
                                         'DD-MM-YYYY'
                                     )}
-                                    isActive
+                                    isActive={user?.active}
                                 />
                             )
                     )}

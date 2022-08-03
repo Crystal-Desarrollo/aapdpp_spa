@@ -21,7 +21,7 @@ export const PeopleCard = ({ profilePicture, name, joined, isActive }) => {
                     {name && <Name title={name}>{name}</Name>}
                     {joined && <Joined title={joined}>{joined}</Joined>}
                 </FlexColumn>
-                {!isActive && <IsActive title="Incativo">incativo</IsActive>}
+                {!isActive && <IsActive title="Inactivo">Inactivo</IsActive>}
             </FlexRow>
         </Card>
     )
