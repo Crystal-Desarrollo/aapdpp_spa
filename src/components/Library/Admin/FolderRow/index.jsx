@@ -8,7 +8,7 @@ import { FolderRowStyled } from './styles'
 import { NewFolderForm } from '../NewFolderForm'
 import { Modal } from '../../../Common/modals/Modal'
 
-export const FolderRow = ({ folder, onSelect }) => {
+export const FolderRow = ({ folder, onSelect, checked }) => {
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
     const [editOpen, setEditOpen] = useState(false)
@@ -38,18 +38,18 @@ export const FolderRow = ({ folder, onSelect }) => {
             />
             <div className="folder-name">
                 <label htmlFor={`folder_${folder.id}`}>
-                    <i className="folder-icon">
-                        <FaFolder />
-                    </i>
                     <input
                         id={`folder_${folder.id}`}
                         type="radio"
                         name="folder"
                         value={folder.id}
                         onChange={onSelect}
+                        checked={checked}
                     />
-
-                    {folder.name}
+                    <i className="folder-icon">
+                        <FaFolder />
+                    </i>
+                    <p className="name">{folder.name}</p>
                 </label>
 
                 <div>

@@ -30,7 +30,12 @@ const filesSlice = createSlice({
             const folderIndex = state.data.findIndex(
                 x => x.id === files[0].fileable.id
             )
-            state.data[folderIndex].files?.push(...files)
+
+            const currentFolder = state.data[folderIndex]
+            state.data[folderIndex] = {
+                ...currentFolder,
+                files: [...currentFolder.files, ...files]
+            }
         },
         deleteFolderAction: (state, action) => {
             const index = state.data.findIndex(

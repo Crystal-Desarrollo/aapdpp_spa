@@ -15,6 +15,10 @@ export const FolderRowStyled = styled.li`
         border-bottom: 1px #000 solid;
         padding: 0.5rem;
 
+        label {
+            max-width: 80%;
+        }
+
         button:not(:last-child) {
             margin-right: 0.5rem;
         }
@@ -26,6 +30,12 @@ export const FolderRowStyled = styled.li`
 
         input {
             margin-right: 1rem;
+        }
+
+        .name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 

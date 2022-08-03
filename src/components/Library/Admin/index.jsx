@@ -11,6 +11,7 @@ import { Modal } from '../../Common/modals/Modal'
 import { NewFolderForm } from './NewFolderForm'
 import { useDispatch } from 'react-redux'
 import { createFile } from '../../../store/slices/librarySlice'
+import { toast } from 'react-toastify'
 export const Library = () => {
     const [data, setData] = useState({})
     const [modalOpen, setModalOpen] = useState(false)
@@ -27,6 +28,16 @@ export const Library = () => {
     }
 
     const handleSubmit = () => {
+        if (!data.folder) {
+            toast.error('Debe seleccionar una carpeta')
+            return
+        }
+
+        if (!data.files || data.files?.length < 1) {
+            toast.error('Debe subir al menos un archivo')
+            return
+        }
+
         const formData = new FormData()
         data.files?.forEach(file => formData.append('files[]', file))
         formData.append('folder', data.folder)
@@ -44,13 +55,13 @@ export const Library = () => {
     return (
         <>
             {loading && <Loader />}
+            <Modal shown={modalOpen} title="Nueva carpeta">
+                <NewFolderForm
+                    onCancel={() => setModalOpen(false)}
+                    onCreate={() => setModalOpen(false)}
+                ></NewFolderForm>
+            </Modal>
             <LibraryStyled>
-                <Modal shown={modalOpen} title="Nueva carpeta">
-                    <NewFolderForm
-                        onCancel={() => setModalOpen(false)}
-                        onCreate={() => setModalOpen(false)}
-                    ></NewFolderForm>
-                </Modal>
                 <div className="picture">
                     <Box>
                         <H3>Elija los archivos</H3>
@@ -98,6 +109,9 @@ export const Library = () => {
                                 key={folder.id}
                                 folder={folder}
                                 onSelect={handleSelectFolder}
+                                checked={
+                                    Number(data.folder) === Number(folder.id)
+                                }
                             />
                         ))}
                     </ul>
