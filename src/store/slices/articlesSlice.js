@@ -110,10 +110,10 @@ export const create = data => async dispatch => {
     }
 }
 
-export const edit = data => async dispatch => {
+export const edit = (data, id) => async dispatch => {
     try {
         dispatch(setLoadingAction(true))
-        const response = await NewsApi.edit(data)
+        const response = await NewsApi.edit(data, id)
         if (response.status === 200) {
             dispatch(editAction(response.data))
             toast.success('Noticia actualizada')

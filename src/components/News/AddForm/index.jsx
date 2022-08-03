@@ -25,15 +25,13 @@ export const AddNewForm = () => {
         setPicturePreview(article.cover?.path)
     }, [id, news])
 
-    console.log(data)
-
     const handleUploadPicture = e => {
         const file = e.target.files[0]
         let reader = new FileReader()
         reader.readAsDataURL(file)
 
         reader.onload = () => {
-            setData(prev => ({ ...prev, picture: file }))
+            setData(prev => ({ ...prev, cover: file }))
             setPicturePreview(reader.result)
         }
     }
@@ -48,10 +46,20 @@ export const AddNewForm = () => {
     const onSubmit = e => {
         e.preventDefault()
 
+        const formData = new FormData()
+
+        Object.entries(data).forEach(entry => {
+            formData.append(entry[0], entry[1])
+        })
+
+        if (data?.cover?.id) {
+            formData.delete('cover')
+        }
+
         if (!id) {
-            dispatch(create(data)).then(clearForm)
+            dispatch(create(formData)).then(clearForm)
         } else {
-            dispatch(edit(data))
+            dispatch(edit(formData, data.id))
         }
     }
 

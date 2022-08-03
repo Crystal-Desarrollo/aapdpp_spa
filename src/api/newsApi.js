@@ -17,8 +17,8 @@ class NewsApi {
         return axiosInstance.post('/articles', data)
     }
 
-    edit(data) {
-        return axiosInstance.put(`/articles/${data.id}`, data)
+    edit(data, id) {
+        return axiosInstance.post(`/articles/${id}?_method=PUT`, data)
     }
 }
 
