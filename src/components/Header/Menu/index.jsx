@@ -1,14 +1,13 @@
 import { HashLink } from 'react-router-hash-link'
 import { useDispatch } from 'react-redux'
 import { FaSignOutAlt } from 'react-icons/fa'
-
-import { StyledMenu } from './styles'
+import { MenuBars, StyledMenu } from './styles'
 import { Confirm } from '../../Common/modals/Confirm'
 import { logout } from '../../../store/slices/authSlice'
 import { useAuth } from '../../../hooks/auth/useAuth'
 import { useState } from 'react'
 
-export const Menu = () => {
+export const Menu = ({ setIsOpenSideMenu }) => {
     const dispatch = useDispatch()
     const {
         data: { user }
@@ -91,6 +90,11 @@ export const Menu = () => {
 
                 {renderUserBasedLinks()}
             </StyledMenu>
+            <MenuBars
+                onClick={() => {
+                    setIsOpenSideMenu(prevState => !prevState)
+                }}
+            />
         </>
     )
 }

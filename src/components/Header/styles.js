@@ -19,6 +19,7 @@ export const HeaderStyled = styled.header`
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
+        padding: 0 1rem;
 
         display: flex;
         align-items: center;
@@ -41,5 +42,9 @@ export const HeaderStyled = styled.header`
                 font-size: 1.5rem;
             }
         }
+    }
+
+    @media (max-width: 1200px) {
+        height: 60px;
     }
 `

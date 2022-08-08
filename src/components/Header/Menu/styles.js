@@ -1,3 +1,4 @@
+import { FaBars } from 'react-icons/fa'
 import styled from 'styled-components'
 
 export const StyledMenu = styled.ul`
@@ -35,5 +36,17 @@ export const StyledMenu = styled.ul`
         }
     }
 
-    //TODO: responsive
+    @media (max-width: 1200px) {
+        display: none;
+    }
+`
+export const MenuBars = styled(FaBars)`
+    display: none;
+    font-size: 1.235rem;
+    color: white;
+    cursor: pointer;
+
+    @media (max-width: 1200px) {
+        display: block;
+    }
 `

@@ -6,6 +6,7 @@ export const AdminHeaderStyled = styled.nav`
     height: 40px;
 
     ul {
+        padding-right: 1rem;
         list-style-type: none;
         height: 100%;
         max-width: 1200px;
@@ -39,5 +40,11 @@ export const AdminHeaderStyled = styled.nav`
                 background-color: #cad4df;
             }
         }
+    }
+
+    display: block;
+
+    @media (max-width: 1200px) {
+        display: none;
     }
 `

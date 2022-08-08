@@ -4,8 +4,11 @@ import { AdminHeader } from './AdminHeader'
 
 import Logo from '../../asssets/img/logo_apdp.jpg'
 import { useAuth } from '../../hooks/auth/useAuth'
+import { SideMenu } from './sideMenu'
+import { useState } from 'react'
 
 export function Header() {
+    const [isOpenSideMenu, setIsOpenSideMenu] = useState(false)
     const {
         data: { user }
     } = useAuth()
@@ -23,7 +26,7 @@ export function Header() {
                     <h1>AAPDPP</h1>
                 </div>
 
-                <Menu />
+                <Menu setIsOpenSideMenu={setIsOpenSideMenu} />
             </div>
 
             {isAdmin && (
@@ -32,6 +35,7 @@ export function Header() {
                     <AdminHeader />
                 </>
             )}
+            <SideMenu isOpenSideMenu={isOpenSideMenu} />
         </HeaderStyled>
     )
 }
