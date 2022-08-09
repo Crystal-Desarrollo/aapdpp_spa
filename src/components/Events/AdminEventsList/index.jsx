@@ -5,7 +5,6 @@ import { Section } from '../../Common/Section'
 import { Button } from '../../Common/Inputs/Button'
 import { FaTrash, FaPen } from 'react-icons/fa'
 import { Loader } from '../../Loader'
-
 import { useGetAll } from '../../../hooks/events/useGetAll'
 import { useDispatch } from 'react-redux'
 import { remove } from '../../../store/slices/eventsSlice'

@@ -5,8 +5,11 @@ export const Card = styled.div`
     flex-direction: column;
     border-radius: 0.5rem;
     background-color: #fff;
-    padding: 1rem;
+    padding: ${props => props.padding || '1rem'};
     gap: 1rem;
+    width: 100%;
+    margin: 0 auto;
+    max-width: ${props => props.maxWidth || 'none'};
 `
 
 export const Flex = styled.div`

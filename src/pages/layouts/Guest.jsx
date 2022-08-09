@@ -8,7 +8,9 @@ export const Guest = () => {
     return (
         <>
             <Header />
-            <main>{loading ? <Loader /> : <Outlet />}</main>
+            <main style={{ padding: '1rem' }}>
+                {loading ? <Loader /> : <Outlet />}
+            </main>
         </>
     )
 }

@@ -25,6 +25,7 @@ import { AddEvent } from './pages/admin/Events/AddEvent.jsx'
 import { Events } from './pages/guest/Events.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
+import { EventInfo } from './components/Events/EventInfo/index.jsx'
 
 function AdminMiddleware({ children }) {
     const {
@@ -97,6 +98,7 @@ export function App() {
                     />
 
                     <Route path="/eventos" element={<Events />} />
+                    <Route path="/eventos/:id" element={<EventInfo />} />
 
                     <Route
                         path="/miembros/:id"
