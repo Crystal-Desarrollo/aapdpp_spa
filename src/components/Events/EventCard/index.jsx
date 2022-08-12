@@ -2,7 +2,7 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { Card, Flex, IconText } from '../styles'
 import { Button } from '../../Common/Inputs/Button'
-import { FaCalendarDay, FaMapPin } from 'react-icons/fa'
+import { FaCalendarDay, FaMapPin, FaClock } from 'react-icons/fa'
 
 export const EventCard = ({ event }) => {
     const { id, date, location, description } = event
@@ -13,16 +13,16 @@ export const EventCard = ({ event }) => {
                 {date && (
                     <IconText>
                         <FaCalendarDay />
-                        {moment(date).format('d/M/yyyy')}
+                        {moment(date).format('D/MM/yyyy')}
                     </IconText>
                 )}
-                {/* -
-                {hour && (
+                -
+                {date && (
                     <IconText>
                         <FaClock />
-                        {hour}
+                        {moment(date).format('h:mm a')}
                     </IconText>
-                )} */}
+                )}
             </Flex>
             {location && (
                 <IconText>

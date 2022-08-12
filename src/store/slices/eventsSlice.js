@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { toast } from 'react-toastify'
 import EventsApi from '../../api/eventsApi'
 import { setLoading } from './appSlice'
 import { SOMETHING_WENT_WRONG } from '../../i18n/common'

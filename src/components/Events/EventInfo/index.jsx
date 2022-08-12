@@ -21,7 +21,7 @@ export const EventInfo = () => {
                         {event?.date && (
                             <IconText>
                                 <FaCalendarDay />
-                                {moment(event.date).format('d-m-yyyy')}
+                                {moment(event.date).format('D/MM/yyyy')}
                             </IconText>
                         )}
                         {event?.date && (
