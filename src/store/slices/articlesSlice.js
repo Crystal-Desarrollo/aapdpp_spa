@@ -22,8 +22,8 @@ const articlesSlice = createSlice({
             )
             state.splice(index, 1)
         },
-        createAction: (_, action) => {
-            return action.payload
+        createAction: (state, action) => {
+            state.push(action.payload)
         },
         editAction: (state, action) => {
             const index = state.findIndex(

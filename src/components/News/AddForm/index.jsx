@@ -9,12 +9,16 @@ import { create, edit } from '../../../store/slices/articlesSlice'
 import { Loader } from '../../Loader'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
+import { useIsLoading } from '../../../hooks/app/useIsLoading'
+import { toast } from 'react-toastify'
+import { ARTICLE_ADDED, ARTICLE_UPDATED } from '../../../i18n/articles'
 
 export const AddNewForm = () => {
     const { id } = useParams()
     const [data, setData] = useState({})
     const [picturePreview, setPicturePreview] = useState('')
-    const { loading, data: news } = useSelector(store => store.news)
+    const news = useSelector(store => store.news)
+    const isLoading = useIsLoading()
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -57,9 +61,14 @@ export const AddNewForm = () => {
         }
 
         if (!id) {
-            dispatch(create(formData)).then(clearForm)
+            dispatch(create(formData)).then(() => {
+                clearForm()
+                toast.success(ARTICLE_ADDED)
+            })
         } else {
-            dispatch(edit(formData, data.id))
+            dispatch(edit(formData, data.id)).then(() =>
+                toast.success(ARTICLE_UPDATED)
+            )
         }
     }
 
@@ -72,7 +81,7 @@ export const AddNewForm = () => {
         <NewsFormStyled>
             <H2>{id ? 'Editar noticia' : 'Agregar noticia'}</H2>
             <NewsCardStyled>
-                {loading && <Loader />}
+                {isLoading && <Loader />}
                 <div className="picture">
                     {picturePreview ? (
                         <img src={picturePreview} alt="" />

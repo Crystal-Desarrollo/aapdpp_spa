@@ -6,7 +6,7 @@ const ARTICLES_LIMIT = 6
 export const useGetArticles = allArticles => {
     const dispatch = useDispatch()
     const articles = useSelector(store => store.news)
-    const [news, setNews] = useState({})
+    const [news, setNews] = useState([])
 
     useEffect(() => {
         if (articles.length > 0) return
