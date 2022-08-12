@@ -9,7 +9,6 @@ export const useGetArticles = allArticles => {
     const [news, setNews] = useState([])
 
     useEffect(() => {
-        if (articles.length > 0) return
         dispatch(getAll())
     }, []) // eslint-disable-line
 

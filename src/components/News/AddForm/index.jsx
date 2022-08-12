@@ -4,30 +4,22 @@ import { TextField } from '../../Common/Inputs/TextField'
 import { FaUpload } from 'react-icons/fa'
 import { useState } from 'react'
 import { Button } from '../../Common/Inputs/Button'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { create, edit } from '../../../store/slices/articlesSlice'
 import { Loader } from '../../Loader'
 import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
 import { useIsLoading } from '../../../hooks/app/useIsLoading'
 import { toast } from 'react-toastify'
 import { ARTICLE_ADDED, ARTICLE_UPDATED } from '../../../i18n/articles'
+import { useGetArticle } from '../../../hooks/articles/useGetArticle'
+import { useEffect } from 'react'
 
 export const AddNewForm = () => {
     const { id } = useParams()
-    const [data, setData] = useState({})
+    const [data, setData] = useGetArticle(id)
     const [picturePreview, setPicturePreview] = useState('')
-    const news = useSelector(store => store.news)
     const isLoading = useIsLoading()
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        if (!id) return
-        const article = news.find(x => x.id === Number(id))
-        if (!article) return
-        setData(article)
-        setPicturePreview(article.cover?.path)
-    }, [id, news])
 
     const handleUploadPicture = e => {
         const file = e.target.files[0]
@@ -49,17 +41,7 @@ export const AddNewForm = () => {
 
     const onSubmit = e => {
         e.preventDefault()
-
-        const formData = new FormData()
-
-        Object.entries(data).forEach(entry => {
-            formData.append(entry[0], entry[1])
-        })
-
-        if (data?.cover?.id) {
-            formData.delete('cover')
-        }
-
+        const formData = makeFormData()
         if (!id) {
             dispatch(create(formData)).then(() => {
                 clearForm()
@@ -70,6 +52,22 @@ export const AddNewForm = () => {
                 toast.success(ARTICLE_UPDATED)
             )
         }
+    }
+
+    const makeFormData = () => {
+        const formData = new FormData()
+
+        Object.entries(data).forEach(([name, value]) => {
+            if (name !== 'cover' || value !== null) {
+                formData.append(name, value)
+            }
+        })
+
+        if (data?.cover?.id) {
+            formData.delete('cover')
+        }
+
+        return formData
     }
 
     const clearForm = () => {
@@ -83,8 +81,8 @@ export const AddNewForm = () => {
             <NewsCardStyled>
                 {isLoading && <Loader />}
                 <div className="picture">
-                    {picturePreview ? (
-                        <img src={picturePreview} alt="" />
+                    {data.cover?.path || picturePreview ? (
+                        <img src={data.cover?.path || picturePreview} alt="" />
                     ) : (
                         <label
                             className="file-uploader"

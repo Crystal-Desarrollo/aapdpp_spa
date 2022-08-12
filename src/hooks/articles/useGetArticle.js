@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { getAll } from '../../store/slices/articlesSlice'
+import { useDispatch } from 'react-redux'
+import { getOne } from '../../store/slices/articlesSlice'
 
 export const useGetArticle = id => {
     const dispatch = useDispatch()
-    const news = useSelector(store => store.news)
-    const [article, setArticle] = useState(null)
+    const [article, setArticle] = useState({})
 
     useEffect(() => {
-        dispatch(getAll())
-    }, [dispatch, id])
+        if (id) {
+            dispatch(getOne(id)).then(data => setArticle(data))
+        }
+    }, [id]) //eslint-disable-line
 
-    useEffect(() => {
-        setArticle(news.data.find(x => x.id === Number(id)))
-    }, [news, id])
-
-    return article
+    return [article, setArticle]
 }

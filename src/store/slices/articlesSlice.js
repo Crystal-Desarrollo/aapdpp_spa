@@ -12,8 +12,13 @@ const articlesSlice = createSlice({
         },
         getOneAction: (state, action) => {
             const { payload } = action
-            if (!state.findIndex(x => x.id === payload.id)) {
-                return action.payload
+            const index = state.findIndex(
+                x => Number(x.id) === Number(payload.id)
+            )
+            if (index < 0) {
+                state.push(action.payload)
+            } else {
+                state.splice(index, 1, action.payload)
             }
         },
         deleteAction: (state, action) => {
@@ -26,9 +31,8 @@ const articlesSlice = createSlice({
             state.push(action.payload)
         },
         editAction: (state, action) => {
-            const index = state.findIndex(
-                x => Number(x.id) === Number(action.payload.id)
-            )
+            const { payload } = action
+            const index = state.findIndex(x => x.id === payload.id)
             state.splice(index, 1, action.payload)
         }
     }
