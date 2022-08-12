@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { create } from '../../../store/slices/linksSlice'
 import { useState } from 'react'
 import { Loader } from '../../Loader'
+import { toast } from 'react-toastify'
+import { LINK_ADDED } from '../../../i18n/links'
 
 export const LinkForm = () => {
     const dispatch = useDispatch()
@@ -13,7 +15,10 @@ export const LinkForm = () => {
     const { loading } = useSelector(store => store.links)
 
     const handleSubmit = () => {
-        dispatch(create(data))
+        dispatch(create(data)).then(() => {
+            clearForm()
+            toast.success(LINK_ADDED)
+        })
     }
 
     const handleChange = e => {
@@ -23,6 +28,10 @@ export const LinkForm = () => {
             ...prev,
             [name]: value
         }))
+    }
+
+    const clearForm = () => {
+        setData({})
     }
 
     return (
