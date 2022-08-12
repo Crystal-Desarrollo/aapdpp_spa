@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { toast } from 'react-toastify'
 import FilesApi from '../../api/filesApi'
 import FoldersApi from '../../api/foldersApi'
 import { setLoading } from './appSlice'

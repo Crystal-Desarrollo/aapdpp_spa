@@ -3,10 +3,11 @@ import { Button } from '../../Common/Inputs/Button'
 import { MainActionsStyled, LinksListStyled } from './styles'
 import { Link } from 'react-router-dom'
 import { Loader } from '../../Loader'
-import { useGetAll } from '../../../hooks/links/useGetAll'
+import { useGetLinks } from '../../../hooks/links/useGetLinks'
 import { useDispatch } from 'react-redux'
 import { FaTrash, FaGlobe } from 'react-icons/fa'
 import { remove } from '../../../store/slices/linksSlice'
+import { useIsLoading } from '../../../hooks/app/useIsLoading'
 
 function mapIcons(iconName) {
     const dictionary = [
@@ -23,7 +24,8 @@ function mapIcons(iconName) {
 
 export const AdminLinkList = () => {
     const dispatch = useDispatch()
-    const { loading, data } = useGetAll()
+    const links = useGetLinks()
+    const isLoading = useIsLoading()
 
     const handleDelete = id => {
         dispatch(remove(id))
@@ -38,7 +40,7 @@ export const AdminLinkList = () => {
             </MainActionsStyled>
 
             <LinksListStyled>
-                {loading && <Loader />}
+                {isLoading && <Loader />}
 
                 <table>
                     <thead>
@@ -51,7 +53,7 @@ export const AdminLinkList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(link => (
+                        {links?.map(link => (
                             <tr key={link.id}>
                                 <td>{link.id}</td>
                                 <td>{mapIcons(link.icon)}</td>

@@ -3,17 +3,19 @@ import { H2 } from '../Common/Texts'
 import { Grid } from '../Common/Grid'
 import { NoContent } from '../Common/NoContent'
 import { Link } from './Link'
-import { useGetAll } from '../../hooks/links/useGetAll'
+import { useGetLinks } from '../../hooks/links/useGetLinks'
 import { Loader } from '../Loader/index.jsx'
+import { useIsLoading } from '../../hooks/app/useIsLoading'
 
 export const Links = () => {
-    const { loading, data: links = [] } = useGetAll()
+    const links = useGetLinks()
+    const isLoading = useIsLoading()
 
     return (
         <Section id="enlaces-de-interes">
             <H2>Enlaces de interés</H2>
 
-            {loading ? (
+            {isLoading ? (
                 <Loader backgroundEnabled={false} float={false} />
             ) : (
                 <>
