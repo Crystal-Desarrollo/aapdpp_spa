@@ -5,13 +5,15 @@ import { Section } from '../../Common/Section'
 import { Button } from '../../Common/Inputs/Button'
 import { FaTrash, FaPen } from 'react-icons/fa'
 import { Loader } from '../../Loader'
-import { useGetAll } from '../../../hooks/events/useGetAll'
+import { useGetEvents } from '../../../hooks/events/useGetEvents'
 import { useDispatch } from 'react-redux'
 import { remove } from '../../../store/slices/eventsSlice'
+import { useIsLoading } from '../../../hooks/app/useIsLoading'
 
 export const EventsList = () => {
     const dispatch = useDispatch()
-    const { data, loading } = useGetAll()
+    const events = useGetEvents()
+    const isLoading = useIsLoading
 
     const handleDelete = id => {
         dispatch(remove(id))
@@ -26,7 +28,7 @@ export const EventsList = () => {
             </MainActionsStyled>
 
             <MembersListStyled>
-                {loading && <Loader />}
+                {isLoading && <Loader />}
 
                 <table>
                     <thead>
@@ -39,7 +41,7 @@ export const EventsList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(event => (
+                        {events?.map(event => (
                             <tr key={event.id}>
                                 <td>{event.id}</td>
                                 <td>{event.location}</td>
