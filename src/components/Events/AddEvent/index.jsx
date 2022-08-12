@@ -1,25 +1,21 @@
 import { EventCardStyled, EventFormStyled } from './styles'
 import { H2 } from '../../Common/Texts'
 import { TextField } from '../../Common/Inputs/TextField'
-import { useEffect, useState } from 'react'
 import { Button } from '../../Common/Inputs/Button'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { create, edit } from '../../../store/slices/eventsSlice'
 import { Loader } from '../../Loader'
 import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { EVENT_ADDED, EVENT_MODIFIED } from '../../../i18n/events'
+import { useGetEvent } from '../../../hooks/events/useGetEvent'
+import { useIsLoading } from '../../../hooks/app/useIsLoading'
 
 export const EventForm = () => {
     const { id } = useParams()
-    const [data, setData] = useState({})
-    const { loading, data: events } = useSelector(store => store.events)
+    const [data, setData] = useGetEvent(id)
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        if (!id) return
-        const event = events.find(x => x.id === Number(id))
-        if (!event) return
-        setData(event)
-    }, [id, events])
+    const isLoading = useIsLoading()
 
     const onChange = e => {
         setData(prev => ({
@@ -32,15 +28,24 @@ export const EventForm = () => {
         e.preventDefault()
 
         if (!id) {
-            dispatch(create(data)).then(() => setData({}))
+            dispatch(create(data))
+                .then(() => setData({}))
+                .then(() => {
+                    clearForm()
+                    toast.success(EVENT_ADDED)
+                })
         } else {
-            dispatch(edit(data))
+            dispatch(edit(data)).then(() => toast.success(EVENT_MODIFIED))
         }
+    }
+
+    const clearForm = () => {
+        setData({})
     }
 
     return (
         <>
-            {loading && <Loader />}
+            {isLoading && <Loader />}
 
             <EventFormStyled>
                 <H2> {id ? 'Editar Evento' : 'Agregar evento'}</H2>

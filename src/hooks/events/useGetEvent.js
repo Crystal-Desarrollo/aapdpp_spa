@@ -4,7 +4,7 @@ import { getOne } from '../../store/slices/eventsSlice'
 
 export const useGetEvent = id => {
     const dispatch = useDispatch()
-    const [event, setEvent] = useState(null)
+    const [event, setEvent] = useState({})
 
     useEffect(() => {
         if (id) {
@@ -12,5 +12,5 @@ export const useGetEvent = id => {
         }
     }, [id]) // eslint-disable-line
 
-    return event
+    return [event, setEvent]
 }

@@ -9,14 +9,16 @@ import { useGetEvents } from '../../../hooks/events/useGetEvents'
 import { useDispatch } from 'react-redux'
 import { remove } from '../../../store/slices/eventsSlice'
 import { useIsLoading } from '../../../hooks/app/useIsLoading'
+import { toast } from 'react-toastify'
+import { EVENT_DELETED } from '../../../i18n/events'
 
 export const EventsList = () => {
     const dispatch = useDispatch()
     const events = useGetEvents()
-    const isLoading = useIsLoading
+    const isLoading = useIsLoading()
 
     const handleDelete = id => {
-        dispatch(remove(id))
+        dispatch(remove(id)).then(() => toast.success(EVENT_DELETED))
     }
 
     return (

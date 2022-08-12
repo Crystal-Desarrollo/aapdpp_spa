@@ -44,7 +44,6 @@ export const getAll = () => async dispatch => {
         if (response.status !== 200) {
             return Promise.reject(SOMETHING_WENT_WRONG)
         }
-
         dispatch(getAllAction(response.data))
         return Promise.resolve(response.data)
     } catch (err) {
