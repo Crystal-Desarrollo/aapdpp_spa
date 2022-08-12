@@ -1,19 +1,18 @@
-import { LoginFormStyled, LoginCardStyled } from './styles'
-import { TextField } from '../../Common/Inputs/TextField'
 import { Button } from '../../Common/Inputs/Button'
-import { MessageLabel } from '../../Common/MessageLabel'
 import { Loader } from '../../Loader'
 import { login } from '../../../store/slices/authSlice'
-import { useState } from 'react'
+import { LoginFormStyled, LoginCardStyled } from './styles'
+import { MessageLabel } from '../../Common/MessageLabel'
+import { TextField } from '../../Common/Inputs/TextField'
 import { useDispatch } from 'react-redux'
-
+import { useState } from 'react'
 import Logo from '../../../asssets/img/logo_apdp.jpg'
-
+import { useIsLoading } from '../../../hooks/app/useIsLoading'
 export const LoginForm = () => {
     const dispatch = useDispatch()
     const [data, setData] = useState({})
     const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
+    const loading = useIsLoading()
 
     const handleChange = e => {
         setData(prev => ({
@@ -22,13 +21,10 @@ export const LoginForm = () => {
         }))
     }
 
-    const handleSubmit = e => {
-        setLoading(true)
-        dispatch(login(data))
-            .catch(e => {
-                setError(e)
-            })
-            .finally(() => setLoading(false))
+    const handleSubmit = () => {
+        dispatch(login(data)).catch(e => {
+            setError(e)
+        })
     }
 
     return (

@@ -3,10 +3,11 @@ import { Goal } from './Goal/index.jsx'
 import { Grid } from '../Common/Grid.jsx'
 import { Section } from '../Common/Section.jsx'
 import { PeopleCard } from '../PeopleCard/index.jsx'
-import { useGetAll } from '../../hooks/users/useGetAll.js'
+import { useGetUsers } from '../../hooks/users/useGetUsers.js'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
 import { Loader } from '../Loader'
+import { useIsLoading } from '../../hooks/app/useIsLoading'
 
 const goals = [
     'Optimizar el proceso de enseñanza y aprendizaje del derecho procesal penal en todas las facultades de derecho de la República Argentina.',
@@ -18,7 +19,8 @@ const goals = [
 ]
 
 export const About = () => {
-    const { data: users, loading } = useGetAll()
+    const users = useGetUsers()
+    const isLoading = useIsLoading()
     const [adminUsers, setAdminUsers] = useState([])
 
     useEffect(() => {
@@ -29,7 +31,7 @@ export const About = () => {
 
     return (
         <>
-            {loading && <Loader />}
+            {isLoading && <Loader />}
             <Section>
                 <H2>Autoridades de la asociación</H2>
                 <Grid>

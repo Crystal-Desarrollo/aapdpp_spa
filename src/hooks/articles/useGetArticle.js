@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAll } from '../../store/slices/articlesSlice'
 
-export const useGetOne = id => {
+export const useGetArticle = id => {
     const dispatch = useDispatch()
     const news = useSelector(store => store.news)
     const [article, setArticle] = useState(null)

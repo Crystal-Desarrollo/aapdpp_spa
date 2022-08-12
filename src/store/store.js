@@ -7,8 +7,10 @@ import linksReducer from './slices/linksSlice.js'
 import usersReducer from './slices/usersSlice.js'
 import libraryReducer from './slices/librarySlice.js'
 import eventsSlice from './slices/eventsSlice.js'
+import appReducer from './slices/appSlice.js'
 
 const reducer = combineReducers({
+    app: appReducer,
     auth: authReducer,
     news: newsReducer,
     links: linksReducer,

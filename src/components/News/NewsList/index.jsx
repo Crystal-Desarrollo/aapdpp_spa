@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-
 import { ArticlesSectionStyled } from './styles.js'
 import { Section } from '../../Common/Section.jsx'
 import { Grid } from '../../Common/Grid.jsx'
@@ -8,16 +7,17 @@ import { NoContent } from '../../Common/NoContent.jsx'
 import { Card } from '../Card/index.jsx'
 import { Button } from '../../Common/Inputs/Button.jsx'
 import { Loader } from '../../Loader/index.jsx'
-
-import { useGetAll } from '../../../hooks/articles/useGetAll.js'
+import { useGetArticles } from '../../../hooks/articles/useGetArticles'
+import { useIsLoading } from '../../../hooks/app/useIsLoading'
 
 export const News = ({ title, full }) => {
-    const { loading, data: news = [] } = useGetAll(full)
+    const news = useGetArticles(full)
+    const isLoading = useIsLoading()
 
     return (
         <Section id="noticias">
             <H2>{title}</H2>
-            {loading ? (
+            {isLoading ? (
                 <Loader float={false} backgroundEnabled={false} />
             ) : (
                 <>

@@ -5,10 +5,11 @@ import { Button } from '../../Common/Inputs/Button'
 import { FaTrash, FaPen } from 'react-icons/fa'
 import { Loader } from '../../Loader'
 
-import { useGetAll } from '../../../hooks/users/useGetAll'
+import { useGetUsers } from '../../../hooks/users/useGetUsers'
 import { useAuth } from '../../../hooks/auth/useAuth'
 import { useDispatch } from 'react-redux'
 import { remove } from '../../../store/slices/usersSlice'
+import { useIsLoading } from '../../../hooks/app/useIsLoading'
 
 const mapUserRole = role => {
     if (role === 'admin') return 'Administrador'
@@ -17,10 +18,9 @@ const mapUserRole = role => {
 
 export const MembersList = () => {
     const dispatch = useDispatch()
-    const { data, loading } = useGetAll()
-    const {
-        data: { user: loggedUser }
-    } = useAuth()
+    const users = useGetUsers()
+    const isLoading = useIsLoading()
+    const { user: loggedUser } = useAuth()
 
     const handleDelete = id => {
         dispatch(remove(id))
@@ -35,7 +35,7 @@ export const MembersList = () => {
             </MainActionsStyled>
 
             <MembersListStyled>
-                {loading && <Loader />}
+                {isLoading && <Loader />}
 
                 <table>
                     <thead>
@@ -49,7 +49,7 @@ export const MembersList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(user => (
+                        {users.map(user => (
                             <tr key={user.id}>
                                 <td>{user.id}</td>
                                 <td>{user.name}</td>

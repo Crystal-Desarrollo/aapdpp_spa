@@ -5,13 +5,13 @@ import { Button } from '../../Common/Inputs/Button'
 import { FaTrash, FaPen } from 'react-icons/fa'
 import { Loader } from '../../Loader'
 
-import { useGetAll } from '../../../hooks/articles/useGetAll'
+import { useGetArticles } from '../../../hooks/articles/useGetArticles'
 import { useDispatch } from 'react-redux'
 import { remove } from '../../../store/slices/articlesSlice'
 
 export const ArticlesList = () => {
     const dispatch = useDispatch()
-    const { loading, data = [] } = useGetAll(true)
+    const { loading, data = [] } = useGetArticles(true)
 
     const handleDelete = id => {
         dispatch(remove(id))

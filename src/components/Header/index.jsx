@@ -9,9 +9,7 @@ import { useState } from 'react'
 
 export function Header() {
     const [isOpenSideMenu, setIsOpenSideMenu] = useState(false)
-    const {
-        data: { user }
-    } = useAuth()
+    const { user } = useAuth()
 
     const isAdmin = user?.role?.name === 'admin'
 

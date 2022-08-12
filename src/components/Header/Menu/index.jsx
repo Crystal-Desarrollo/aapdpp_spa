@@ -8,11 +8,9 @@ import { useAuth } from '../../../hooks/auth/useAuth'
 import { useState } from 'react'
 
 export const Menu = ({ setIsOpenSideMenu }) => {
-    const dispatch = useDispatch()
-    const {
-        data: { user }
-    } = useAuth()
     const [confirmShown, setConfirmShown] = useState(false)
+    const dispatch = useDispatch()
+    const { user } = useAuth()
 
     const isMember = user?.role?.name === 'member'
 

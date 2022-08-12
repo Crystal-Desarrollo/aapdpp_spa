@@ -28,9 +28,7 @@ import { useAuth } from './hooks/auth/useAuth.js'
 import { EventInfo } from './components/Events/EventInfo/index.jsx'
 
 function AdminMiddleware({ children }) {
-    const {
-        data: { user }
-    } = useAuth()
+    const { user } = useAuth()
     const location = useLocation()
 
     if (user?.role?.name !== 'admin') {
@@ -41,9 +39,7 @@ function AdminMiddleware({ children }) {
 }
 
 function MemberMiddleware({ children }) {
-    const {
-        data: { user }
-    } = useAuth()
+    const { user } = useAuth()
     const userRole = user?.role?.name
 
     if (userRole === 'admin' || userRole === 'member') {
@@ -54,9 +50,9 @@ function MemberMiddleware({ children }) {
 }
 
 function GuestMiddleWare({ children }) {
-    const { data: auth } = useAuth()
+    const { user } = useAuth()
 
-    if (auth.user || auth.token) {
+    if (user) {
         return <Navigate to="/" replace />
     }
 

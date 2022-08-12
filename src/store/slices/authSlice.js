@@ -1,84 +1,82 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-toastify'
 import AuthApi from '../../api/authApi.js'
+import { SESSION_CLOSED, SOMETHING_WENT_WRONG } from '../../i18n/common.js'
+import { setLoading } from './appSlice.js'
 
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        loading: false,
-        data: {
-            user: null,
-            token: null
-        }
+        user: null,
+        token: null
     },
     reducers: {
-        setLoadingAction: (state, action) => {
-            state.loading = action.payload
+        loginAction: (_, action) => {
+            return action.payload
         },
-        loginAction: (state, action) => {
-            state.data = action.payload
-        },
-        logoutAction(state) {
-            state.data = {
+        logoutAction() {
+            return {
                 user: null,
                 token: null
             }
         },
-        meAction(state, action) {
-            state.data = action.payload
+        meAction(_, action) {
+            return action.payload
         }
     }
 })
 export default authSlice.reducer
 
-const { loginAction, logoutAction, meAction, setLoadingAction } =
-    authSlice.actions
+const { loginAction, logoutAction, meAction } = authSlice.actions
 
 export const login = userData => async dispatch => {
     try {
+        dispatch(setLoading(true))
         const response = await AuthApi.login(userData)
-        if (response.status === 200) {
-            localStorage.setItem('aapdpp-token', response.data.token)
-            dispatch(loginAction(response.data))
-            return
+        if (response.status !== 200) {
+            return Promise.reject(SOMETHING_WENT_WRONG)
         }
+        localStorage.setItem('aapdpp-token', response.data.token)
+        dispatch(loginAction(response.data))
+        return Promise.resolve(response.data)
     } catch (err) {
         return Promise.reject(err.response.data)
+    } finally {
+        dispatch(setLoading(false))
     }
 }
 
 export const logout = () => async dispatch => {
     try {
-        dispatch(setLoadingAction(true))
+        dispatch(setLoading(true))
         await AuthApi.logout()
         localStorage.removeItem('aapdpp-token')
         dispatch(logoutAction())
+        return Promise.resolve()
     } catch (err) {
         return Promise.reject(err.message)
     } finally {
-        dispatch(setLoadingAction(false))
+        dispatch(setLoading(false))
     }
 }
 
 export const me = () => async dispatch => {
     try {
-        dispatch(setLoadingAction(true))
+        dispatch(setLoading(true))
+
         const token = localStorage.getItem('aapdpp-token')
-        if (token) {
-            const response = await AuthApi.me(token)
-            dispatch(
-                meAction({
-                    user: response.data,
-                    token
-                })
-            )
-        }
-    } catch (err) {
-        if (err.response.status === 401) {
-            localStorage.removeItem('aapdpp-token')
+        if (!token) {
+            return Promise.reject(SESSION_CLOSED)
         }
 
+        const response = await AuthApi.me(token)
+        const data = { user: response.data, token }
+        dispatch(meAction(data))
+    } catch (err) {
+        localStorage.removeItem('aapdpp-token')
+        toast.error(SESSION_CLOSED)
         return Promise.reject(err.message)
     } finally {
-        dispatch(setLoadingAction(false))
+        dispatch(setLoading(false))
     }
 }
