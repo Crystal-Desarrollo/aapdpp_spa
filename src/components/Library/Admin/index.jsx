@@ -5,18 +5,20 @@ import { Box } from '../../Common/Box'
 import { H3 } from '../../Common/Texts'
 import { Button } from '../../Common/Inputs/Button'
 import { Loader } from '../../Loader'
-import { useGetAll } from '../../../hooks/library/useGetAll'
+import { useGetLibrary } from '../../../hooks/library/useGetLibrary'
 import { FolderRow } from './FolderRow'
 import { Modal } from '../../Common/modals/Modal'
 import { NewFolderForm } from './NewFolderForm'
 import { useDispatch } from 'react-redux'
 import { createFile } from '../../../store/slices/librarySlice'
 import { toast } from 'react-toastify'
+import { useIsLoading } from '../../../hooks/app/useIsLoading'
 export const Library = () => {
     const [data, setData] = useState({})
     const [modalOpen, setModalOpen] = useState(false)
-    const { data: folders, loading } = useGetAll()
+    const folders = useGetLibrary()
     const dispatch = useDispatch()
+    const isLoading = useIsLoading()
 
     const onChange = e => {
         const chosenFiles = Array.prototype.slice.call(e.target.files)
@@ -54,7 +56,7 @@ export const Library = () => {
 
     return (
         <>
-            {loading && <Loader />}
+            {isLoading && <Loader />}
             <Modal shown={modalOpen} title="Nueva carpeta">
                 <NewFolderForm
                     onCancel={() => setModalOpen(false)}
