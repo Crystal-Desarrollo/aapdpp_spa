@@ -10,6 +10,8 @@ import { useAuth } from '../../../hooks/auth/useAuth'
 import { useDispatch } from 'react-redux'
 import { remove } from '../../../store/slices/usersSlice'
 import { useIsLoading } from '../../../hooks/app/useIsLoading'
+import { toast } from 'react-toastify'
+import { USER_DELETD } from '../../../i18n/users'
 
 const mapUserRole = role => {
     if (role === 'admin') return 'Administrador'
@@ -23,7 +25,7 @@ export const MembersList = () => {
     const { user: loggedUser } = useAuth()
 
     const handleDelete = id => {
-        dispatch(remove(id))
+        dispatch(remove(id)).then(() => toast.success(USER_DELETD))
     }
 
     return (

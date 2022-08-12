@@ -5,6 +5,10 @@ class UsersApi {
         return axiosInstance.get('/users')
     }
 
+    getOne(id) {
+        return axiosInstance.get(`/users/${id}`)
+    }
+
     register(data) {
         return axiosInstance.post('/register', data)
     }

@@ -7,6 +7,11 @@ import { Switch } from '../../Common/Inputs/Switch'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateStatus } from '../../../store/slices/usersSlice'
+import { toast } from 'react-toastify'
+import {
+    MEMBERSHIP_ACTIVATED,
+    MEMBERSHIP_DEACTIVATED
+} from '../../../i18n/users'
 
 const mapActiveText = isActive => {
     return isActive ? 'Activa' : 'Inactiva'
@@ -14,9 +19,7 @@ const mapActiveText = isActive => {
 
 export const PaymentInformation = ({ user }) => {
     const dispatch = useDispatch()
-    const {
-        data: { user: loggedUser }
-    } = useAuth()
+    const { user: loggedUser } = useAuth()
     const [activeStatus, setActiveStatus] = useState(false)
 
     const isAdmin = loggedUser?.role?.name === 'admin'
@@ -29,7 +32,13 @@ export const PaymentInformation = ({ user }) => {
     const handleToggleSubscription = e => {
         const newStatus = !activeStatus
         setActiveStatus(newStatus)
-        dispatch(updateStatus(user.id, { active: newStatus }))
+        dispatch(updateStatus(user.id, { active: newStatus })).then(() => {
+            if (newStatus) {
+                toast.success(MEMBERSHIP_ACTIVATED)
+            } else {
+                toast.success(MEMBERSHIP_DEACTIVATED)
+            }
+        })
     }
 
     return (

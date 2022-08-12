@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react'
 import { ProfileFormStyled } from './styles'
 
 import AVATAR from '../../../asssets/img/default_avatar.png'
+import { toast } from 'react-toastify'
+import { USER_UPDATED } from '../../../i18n/users'
 export const ProfileForm = ({ user }) => {
     const dispatch = useDispatch()
     const [data, setData] = useState(user)
@@ -26,7 +28,7 @@ export const ProfileForm = ({ user }) => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        dispatch(update(user.id, data))
+        dispatch(update(user.id, data)).then(() => toast.success(USER_UPDATED))
     }
 
     return (

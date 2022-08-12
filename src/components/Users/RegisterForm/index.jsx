@@ -9,13 +9,16 @@ import { FaUpload } from 'react-icons/fa'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { register } from '../../../store/slices/usersSlice'
+import { toast } from 'react-toastify'
+import { USER_CREATED } from '../../../i18n/users'
+import { useIsLoading } from '../../../hooks/app/useIsLoading'
 
 export const RegisterForm = () => {
     const dispatch = useDispatch()
     const [data, setData] = useState({})
     const [picturePreview, setPicturePreview] = useState(null)
     const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
+    const isLoading = useIsLoading()
 
     const handleUploadPicture = e => {
         const file = e.target.files[0]
@@ -36,7 +39,6 @@ export const RegisterForm = () => {
     }
 
     const onSubmit = e => {
-        setLoading(true)
         e.preventDefault()
         setError('')
 
@@ -46,9 +48,11 @@ export const RegisterForm = () => {
         })
 
         dispatch(register(formData))
-            .then(clearData)
+            .then(() => {
+                clearData()
+                toast.success(USER_CREATED)
+            })
             .catch(e => setError(e))
-            .finally(() => setLoading(false))
     }
 
     const clearData = () => {
@@ -60,7 +64,7 @@ export const RegisterForm = () => {
         <RegisterFormStyled>
             <H2>Agregar usuario</H2>
             <RegisterCardStyled>
-                {loading && <Loader />}
+                {isLoading && <Loader />}
 
                 <div className="first-section">
                     <div className="picture">
