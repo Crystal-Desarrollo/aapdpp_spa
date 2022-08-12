@@ -17,7 +17,7 @@ const eventsSlice = createSlice({
         },
         getOneAction: (state, action) => {
             const { payload } = action
-            if (!state.findIndex(x => x.id === payload.id)) {
+            if (!state.data.findIndex(x => x.id === payload.id)) {
                 state.data.push(action.payload)
             }
         },
@@ -67,10 +67,13 @@ export const getOne = id => async dispatch => {
     try {
         dispatch(setLoadingAction(true))
         const response = await EventsApi.getOne(id)
-        if (response.status === 200) {
-            dispatch(getOneAction(response.data))
-            return
+        if (response.status !== 200) {
+            return Promise.reject(
+                `Response status was: ${response.status} - ${response.statusText}`
+            )
         }
+        dispatch(getOneAction(response.data))
+        return Promise.resolve(response.data)
     } catch (err) {
         return Promise.reject(err.message)
     } finally {

@@ -77,6 +77,8 @@ export function App() {
                             </GuestMiddleWare>
                         }
                     />
+                    <Route path="/eventos" element={<Events />} />
+                    <Route path="/eventos/:id" element={<EventInfo />} />
 
                     {/* Member only routes */}
 
@@ -96,10 +98,6 @@ export function App() {
                             </MemberMiddleware>
                         }
                     />
-
-                    <Route path="/eventos" element={<Events />} />
-                    <Route path="/eventos/:id" element={<EventInfo />} />
-
                     <Route
                         path="/miembros/:id"
                         element={

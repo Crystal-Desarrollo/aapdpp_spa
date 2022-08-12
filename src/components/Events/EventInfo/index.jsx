@@ -2,14 +2,14 @@ import { Card, IconText } from '../styles'
 import { FaCalendarDay, FaClock, FaMapPin } from 'react-icons/fa'
 import { Tabs } from '../Tabs'
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { useGetEvent } from '../../../hooks/events/useGetEvent'
+import moment from 'moment'
 
-export const EventInfo = ({
-    date = '01/09/1991',
-    hour = '10:20',
-    ubication = 'Ledesma',
-    descriptionEvent = 'AAAAAAAAAAAAah'
-}) => {
+export const EventInfo = () => {
+    const { id } = useParams()
     const [tab, setTab] = useState(1)
+    const event = useGetEvent(id)
 
     return (
         <>
@@ -18,29 +18,29 @@ export const EventInfo = ({
                 <>
                     <Card maxWidth="1200px" padding="3rem">
                         <h2>Fecha y lugar de encuentro</h2>
-                        {date && (
+                        {event?.date && (
                             <IconText>
                                 <FaCalendarDay />
-                                {date}
+                                {moment(event.date).format('d-m-yyyy')}
                             </IconText>
                         )}
-                        {hour && (
+                        {event?.date && (
                             <IconText>
                                 <FaClock />
-                                {hour}
+                                {moment(event.date).format('h:mm a')}
                             </IconText>
                         )}
-                        {ubication && (
+                        {event?.location && (
                             <IconText>
                                 <FaMapPin />
-                                {ubication}
+                                {event.location}
                             </IconText>
                         )}
                     </Card>
                     <br />
                     <Card maxWidth="1200px" padding="3rem">
                         <h2>Descripción</h2>
-                        {descriptionEvent && descriptionEvent}
+                        {event?.description}
                     </Card>
                 </>
             )}
