@@ -9,7 +9,7 @@ import { MessageLabel } from '../Common/MessageLabel.jsx'
 import { Loader } from '../Loader/index.jsx'
 import { Box } from '../Common/Box.jsx'
 export const Contact = () => {
-    const [data, setData] = useState({})
+    const [data, setData] = useState({}) //eslint-disable-line
     const [loading, setLoading] = useState(false)
     const [response, setResponse] = useState({
         message: '',
