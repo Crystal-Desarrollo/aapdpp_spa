@@ -25,6 +25,7 @@ import { Events } from './pages/guest/Events.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
 import { EventInfo } from './components/Events/EventInfo/index.jsx'
+import { NotFound } from './pages/guest/NotFound.jsx'
 
 function AdminMiddleware() {
     const user = useAuth()
@@ -75,6 +76,8 @@ export function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/eventos" element={<Events />} />
                     <Route path="/eventos/:id" element={<EventInfo />} />
+                    <Route path="/404" element={<NotFound />} />
+                    <Route path="*" element={<Navigate replace to="/404" />} />
 
                     {/* Member only routes */}
 
