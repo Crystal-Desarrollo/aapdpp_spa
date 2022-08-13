@@ -1,10 +1,9 @@
 import { HeroStyled } from './styles'
 
-import HeroImage from '../../asssets/img/hero_image.webp'
-export const Hero = ({ imageAlt, text }) => {
+export const Hero = ({ image, imageAlt, text }) => {
     return (
         <HeroStyled>
-            <img src={HeroImage} alt={imageAlt} />
+            <img src={image} alt={imageAlt} />
             <div>
                 <p>{text}</p>
             </div>

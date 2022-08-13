@@ -5,10 +5,13 @@ import { Links } from '../../components/Links/index.jsx'
 import { Contact } from '../../components/Contact/index.jsx'
 import { Estatuto } from '../../components/Estatuto/index.jsx'
 
+import HeroImage from '../../asssets/img/hero_image.webp'
+
 export function Home() {
     return (
         <>
             <Hero
+                image={HeroImage}
                 imageAlt="Estudiante sentado con una notebook sobre las piernas"
                 text="Asociación Argentina de Profesores de Derecho Procesal Penal"
             />
