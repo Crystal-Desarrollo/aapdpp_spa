@@ -37,6 +37,10 @@ export const SideMenu = ({ isOpenSideMenu }) => {
                 <li>
                     <HashLink to="/eventos">Eventos</HashLink>
                 </li>
+
+                <li>
+                    <HashLink to="/biblioteca">Biblioteca</HashLink>
+                </li>
             </ul>
             {/* hacer que el HR no aparezca cuando no es un admin */}
             <hr />
