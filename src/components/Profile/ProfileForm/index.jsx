@@ -11,9 +11,11 @@ import { ProfileFormStyled } from './styles'
 import AVATAR from '../../../asssets/img/default_avatar.png'
 import { toast } from 'react-toastify'
 import { USER_UPDATED } from '../../../i18n/users'
+import { useAuth } from '../../../hooks/auth/useAuth'
 export const ProfileForm = ({ user }) => {
     const dispatch = useDispatch()
     const [data, setData] = useState(user)
+    const loggedUser = useAuth()
 
     useEffect(() => setData(user), [user])
 
@@ -33,7 +35,12 @@ export const ProfileForm = ({ user }) => {
 
     return (
         <ProfileFormStyled>
-            <H2>Mi perfil</H2>
+            <H2>
+                {user &&
+                    (user.id === loggedUser?.id
+                        ? 'Mi perfil'
+                        : `Perfil de: ${user?.name}`)}
+            </H2>
 
             <form onSubmit={handleSubmit}>
                 <Box>

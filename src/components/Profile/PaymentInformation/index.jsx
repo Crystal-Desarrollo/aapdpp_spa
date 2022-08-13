@@ -19,7 +19,7 @@ const mapActiveText = isActive => {
 
 export const PaymentInformation = ({ user }) => {
     const dispatch = useDispatch()
-    const { user: loggedUser } = useAuth()
+    const loggedUser = useAuth()
     const [activeStatus, setActiveStatus] = useState(false)
 
     const isAdmin = loggedUser?.role?.name === 'admin'
