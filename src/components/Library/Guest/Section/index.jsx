@@ -1,20 +1,25 @@
+import { getFileExtension } from '../../../../utils/files'
 import { Grid } from '../../../Common/Grid'
 import { Section } from '../../../Common/Section'
 import { H2 } from '../../../Common/Texts'
-import { FileCard, TYPES } from '../../../Files'
+import { FileCard, mapExtensionToType } from '../../../Files'
 
-export const LibrarySection = ({ titleSection, documents }) => {
-    const numberDocuments = 0
-    const fileUrl = `${process.env.PUBLIC_URL}/assets/estatuto.pdf`
-
+export const LibrarySection = ({ folder }) => {
     return (
         <Section>
-            <H2>{`${titleSection} (${numberDocuments})`}</H2>
+            <H2>{`${folder.name} (${folder.files?.length || 0})`}</H2>
             <Grid>
-                <FileCard downloadUrl={fileUrl} type={TYPES.pdf} />
-                <FileCard downloadUrl={fileUrl} type={TYPES.pdf} />
-                <FileCard downloadUrl={fileUrl} type={TYPES.pdf} />
-                <FileCard downloadUrl={fileUrl} type={TYPES.pdf} />
+                {folder.files?.length > 0 &&
+                    folder.files.map(file => (
+                        <FileCard
+                            key={file.id}
+                            downloadUrl={file.path}
+                            type={mapExtensionToType(
+                                getFileExtension(file.original_name)
+                            )}
+                            downloadName={file.original_name}
+                        />
+                    ))}
             </Grid>
         </Section>
     )

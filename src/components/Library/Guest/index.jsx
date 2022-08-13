@@ -1,9 +1,12 @@
 import { Hero } from '../../Hero'
 import { LibrarySection } from './Section'
-
 import HeroImage from '../../../asssets/img/hero_event.webp'
+import { useGetLibrary } from '../../../hooks/library/useGetLibrary'
+import { NoContent } from '../../Common/NoContent'
 
 export const DocumentList = () => {
+    const folders = useGetLibrary()
+
     return (
         <>
             <Hero
@@ -11,9 +14,14 @@ export const DocumentList = () => {
                 imageAlt="imagen ilustrativa de una biblioteca"
                 text="Biblioteca"
             />
-            <LibrarySection titleSection="Documentos de interes" />
 
-            <LibrarySection titleSection="Derecho Civil" />
+            {folders.length > 0 ? (
+                folders.map(folder => (
+                    <LibrarySection key={folder.id} folder={folder} />
+                ))
+            ) : (
+                <NoContent />
+            )}
         </>
     )
 }
