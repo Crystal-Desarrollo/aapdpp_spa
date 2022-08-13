@@ -33,7 +33,7 @@ export const RegisterCardStyled = styled(CardStyled)`
             justify-content: center;
             align-items: center;
 
-            background-color: #ddd;
+            background-color: #eee;
             border-radius: 50%;
             overflow: hidden;
 

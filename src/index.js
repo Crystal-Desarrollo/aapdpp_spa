@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body{
-        background-color: #ddd;
+        background-color: #eee;
     }
 
     main{

@@ -38,19 +38,19 @@ export const MembersListStyled = styled(BoxStyled)`
                 cursor: pointer;
 
                 :disabled {
-                    color: #ddd;
+                    color: #eee;
                     cursor: default;
                 }
             }
         }
 
         thead {
-            background-color: #ddd;
+            background-color: #eee;
         }
 
         tbody {
             tr {
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid #eee;
             }
         }
     }

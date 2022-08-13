@@ -22,7 +22,7 @@ export const LibraryStyled = styled(SectionStyled)`
         display: flex;
         justify-content: center;
 
-        background-color: #ddd;
+        background-color: #eee;
 
         .file-uploader {
             width: 100%;

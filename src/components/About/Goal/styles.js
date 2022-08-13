@@ -3,6 +3,10 @@ import styled from 'styled-components'
 export const GoalStyled = styled.div`
     display: flex;
     align-items: center;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    align-items: stretch;
+    padding: 0.75rem;
 
     i {
         font-size: 2.5rem;

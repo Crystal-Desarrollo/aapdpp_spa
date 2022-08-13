@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FolderRowStyled = styled.li`
     padding: 0.5rem;
-    background-color: #ddd;
+    background-color: #eee;
 
     :not(:last-child) {
         margin-bottom: 1rem;
