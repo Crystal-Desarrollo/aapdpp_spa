@@ -3,19 +3,15 @@ import { MembersListStyled, MainActionsStyled } from './styles'
 import { Section } from '../../Common/Section'
 import { Button } from '../../Common/Inputs/Button'
 import { FaTrash, FaPen } from 'react-icons/fa'
-import { Loader } from '../../Loader'
-
 import { useGetArticles } from '../../../hooks/articles/useGetArticles'
 import { useDispatch } from 'react-redux'
 import { remove } from '../../../store/slices/articlesSlice'
-import { useIsLoading } from '../../../hooks/app/useIsLoading'
 import { toast } from 'react-toastify'
 import { ARTICLE_DELETED } from '../../../i18n/articles'
 
 export const ArticlesList = () => {
     const dispatch = useDispatch()
     const news = useGetArticles(true)
-    const isLoading = useIsLoading()
 
     const handleDelete = id => {
         dispatch(remove(id)).then(() => toast.success(ARTICLE_DELETED))
@@ -30,8 +26,6 @@ export const ArticlesList = () => {
             </MainActionsStyled>
 
             <MembersListStyled>
-                {isLoading && <Loader />}
-
                 <table>
                     <thead>
                         <tr>

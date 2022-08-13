@@ -1,5 +1,4 @@
 import { Button } from '../../Common/Inputs/Button'
-import { Loader } from '../../Loader'
 import { login } from '../../../store/slices/authSlice'
 import { LoginFormStyled, LoginCardStyled } from './styles'
 import { MessageLabel } from '../../Common/MessageLabel'
@@ -7,12 +6,10 @@ import { TextField } from '../../Common/Inputs/TextField'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import Logo from '../../../asssets/img/logo_apdp.jpg'
-import { useIsLoading } from '../../../hooks/app/useIsLoading'
 export const LoginForm = () => {
     const dispatch = useDispatch()
     const [data, setData] = useState({})
     const [error, setError] = useState('')
-    const loading = useIsLoading()
 
     const handleChange = e => {
         setData(prev => ({
@@ -35,7 +32,6 @@ export const LoginForm = () => {
             />
 
             <LoginCardStyled>
-                {loading && <Loader />}
                 <TextField
                     type="email"
                     onChange={handleChange}

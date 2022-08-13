@@ -3,13 +3,10 @@ import { MembersListStyled, MainActionsStyled } from './styles'
 import { Section } from '../../Common/Section'
 import { Button } from '../../Common/Inputs/Button'
 import { FaTrash, FaPen } from 'react-icons/fa'
-import { Loader } from '../../Loader'
-
 import { useGetUsers } from '../../../hooks/users/useGetUsers'
 import { useAuth } from '../../../hooks/auth/useAuth'
 import { useDispatch } from 'react-redux'
 import { remove } from '../../../store/slices/usersSlice'
-import { useIsLoading } from '../../../hooks/app/useIsLoading'
 import { toast } from 'react-toastify'
 import { USER_DELETD } from '../../../i18n/users'
 
@@ -21,8 +18,7 @@ const mapUserRole = role => {
 export const MembersList = () => {
     const dispatch = useDispatch()
     const users = useGetUsers()
-    const isLoading = useIsLoading()
-    const { user: loggedUser } = useAuth()
+    const loggedUser = useAuth()
 
     const handleDelete = id => {
         dispatch(remove(id)).then(() => toast.success(USER_DELETD))
@@ -37,8 +33,6 @@ export const MembersList = () => {
             </MainActionsStyled>
 
             <MembersListStyled>
-                {isLoading && <Loader />}
-
                 <table>
                     <thead>
                         <tr>

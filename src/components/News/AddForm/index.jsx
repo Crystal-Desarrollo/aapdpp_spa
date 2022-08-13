@@ -6,19 +6,15 @@ import { useState } from 'react'
 import { Button } from '../../Common/Inputs/Button'
 import { useDispatch } from 'react-redux'
 import { create, edit } from '../../../store/slices/articlesSlice'
-import { Loader } from '../../Loader'
 import { useParams } from 'react-router-dom'
-import { useIsLoading } from '../../../hooks/app/useIsLoading'
 import { toast } from 'react-toastify'
 import { ARTICLE_ADDED, ARTICLE_UPDATED } from '../../../i18n/articles'
 import { useGetArticle } from '../../../hooks/articles/useGetArticle'
-import { useEffect } from 'react'
 
 export const AddNewForm = () => {
     const { id } = useParams()
     const [data, setData] = useGetArticle(id)
     const [picturePreview, setPicturePreview] = useState('')
-    const isLoading = useIsLoading()
     const dispatch = useDispatch()
 
     const handleUploadPicture = e => {
@@ -79,7 +75,6 @@ export const AddNewForm = () => {
         <NewsFormStyled>
             <H2>{id ? 'Editar noticia' : 'Agregar noticia'}</H2>
             <NewsCardStyled>
-                {isLoading && <Loader />}
                 <div className="picture">
                     {data.cover?.path || picturePreview ? (
                         <img src={data.cover?.path || picturePreview} alt="" />

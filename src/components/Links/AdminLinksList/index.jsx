@@ -2,12 +2,10 @@ import { Section } from '../../Common/Section'
 import { Button } from '../../Common/Inputs/Button'
 import { MainActionsStyled, LinksListStyled } from './styles'
 import { Link } from 'react-router-dom'
-import { Loader } from '../../Loader'
 import { useGetLinks } from '../../../hooks/links/useGetLinks'
 import { useDispatch } from 'react-redux'
 import { FaTrash, FaGlobe } from 'react-icons/fa'
 import { remove } from '../../../store/slices/linksSlice'
-import { useIsLoading } from '../../../hooks/app/useIsLoading'
 import { toast } from 'react-toastify'
 import { LINK_DELETED } from '../../../i18n/links'
 
@@ -27,7 +25,6 @@ function mapIcons(iconName) {
 export const AdminLinkList = () => {
     const dispatch = useDispatch()
     const links = useGetLinks()
-    const isLoading = useIsLoading()
 
     const handleDelete = id => {
         dispatch(remove(id)).then(() => toast.success(LINK_DELETED))
@@ -42,8 +39,6 @@ export const AdminLinkList = () => {
             </MainActionsStyled>
 
             <LinksListStyled>
-                {isLoading && <Loader />}
-
                 <table>
                     <thead>
                         <tr>

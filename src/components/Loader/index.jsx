@@ -1,17 +1,14 @@
-import { LoaderStyled } from './styles'
-export const Loader = ({ backgroundEnabled = true, float = true }) => {
+import { LoaderRing, Container } from './styles'
+
+export const Loader = ({ backgroundTransparent }) => {
     return (
-        <LoaderStyled backgroundEnabled={backgroundEnabled} float={float}>
-            <div className="lds-roller">
+        <Container backgroundTransparent={backgroundTransparent}>
+            <LoaderRing>
                 <div></div>
                 <div></div>
                 <div></div>
                 <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </LoaderStyled>
+            </LoaderRing>
+        </Container>
     )
 }

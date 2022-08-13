@@ -45,6 +45,7 @@ export const Contact = () => {
             <H2>¿Querés formar parte?</H2>
             <H3>Dejanos tus datos y te responderemos lo antes posible</H3>
             <Box>
+                {loading && <Loader />}
                 <FormStyled>
                     <TextField
                         id="name"
@@ -82,8 +83,6 @@ export const Contact = () => {
                             status={response.type}
                         />
                     )}
-
-                    {loading && <Loader />}
                 </FormStyled>
             </Box>
         </Section>
