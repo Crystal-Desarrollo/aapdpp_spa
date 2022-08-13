@@ -3,7 +3,7 @@ import {
     Routes,
     BrowserRouter as Router,
     Navigate,
-    useLocation
+    Outlet
 } from 'react-router-dom'
 import { Guest } from './pages/layouts/Guest.jsx'
 import { Home } from './pages/guest/Home.jsx'
@@ -12,7 +12,6 @@ import { AllNews } from './pages/member/AllNews.jsx'
 import { FullArticle } from './pages/guest/FullArticle.jsx'
 import { BecomeMember } from './pages/error/BecomeMember.jsx'
 import { Profile } from './pages/member/Profile.jsx'
-import { Dashboard } from './pages/admin/Dashboard.jsx'
 import { AddArticle } from './pages/admin/Articles/AddArticle.jsx'
 import { Articles } from './pages/admin/Articles/Articles.jsx'
 import { Register } from './pages/admin/Users/Register.jsx'
@@ -27,30 +26,30 @@ import { Events } from './pages/guest/Events.jsx'
 import { useAuth } from './hooks/auth/useAuth.js'
 import { EventInfo } from './components/Events/EventInfo/index.jsx'
 
-function AdminMiddleware({ children }) {
-    const { user } = useAuth()
-    const location = useLocation()
+function AdminMiddleware() {
+    const user = useAuth()
+    const userRole = user?.role?.name
 
-    if (user?.role?.name !== 'admin') {
-        return <Navigate to="/ingresar" state={{ from: location }} replace />
+    if (userRole === 'admin') {
+        return <Outlet />
     }
 
-    return children
+    return <Login />
 }
 
-function MemberMiddleware({ children }) {
-    const { user } = useAuth()
+function MemberMiddleware() {
+    const user = useAuth()
     const userRole = user?.role?.name
 
     if (userRole === 'admin' || userRole === 'member') {
-        return children
+        return <Outlet />
     }
 
     return <BecomeMember />
 }
 
 function GuestMiddleWare({ children }) {
-    const { user } = useAuth()
+    const user = useAuth()
 
     if (user) {
         return <Navigate to="/" replace />
@@ -64,7 +63,6 @@ export function App() {
         <Router>
             <Routes>
                 <Route element={<Guest />}>
-                    <Route path="/" element={<Home />} />
                     <Route
                         path="/ingresar"
                         element={
@@ -73,153 +71,81 @@ export function App() {
                             </GuestMiddleWare>
                         }
                     />
+
+                    <Route path="/" element={<Home />} />
                     <Route path="/eventos" element={<Events />} />
                     <Route path="/eventos/:id" element={<EventInfo />} />
 
                     {/* Member only routes */}
 
-                    <Route
-                        path="/noticias/:id"
-                        element={
-                            <MemberMiddleware>
-                                <FullArticle />
-                            </MemberMiddleware>
-                        }
-                    />
-                    <Route
-                        path="/noticias"
-                        element={
-                            <MemberMiddleware>
-                                <AllNews />
-                            </MemberMiddleware>
-                        }
-                    />
-                    <Route
-                        path="/miembros/:id"
-                        element={
-                            <MemberMiddleware>
-                                <Profile />
-                            </MemberMiddleware>
-                        }
-                    />
+                    <Route path="" element={<MemberMiddleware />}>
+                        <Route path="/noticias/:id" element={<FullArticle />} />
+                        <Route path="/noticias" element={<AllNews />} />
+                        <Route path="/miembros/:id" element={<Profile />} />
+                    </Route>
 
-                    <Route path="/admin">
-                        <Route
-                            path="/admin/biblioteca"
-                            element={
-                                <AdminMiddleware>
-                                    <FileList />
-                                </AdminMiddleware>
-                            }
-                        />
+                    <Route path="" element={<AdminMiddleware />}>
+                        <Route path="/admin">
+                            <Route
+                                path="/admin/biblioteca"
+                                element={<FileList />}
+                            />
 
-                        <Route
-                            path="/admin/panel-general"
-                            element={
-                                <AdminMiddleware>
-                                    <Dashboard />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/noticias"
+                                element={<Articles />}
+                            />
 
-                        <Route
-                            path="/admin/noticias"
-                            element={
-                                <AdminMiddleware>
-                                    <Articles />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/noticias/agregar"
+                                element={<AddArticle />}
+                            />
 
-                        <Route
-                            path="/admin/noticias/agregar"
-                            element={
-                                <AdminMiddleware>
-                                    <AddArticle />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/noticias/agregar/:id"
+                                element={<AddArticle />}
+                            />
 
-                        <Route
-                            path="/admin/noticias/agregar/:id"
-                            element={
-                                <AdminMiddleware>
-                                    <AddArticle />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/eventos"
+                                element={<AdminEvents />}
+                            />
 
-                        <Route
-                            path="/admin/eventos"
-                            element={
-                                <AdminMiddleware>
-                                    <AdminEvents />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/eventos/agregar/"
+                                element={<AddEvent />}
+                            />
 
-                        <Route
-                            path="/admin/eventos/agregar/"
-                            element={
-                                <AdminMiddleware>
-                                    <AddEvent />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/eventos/agregar/:id"
+                                element={<AddEvent />}
+                            />
 
-                        <Route
-                            path="/admin/eventos/agregar/:id"
-                            element={
-                                <AdminMiddleware>
-                                    <AddEvent />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/enlaces"
+                                element={<LinksList />}
+                            />
 
-                        <Route
-                            path="/admin/enlaces"
-                            element={
-                                <AdminMiddleware>
-                                    <LinksList />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/enlaces/agregar"
+                                element={<AddLink />}
+                            />
 
-                        <Route
-                            path="/admin/enlaces/agregar"
-                            element={
-                                <AdminMiddleware>
-                                    <AddLink />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/miembros"
+                                element={<UsersList />}
+                            />
 
-                        <Route
-                            path="/admin/miembros"
-                            element={
-                                <AdminMiddleware>
-                                    <UsersList />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/miembros/agregar"
+                                element={<Register />}
+                            />
 
-                        <Route
-                            path="/admin/miembros/agregar"
-                            element={
-                                <AdminMiddleware>
-                                    <Register />
-                                </AdminMiddleware>
-                            }
-                        />
-
-                        <Route
-                            path="/admin/miembros/:id"
-                            element={
-                                <AdminMiddleware>
-                                    <Profile />
-                                </AdminMiddleware>
-                            }
-                        />
+                            <Route
+                                path="/admin/miembros/:id"
+                                element={<Profile />}
+                            />
+                        </Route>
                     </Route>
                 </Route>
             </Routes>

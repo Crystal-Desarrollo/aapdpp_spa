@@ -4,16 +4,12 @@ import { FaSignOutAlt } from 'react-icons/fa'
 import { MenuBars, StyledMenu } from './styles'
 import { Confirm } from '../../Common/modals/Confirm'
 import { logout } from '../../../store/slices/authSlice'
-import { useAuth } from '../../../hooks/auth/useAuth'
 import { useState } from 'react'
 
-export const Menu = ({ setIsOpenSideMenu }) => {
+export const Menu = ({ user, setIsOpenSideMenu }) => {
     const [confirmShown, setConfirmShown] = useState(false)
     const dispatch = useDispatch()
-    const { user } = useAuth()
-
     const isMember = user?.role?.name === 'member'
-
     const signOff = () => {
         dispatch(logout())
         setConfirmShown(false)

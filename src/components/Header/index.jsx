@@ -9,7 +9,7 @@ import { useState } from 'react'
 
 export function Header() {
     const [isOpenSideMenu, setIsOpenSideMenu] = useState(false)
-    const { user } = useAuth()
+    const user = useAuth()
 
     const isAdmin = user?.role?.name === 'admin'
 
@@ -24,7 +24,7 @@ export function Header() {
                     <h1>AAPDPP</h1>
                 </div>
 
-                <Menu setIsOpenSideMenu={setIsOpenSideMenu} />
+                <Menu user={user} setIsOpenSideMenu={setIsOpenSideMenu} />
             </div>
 
             {isAdmin && (

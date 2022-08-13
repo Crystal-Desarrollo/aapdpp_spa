@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { toast } from 'react-toastify'
 import AuthApi from '../../api/authApi.js'
 import { SESSION_CLOSED, SOMETHING_WENT_WRONG } from '../../i18n/common.js'
 import { setLoading } from './appSlice.js'
@@ -74,7 +73,6 @@ export const me = () => async dispatch => {
         dispatch(meAction(data))
     } catch (err) {
         localStorage.removeItem('aapdpp-token')
-        toast.error(SESSION_CLOSED)
         return Promise.reject(err.message)
     } finally {
         dispatch(setLoading(false))

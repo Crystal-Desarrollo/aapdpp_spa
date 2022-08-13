@@ -11,5 +11,5 @@ export const useAuth = () => {
         }
     }, []) //eslint-disable-line
 
-    return { user }
+    return user
 }
