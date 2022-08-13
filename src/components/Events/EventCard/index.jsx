@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { Link } from 'react-router-dom'
-import { Card, Flex, IconText } from '../styles'
+import { Card, Description, Flex, IconText } from '../styles'
 import { Button } from '../../Common/Inputs/Button'
 import { FaCalendarDay, FaMapPin, FaClock } from 'react-icons/fa'
 
@@ -30,7 +30,7 @@ export const EventCard = ({ event }) => {
                     {location}
                 </IconText>
             )}
-            {description && <p>{description}</p>}
+            {description && <Description>{description}</Description>}
 
             <Button
                 as={Link}
