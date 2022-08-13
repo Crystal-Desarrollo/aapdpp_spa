@@ -4,11 +4,15 @@ import { H2 } from '../../Common/Texts'
 import { FullViewStyled } from './styles'
 import { FaCalendarDay } from 'react-icons/fa'
 
+import DEFAULT_IMAGE from '../../../asssets/img/default_image.jpg'
 export const FullView = props => {
     const { created_at, body, description, title, cover } = props
     return (
         <FullViewStyled>
-            <img src={cover?.path} alt="Imagen ilustrativa de la noticia" />
+            <img
+                src={cover?.path || DEFAULT_IMAGE}
+                alt="Imagen ilustrativa de la noticia"
+            />
             <section>
                 <span>
                     <i>

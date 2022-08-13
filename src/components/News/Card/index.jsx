@@ -3,6 +3,7 @@ import moment from 'moment'
 import { FaCalendarDay } from 'react-icons/fa'
 import { CardStyled } from './styles.js'
 
+import DEFAULT_IMAGE from '../../../asssets/img/default_image.jpg'
 export const Card = props => {
     const { created_at, author, title, description, id, imageUrl } = props
 
@@ -18,7 +19,10 @@ export const Card = props => {
                 <span>{author}</span>
             </div>
             <div className="img-container">
-                <img src={imageUrl} alt="Foto ilustrativa de la noticia" />
+                <img
+                    src={imageUrl || DEFAULT_IMAGE}
+                    alt="Foto ilustrativa de la noticia"
+                />
             </div>
             <h3>
                 <Link to={`/noticias/${id}`}>{title}</Link>
