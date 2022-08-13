@@ -25,7 +25,7 @@ import { Events } from './pages/guest/Events.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
 import { EventInfo } from './components/Events/EventInfo/index.jsx'
-import { NotFound } from './pages/guest/NotFound.jsx'
+import { NotFound } from './pages/error/NotFound.jsx'
 
 function AdminMiddleware() {
     const user = useAuth()
