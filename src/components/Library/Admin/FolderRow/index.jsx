@@ -7,6 +7,8 @@ import { Confirm } from '../../../Common/modals/Confirm'
 import { FolderRowStyled } from './styles'
 import { NewFolderForm } from '../NewFolderForm'
 import { Modal } from '../../../Common/modals/Modal'
+import { toast } from 'react-toastify'
+import { FOLDER_DELETED } from '../../../../i18n/files'
 
 export const FolderRow = ({ folder, onSelect, checked }) => {
     const dispatch = useDispatch()
@@ -15,7 +17,9 @@ export const FolderRow = ({ folder, onSelect, checked }) => {
 
     const handleDeleteFolder = () => {
         setOpen(false)
-        dispatch(removeFolder(folder.id))
+        dispatch(removeFolder(folder.id)).then(() =>
+            toast.success(FOLDER_DELETED)
+        )
     }
 
     return (

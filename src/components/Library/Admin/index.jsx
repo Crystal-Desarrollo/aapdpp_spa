@@ -11,6 +11,8 @@ import { NewFolderForm } from './NewFolderForm'
 import { useDispatch } from 'react-redux'
 import { createFile } from '../../../store/slices/librarySlice'
 import { toast } from 'react-toastify'
+import { FILE_UPLOADED } from '../../../i18n/files'
+import { SOMETHING_WENT_WRONG } from '../../../i18n/common'
 export const Library = () => {
     const [data, setData] = useState({})
     const [modalOpen, setModalOpen] = useState(false)
@@ -41,7 +43,12 @@ export const Library = () => {
         data.files?.forEach(file => formData.append('files[]', file))
         formData.append('folder', data.folder)
 
-        dispatch(createFile(formData)).then(() => setData({}))
+        dispatch(createFile(formData))
+            .then(() => {
+                setData({})
+                toast.success(FILE_UPLOADED)
+            })
+            .catch(() => toast.error(SOMETHING_WENT_WRONG))
     }
 
     const handleSelectFolder = e => {

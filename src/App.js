@@ -22,7 +22,7 @@ import { FileList } from './pages/admin/Library/FilesList.jsx'
 import { Events as AdminEvents } from './pages/admin/Events/Events'
 import { AddEvent } from './pages/admin/Events/AddEvent.jsx'
 import { Events } from './pages/guest/Events.jsx'
-import { NotFound } from './pages/guest/NotFound.jsx'
+import { NotFound } from './pages/error/NotFound.jsx'
 import { Library } from './pages/guest/Library.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'

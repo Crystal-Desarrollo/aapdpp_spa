@@ -7,6 +7,8 @@ import {
     createFolder,
     updateFolder
 } from '../../../../store/slices/librarySlice'
+import { toast } from 'react-toastify'
+import { FOLDER_CREATED, FOLDER_UPDATED } from '../../../../i18n/files'
 
 const FormStyled = styled.div`
     .buttons {
@@ -30,9 +32,13 @@ export const NewFolderForm = ({ onCreate, onCancel, folder }) => {
         onCreate && onCreate()
 
         if (folder) {
-            dispatch(updateFolder({ name: folderName }, folder.id))
+            dispatch(updateFolder({ name: folderName }, folder.id)).then(() =>
+                toast.success(FOLDER_UPDATED)
+            )
         } else {
-            dispatch(createFolder({ name: folderName }))
+            dispatch(createFolder({ name: folderName })).then(() =>
+                toast.success(FOLDER_CREATED)
+            )
         }
     }
 

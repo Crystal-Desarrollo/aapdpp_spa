@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { FaFile, FaTrash } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+import { FILE_DELETED } from '../../../../i18n/files'
 import { removeFile } from '../../../../store/slices/librarySlice'
 import { Confirm } from '../../../Common/modals/Confirm'
 import { DocumentRowStyled } from './styles'
@@ -10,7 +12,9 @@ export const DocumentRow = ({ file, folderId }) => {
 
     const handleDeleteFile = () => {
         setOpen(false)
-        dispatch(removeFile(file.id, folderId))
+        dispatch(removeFile(file.id, folderId)).then(() =>
+            toast.success(FILE_DELETED)
+        )
     }
 
     return (
