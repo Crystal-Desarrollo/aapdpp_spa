@@ -10,7 +10,7 @@ import {
 
 export const PeopleCard = ({ profilePicture, name, joined, isActive }) => {
     return (
-        <Card>
+        <Card hover>
             <FlexRow justifyContent={isActive ? 'flex-start' : 'space-between'}>
                 {profilePicture && (
                     <ImagenContainer>
