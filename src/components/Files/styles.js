@@ -12,9 +12,9 @@ export const FileCardStyled = styled(Link)`
     border-radius: 0.5rem;
     padding: 1rem;
 
-    ${({ type }) => type === TYPES.powerpoint && 'background-color: #ff5975;'}
+    ${({ type }) => type === TYPES.pdf && 'background-color: #ff5975;'}
     ${({ type }) => type === TYPES.word && 'background-color: #3d99f5;'}
-    ${({ type }) => type === TYPES.pdf && 'background-color: #ff8000;'}
+    ${({ type }) => type === TYPES.powerpoint && 'background-color: #ff8000;'}
     ${({ type }) => type === TYPES.excel && 'background-color: #00cc44;'}
     ${({ type }) => type === TYPES.generic && 'background-color: #343434;'}
 

@@ -82,6 +82,10 @@ export const Menu = ({ user, setIsOpenSideMenu }) => {
                     <HashLink to="/eventos">Eventos</HashLink>
                 </li>
 
+                <li>
+                    <HashLink to="/biblioteca">Biblioteca</HashLink>
+                </li>
+
                 {renderUserBasedLinks()}
             </StyledMenu>
             <MenuBars

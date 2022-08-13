@@ -24,3 +24,10 @@ export const IconText = styled.p`
         margin-right: 0.3rem;
     }
 `
+export const Description = styled.p`
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+`
