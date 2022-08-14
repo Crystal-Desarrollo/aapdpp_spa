@@ -9,7 +9,6 @@ export const AdminHeaderStyled = styled.nav`
         padding-right: 1rem;
         list-style-type: none;
         height: 100%;
-        max-width: 1200px;
         margin: 0 auto;
 
         display: flex;
