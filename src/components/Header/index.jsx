@@ -33,7 +33,7 @@ export function Header() {
                     <AdminHeader />
                 </>
             )}
-            <SideMenu isOpenSideMenu={isOpenSideMenu} />
+            <SideMenu user={user} isOpenSideMenu={isOpenSideMenu} />
         </HeaderStyled>
     )
 }
