@@ -1,10 +1,6 @@
 import { FileCardStyled, ImageCardStyled } from './styles'
 import { FaFileAlt } from 'react-icons/fa'
 import { FileExcel, FilePDF, FilePP, FileWord } from '../../asssets/img/images'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { toast } from 'react-toastify'
-import { SOMETHING_WENT_WRONG } from '../../i18n/common'
 
 export const TYPES = {
     excel: 'xlsx',
