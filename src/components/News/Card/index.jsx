@@ -3,7 +3,7 @@ import moment from 'moment'
 import { FaCalendarDay } from 'react-icons/fa'
 import { CardStyled } from './styles.js'
 
-import DEFAULT_IMAGE from '../../../asssets/img/default_image.jpg'
+import DEFAULT_IMAGE from '../../../asssets/img/default_image.webp'
 export const Card = props => {
     const { created_at, author, title, description, id, imageUrl } = props
 
