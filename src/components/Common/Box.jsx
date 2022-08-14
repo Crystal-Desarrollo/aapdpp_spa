@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const BoxStyled = styled.div`
-    background-color: #f2f2f2;
+    background-color: #fff;
     border-radius: 0.2rem;
     padding: 1rem;
     height: min-content;

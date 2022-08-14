@@ -8,7 +8,7 @@ export const DocumentRowStyled = styled.li`
     margin-bottom: 0;
     border-bottom: 1px #ccc solid;
 
-    background: #f2f2f2;
+    background: #fff;
 
     span {
         max-width: 90%;
