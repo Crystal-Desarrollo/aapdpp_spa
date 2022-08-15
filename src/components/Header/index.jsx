@@ -1,4 +1,4 @@
-import { HeaderStyled, AdminHeaderStyle } from './styles'
+import { HeaderStyled } from './styles'
 import { Menu } from './Menu/index.jsx'
 import { AdminHeader } from './AdminHeader'
 
@@ -27,12 +27,7 @@ export function Header() {
                 <Menu user={user} setIsOpenSideMenu={setIsOpenSideMenu} />
             </div>
 
-            {isAdmin && (
-                <>
-                    <AdminHeaderStyle />
-                    <AdminHeader />
-                </>
-            )}
+            {isAdmin && <AdminHeader />}
             <SideMenu
                 user={user}
                 setIsOpenSideMenu={setIsOpenSideMenu}

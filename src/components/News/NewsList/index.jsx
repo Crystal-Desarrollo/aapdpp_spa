@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { ArticlesSectionStyled } from './styles.js'
 import { Section } from '../../Common/Section.jsx'
 import { Grid } from '../../Common/Grid.jsx'
 import { H2 } from '../../Common/Texts.jsx'
@@ -15,28 +14,30 @@ export const News = ({ title, full }) => {
         <Section id="noticias">
             <H2>{title}</H2>
 
-            <>
-                {news.length > 0 ? (
-                    <ArticlesSectionStyled>
-                        <Grid>
-                            {news.map(article => (
-                                <Card
-                                    {...article}
-                                    imageUrl={article?.cover?.path}
-                                    key={article.id}
-                                />
-                            ))}
-                        </Grid>
-                        {!full && (
-                            <Button as={Link} to="/noticias">
-                                Ver todas nuestras noticias
-                            </Button>
-                        )}
-                    </ArticlesSectionStyled>
-                ) : (
-                    <NoContent />
-                )}
-            </>
+            {news.length > 0 ? (
+                <>
+                    <Grid>
+                        {news.map(article => (
+                            <Card
+                                {...article}
+                                imageUrl={article?.cover?.path}
+                                key={article.id}
+                            />
+                        ))}
+                    </Grid>
+                    {!full && (
+                        <Button
+                            as={Link}
+                            to="/noticias"
+                            style={{ alignSelf: 'center', marginTop: '1rem' }}
+                        >
+                            Ver todas nuestras noticias
+                        </Button>
+                    )}
+                </>
+            ) : (
+                <NoContent />
+            )}
         </Section>
     )
 }
