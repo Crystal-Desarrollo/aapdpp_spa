@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const HeaderStyled = styled.header`
     width: 100%;
-    height: var(--header-height);
+    /* height: var(--header-height); */
     background-color: #1d3557;
 
     position: sticky;

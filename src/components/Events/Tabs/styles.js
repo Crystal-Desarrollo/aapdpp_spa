@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Tab = styled.div`
+    padding-top: 1rem;
     display: flex;
     gap: 4rem;
     justify-content: center;

@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useGetEvent } from '../../../hooks/events/useGetEvent'
 import moment from 'moment'
+import { H2 } from '../../Common/Texts'
 
 export const EventInfo = () => {
     const { id } = useParams()
@@ -17,7 +18,7 @@ export const EventInfo = () => {
             {tab === 1 && (
                 <>
                     <Card maxWidth="1200px" padding="3rem">
-                        <h2>Fecha y lugar de encuentro</h2>
+                        <H2>Fecha y lugar de encuentro</H2>
                         {event?.date && (
                             <IconText>
                                 <FaCalendarDay />
@@ -39,7 +40,7 @@ export const EventInfo = () => {
                     </Card>
                     <br />
                     <Card maxWidth="1200px" padding="3rem">
-                        <h2>Descripción</h2>
+                        <H2>Descripción</H2>
                         {event?.description}
                     </Card>
                 </>
