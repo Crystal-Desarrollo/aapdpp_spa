@@ -32,7 +32,7 @@ const eventsSlice = createSlice({
             const index = state.findIndex(
                 x => Number(x.id) === Number(action.payload.id)
             )
-            state.splice(index, action.payload.data)
+            state.splice(index, 1, action.payload)
         }
     }
 })
@@ -106,14 +106,13 @@ export const create = data => async dispatch => {
     }
 }
 
-export const edit = data => async dispatch => {
+export const edit = (data, id) => async dispatch => {
     try {
         dispatch(setLoading(true))
-        const response = await EventsApi.edit(data)
+        const response = await EventsApi.edit(data, id)
         if (response.status !== 200) {
             return Promise.reject(SOMETHING_WENT_WRONG)
         }
-
         dispatch(editAction(response.data))
         return Promise.resolve(response.data)
     } catch (err) {

@@ -3,22 +3,37 @@ import { useState } from 'react'
 import { FaUpload } from 'react-icons/fa'
 import { FileUploaderStyled, SelectedFileNameStyled } from './styles'
 import { H4 } from '../../Common/Texts'
+import { toast } from 'react-toastify'
+import { MAX_FILES_ALLOWED } from '../../../i18n/files'
+import { useRef } from 'react'
 
 export const FileUploader = props => {
-    const { onChange, pictureUrl, label, multiple = false, inputName } = props
+    const {
+        files,
+        setFiles,
+        pictureUrl,
+        label,
+        multiple = false,
+        inputName
+    } = props
     const [picturePreview, setPicturePreview] = useState(pictureUrl)
-    const [files, setFiles] = useState([])
+    const inputRef = useRef()
 
     useEffect(() => setPicturePreview(pictureUrl), [pictureUrl])
+    useEffect(() => {
+        if (files?.length === 0) {
+            inputRef.current.value = null
+        }
+    }, [files])
 
     const handleUploadPicture = e => {
+        if (e.target.files.length > 5) {
+            toast.error(MAX_FILES_ALLOWED)
+            return
+        }
+
         if (multiple) {
-            const chosenFiles = Array.prototype.slice.call(e.target.files)
-            onChange(prev => ({
-                ...prev,
-                [e.target.name]: chosenFiles
-            }))
-            setFiles(chosenFiles)
+            setFiles(e.target.files)
             return
         }
 
@@ -27,25 +42,31 @@ export const FileUploader = props => {
         reader.readAsDataURL(file)
 
         reader.onload = () => {
-            onChange(prev => ({ ...prev, [inputName]: file }))
+            setFiles(prev => ({ ...prev, [inputName]: file }))
             setPicturePreview(reader.result)
         }
     }
 
     const renderSelectedFiles = () => {
-        if (!multiple) return
+        if (!multiple) return <></>
 
-        if (files.length === 0)
-            return <p className="no-files">Aún no se agregaron archivos</p>
+        if (files) {
+            const filesArray = Array.prototype.slice.call(files)
 
-        return files.map((file, i) => (
-            <SelectedFileNameStyled key={file.name}>
-                <p>
-                    <span>{i + 1}.</span>
-                    {file.name}
-                </p>
-            </SelectedFileNameStyled>
-        ))
+            if (filesArray?.length === 0)
+                return <p className="no-files">Aún no se agregaron archivos</p>
+
+            return filesArray.map((file, i) => (
+                <SelectedFileNameStyled key={i}>
+                    <p>
+                        <span>{i + 1}.</span>
+                        {file.name}
+                    </p>
+                </SelectedFileNameStyled>
+            ))
+        }
+
+        return <></>
     }
 
     return (
@@ -64,8 +85,9 @@ export const FileUploader = props => {
                         id="file-uploader"
                         name={inputName}
                         onChange={handleUploadPicture}
-                        value={pictureUrl || ''}
                         multiple={multiple}
+                        ref={inputRef}
+                        files={files}
                     />
                 </label>
             )}

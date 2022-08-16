@@ -31,18 +31,6 @@ export const EventCardStyled = styled(CardStyled)`
     position: relative;
 `
 
-export const EventFilesStyled = styled.div`
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
-
-    > :nth-child(3) {
-        grid-column: span 2;
-    }
-
-    textarea {
-        height: 500px;
-    }
-
-    position: relative; */
+export const EventFilesStyled = styled(CardStyled)`
+    grid-column: span 2;
 `
