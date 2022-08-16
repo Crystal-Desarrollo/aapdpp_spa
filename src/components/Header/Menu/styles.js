@@ -10,7 +10,7 @@ export const StyledMenu = styled.ul`
         display: flex;
         align-items: center;
 
-        height: 60px;
+        height: var(--header-height);
         padding: 0 1rem;
 
         font-size: 1rem;

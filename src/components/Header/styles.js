@@ -1,10 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components'
-
-export const AdminHeaderStyle = createGlobalStyle`
-    *{
-        --header-height: 100px;
-    }
-`
+import styled from 'styled-components'
 
 export const HeaderStyled = styled.header`
     width: 100%;
@@ -17,9 +11,8 @@ export const HeaderStyled = styled.header`
 
     .content {
         width: 100%;
-        max-width: 1200px;
         margin: 0 auto;
-        padding: 0 1rem;
+        padding: 0 10px;
 
         display: flex;
         align-items: center;
@@ -32,7 +25,7 @@ export const HeaderStyled = styled.header`
             align-items: center;
 
             img {
-                height: 60px;
+                height: var(--header-height);
                 margin-right: 1rem;
             }
 
@@ -45,6 +38,6 @@ export const HeaderStyled = styled.header`
     }
 
     @media (max-width: 1200px) {
-        height: 60px;
+        height: var(--header-height);
     }
 `

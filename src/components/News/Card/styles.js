@@ -3,65 +3,70 @@ import styled from 'styled-components'
 import { CardStyled as BaseCard } from '../../Common/Card'
 
 export const CardStyled = styled(BaseCard)`
-    .card-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.5rem;
-
-        span {
-            font-size: 0.75rem;
-
-            display: flex;
-            align-items: center;
-
-            i {
-                font-size: 1rem;
-                margin-right: 0.3rem;
-                color: #1d3557;
-            }
-        }
-    }
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    color: #1d3557;
+    padding: 0;
 
     .img-container {
         height: 150px;
         width: 100%;
         display: flex;
+        border-radius: 8px 8px 0 0;
+        overflow: hidden;
 
         img {
             height: 100%;
             width: 100%;
-            object-fit: contain;
+            object-fit: cover;
         }
     }
 
-    h3 {
-        margin: 1rem 0;
-        font-size: 1rem;
-        font-weight: 600;
-    }
-
-    p {
-        font-size: 0.875rem;
+    .card-information {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        padding: 1rem;
+        gap: 1rem;
 
-        a {
-            margin: 1rem 0 0 0;
+        & .card-date-author {
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            & .card-date {
+                display: flex;
+                gap: 0.25rem;
+                align-items: center;
+            }
         }
-    }
 
-    a {
-        text-decoration: none;
-        color: #1d3557;
-        border-bottom: 1px solid transparent;
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1d3557;
+        }
 
-        transition: all ease 0.2s;
+        .card-description {
+            font-size: 0.875rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
 
-        &:hover {
-            border-bottom-color: #1d3557;
-            color: #082041;
-            transition: all ease 0.3s;
+        .card-btn {
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            transition: all ease 0.2s;
+
+            &:hover {
+                border-bottom-color: #1d3557;
+                transition: all ease 0.3s;
+            }
         }
     }
 `

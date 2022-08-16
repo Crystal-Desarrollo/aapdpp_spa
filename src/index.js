@@ -16,8 +16,9 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         font-family: 'Open Sans', sans-serif;
         scroll-behavior: smooth;
+        text-decoration: none;
 
-        --header-height: 60px;
+        --header-height: 56px;
     }
 
     body{

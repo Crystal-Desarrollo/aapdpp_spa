@@ -59,7 +59,7 @@ export const RegisterCardStyled = styled(CardStyled)`
 
         .fields {
             width: 100%;
-            background-color: #f2f2f2;
+            background-color: #fff;
             grid-gap: 1rem;
 
             display: grid;

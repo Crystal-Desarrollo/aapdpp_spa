@@ -4,16 +4,16 @@ export const SectionStyled = styled.section`
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 0;
-
+    gap: 1rem;
+    padding-top: 4rem;
     display: flex;
     flex-direction: column;
 
     position: relative;
 
     @media screen and (max-width: 1200px) {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 `
 

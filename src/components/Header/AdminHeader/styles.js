@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const AdminHeaderStyled = styled.nav`
-    background-color: #f2f2f2;
+    background-color: #fff;
     width: 100%;
     height: 40px;
 
@@ -9,7 +9,6 @@ export const AdminHeaderStyled = styled.nav`
         padding-right: 1rem;
         list-style-type: none;
         height: 100%;
-        max-width: 1200px;
         margin: 0 auto;
 
         display: flex;
