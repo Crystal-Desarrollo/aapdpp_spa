@@ -6,6 +6,10 @@ import { useParams } from 'react-router-dom'
 import { useGetEvent } from '../../../hooks/events/useGetEvent'
 import moment from 'moment'
 import { H2 } from '../../Common/Texts'
+import { Grid } from '../../Common/Grid'
+import { FileCard, mapExtensionToType } from '../../Files'
+import { getFileExtension } from '../../../utils/files'
+import { Section } from '../../Common/Section'
 
 export const EventInfo = () => {
     const { id } = useParams()
@@ -13,7 +17,7 @@ export const EventInfo = () => {
     const [event] = useGetEvent(id)
 
     return (
-        <>
+        <Section>
             <Tabs tab={tab} setTab={setTab} />
             {tab === 1 && (
                 <>
@@ -45,7 +49,27 @@ export const EventInfo = () => {
                     </Card>
                 </>
             )}
-            {tab === 2 && 'Imagen'}
-        </>
+            {tab === 2 && (
+                <Card>
+                    <H2>Archivos</H2>
+                    <Grid>
+                        {event?.files &&
+                            event.files.length > 0 &&
+                            event.files.map(file => {
+                                return (
+                                    <FileCard
+                                        key={file.id}
+                                        downloadName={file.original_name}
+                                        downloadUrl={file.path}
+                                        type={mapExtensionToType(
+                                            getFileExtension(file.name)
+                                        )}
+                                    />
+                                )
+                            })}
+                    </Grid>
+                </Card>
+            )}
+        </Section>
     )
 }
