@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { ARTICLE_ADDED, ARTICLE_UPDATED } from '../../../i18n/articles'
 import { useGetArticle } from '../../../hooks/articles/useGetArticle'
+import { TextEditor } from '../../Common/Inputs/TextEditor'
 
 export const AddNewForm = () => {
     const { id } = useParams()
@@ -110,7 +111,7 @@ export const AddNewForm = () => {
                     onChange={onChange}
                     value={data?.description}
                 />
-                <TextField
+                <TextEditor
                     name="body"
                     tag="textarea"
                     labelText="Noticia"

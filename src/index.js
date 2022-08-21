@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify'
 
 import store from './store/store.js'
 import 'react-toastify/dist/ReactToastify.min.css'
+import 'react-quill/dist/quill.snow.css'
 
 const GlobalStyle = createGlobalStyle`
     *{

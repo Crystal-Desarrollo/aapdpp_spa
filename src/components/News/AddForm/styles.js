@@ -12,6 +12,7 @@ export const NewsFormStyled = styled.div`
 export const NewsCardStyled = styled(CardStyled)`
     display: flex;
     flex-direction: column;
+    margin-top: 1rem;
 
     .picture {
         width: 100%;
