@@ -10,7 +10,7 @@ import { H2 } from '../../Common/Texts'
 export const EventInfo = () => {
     const { id } = useParams()
     const [tab, setTab] = useState(1)
-    const event = useGetEvent(id)
+    const [event] = useGetEvent(id)
 
     return (
         <>
