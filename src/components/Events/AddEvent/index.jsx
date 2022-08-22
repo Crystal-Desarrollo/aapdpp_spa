@@ -19,6 +19,7 @@ import { FileCard, mapExtensionToType } from '../../Files'
 import { getFileExtension } from '../../../utils/files'
 import { SOMETHING_WENT_WRONG } from '../../../i18n/common'
 import { useState } from 'react'
+import { TextEditor } from '../../Common/Inputs/TextEditor'
 
 export const EventForm = () => {
     const { id } = useParams()
@@ -118,9 +119,8 @@ export const EventForm = () => {
                         onChange={onChange}
                         value={data?.date}
                     />
-                    <TextField
+                    <TextEditor
                         name="description"
-                        tag="textarea"
                         labelText="Descripción"
                         onChange={onChange}
                         value={data?.description}

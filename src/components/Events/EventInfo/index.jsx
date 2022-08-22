@@ -21,7 +21,7 @@ export const EventInfo = () => {
             <Tabs tab={tab} setTab={setTab} />
             {tab === 1 && (
                 <>
-                    <Card maxWidth="1200px" padding="3rem">
+                    <Card>
                         <H2>Fecha y lugar de encuentro</H2>
                         {event?.date && (
                             <IconText>
@@ -43,9 +43,13 @@ export const EventInfo = () => {
                         )}
                     </Card>
                     <br />
-                    <Card maxWidth="1200px" padding="3rem">
+                    <Card>
                         <H2>Descripción</H2>
-                        {event?.description}
+                        <p
+                            dangerouslySetInnerHTML={{
+                                __html: event?.description
+                            }}
+                        ></p>
                     </Card>
                 </>
             )}

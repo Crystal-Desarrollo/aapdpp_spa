@@ -8,6 +8,10 @@ export const EventSectionStyled = styled.section`
     margin: auto;
     display: flex;
     flex-direction: column;
+
+    h2 {
+        margin-bottom: 1rem;
+    }
 `
 
 export const EventFormStyled = styled.section`

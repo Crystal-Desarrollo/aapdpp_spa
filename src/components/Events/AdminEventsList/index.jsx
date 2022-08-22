@@ -18,6 +18,14 @@ export const EventsList = () => {
         dispatch(remove(id)).then(() => toast.success(EVENT_DELETED))
     }
 
+    // const trucateDescription = description => {
+    //     if (description.length > 128) {
+    //         return `${description.slice(0, 125)}...`
+    //     }
+
+    //     return description
+    // }
+
     return (
         <Section>
             <MainActionsStyled>
@@ -32,7 +40,7 @@ export const EventsList = () => {
                         <tr>
                             <th>#</th>
                             <th>Lugar</th>
-                            <th>Descripción</th>
+                            {/* <th>Descripción</th> */}
                             <th>Fecha</th>
                             <th></th>
                         </tr>
@@ -42,7 +50,17 @@ export const EventsList = () => {
                             <tr key={event.id}>
                                 <td>{event.id}</td>
                                 <td>{event.location}</td>
-                                <td>{event.description}</td>
+                                {/* <td>
+                                    {event?.description && (
+                                        <p
+                                            dangerouslySetInnerHTML={{
+                                                __html: trucateDescription(
+                                                    event.description
+                                                )
+                                            }}
+                                        ></p>
+                                    )}
+                                </td> */}
                                 <td>
                                     {moment(event.date).format(
                                         'DD/MM/YYYY h:mm a'
