@@ -21,7 +21,6 @@ export function Header() {
                         src={Logo}
                         alt="Logo Asociación Argentina de Profesores de Derecho Procesal Penal"
                     />
-                    <h1>AAPDPP</h1>
                 </div>
 
                 <Menu user={user} setIsOpenSideMenu={setIsOpenSideMenu} />
