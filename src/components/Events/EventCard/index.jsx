@@ -30,7 +30,11 @@ export const EventCard = ({ event }) => {
                     {location}
                 </IconText>
             )}
-            {description && <Description>{description}</Description>}
+            {description && (
+                <Description
+                    dangerouslySetInnerHTML={{ __html: description }}
+                ></Description>
+            )}
 
             <Button
                 as={Link}

@@ -21,7 +21,7 @@ export const EventsList = () => {
                 <H2>Eventos</H2>
                 <Grid>
                     {events?.map(event => (
-                        <EventCard event={event} kry={event.id} />
+                        <EventCard event={event} key={event.id} />
                     ))}
                 </Grid>
             </Section>
