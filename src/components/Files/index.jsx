@@ -84,7 +84,13 @@ export const FileCard = ({ type, downloadUrl, downloadName }) => {
                 </i>
             )}
 
-            <p>Descargar</p>
+            {downloadName ? (
+                <p
+                    title={`Descargar - ${downloadName}`}
+                >{`Descargar - ${downloadName}`}</p>
+            ) : (
+                <p title="Descargar documento">Descargar documento</p>
+            )}
         </FileCardStyled>
     )
 }

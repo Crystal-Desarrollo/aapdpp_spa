@@ -31,6 +31,14 @@ export const FileCardStyled = styled.a`
         margin-bottom: 1rem;
     }
 
+    p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-align: center;
+    }
+
     button {
         background-color: transparent;
         border: none;
