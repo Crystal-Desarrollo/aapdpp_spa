@@ -8,9 +8,12 @@ export const useSendEmail = data => {
     return async () => {
         dispatch(setLoading(true))
         // const res = await EmailsApi.sendEmail(data)
+        // if (response.status !== 200) {
+        //     return Promise.reject(SOMETHING_WENT_WRONG)
+        // }
         setTimeout(() => {
+            dispatch(setLoading(false))
             return Promise.resolve()
-        }, 2000)
-        dispatch(setLoading(false))
+        }, 1000)
     }
 }
