@@ -29,8 +29,4 @@ export const FormStyled = styled.form`
     > :nth-child(5) {
         width: 100%;
     }
-
-    .msg-box {
-        grid-column: 2 / 7;
-    }
 `

@@ -8,14 +8,12 @@ import { FormStyled } from './styles.js'
 import { MessageLabel } from '../Common/MessageLabel.jsx'
 import { Loader } from '../Loader/index.jsx'
 import { Box } from '../Common/Box.jsx'
+import { useSendEmail } from '../../hooks/emails/useSendEmail.js'
+import { toast } from 'react-toastify'
+import { CONTACT_EMAIL_SUCCESS } from '../../i18n/emails.js'
 export const Contact = () => {
-    const [data, setData] = useState({}) //eslint-disable-line
-    const [loading, setLoading] = useState(false)
-    const [response, setResponse] = useState({
-        message: '',
-        type: ''
-    })
-
+    const sendEmail = useSendEmail()
+    const [data, setData] = useState({})
     const handleChange = e => {
         const { name, value } = e.target
 
@@ -26,18 +24,11 @@ export const Contact = () => {
     }
 
     const handleSubmit = e => {
-        setLoading(true)
         e.preventDefault()
 
-        //TODO: Send message via API
-
-        setTimeout(() => {
-            setLoading(false)
-            setResponse({
-                message: 'Mensaje Enviado',
-                type: 'success'
-            })
-        }, 1000)
+        sendEmail(data).then(() => {
+            toast.success(CONTACT_EMAIL_SUCCESS)
+        })
     }
 
     return (
@@ -45,7 +36,6 @@ export const Contact = () => {
             <H2>¿Querés formar parte?</H2>
             <H3>Dejanos tus datos y te responderemos lo antes posible</H3>
             <Box>
-                {loading && <Loader />}
                 <FormStyled>
                     <TextField
                         id="name"
@@ -75,14 +65,6 @@ export const Contact = () => {
                         onChange={handleChange}
                     />
                     <Button onClick={handleSubmit}>Enviar</Button>
-
-                    {response.message && (
-                        <MessageLabel
-                            className="msg-box"
-                            text={response.message}
-                            status={response.type}
-                        />
-                    )}
                 </FormStyled>
             </Box>
         </Section>

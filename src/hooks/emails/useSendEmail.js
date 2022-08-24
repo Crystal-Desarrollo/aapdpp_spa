@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import EmailsApi from '../../api/emailsApi'
+// import EmailsApi from '../../api/emailsApi'
 import { setLoading } from '../../store/slices/appSlice'
 
 export const useSendEmail = data => {
