@@ -27,6 +27,7 @@ import { Library } from './pages/guest/Library.jsx'
 
 import { useAuth } from './hooks/auth/useAuth.js'
 import { EventInfo } from './components/Events/EventInfo/index.jsx'
+import { Broadcast } from './pages/admin/Emails/Broadcast.jsx'
 
 function AdminMiddleware() {
     const user = useAuth()
@@ -90,66 +91,42 @@ export function App() {
                     </Route>
 
                     <Route path="" element={<AdminMiddleware />}>
-                        <Route path="/admin">
-                            <Route
-                                path="/admin/biblioteca"
-                                element={<FileList />}
-                            />
+                        <Route path="admin">
+                            <Route path="biblioteca" element={<FileList />} />
 
-                            <Route
-                                path="/admin/noticias"
-                                element={<Articles />}
-                            />
+                            <Route path="noticias">
+                                <Route path="" element={<Articles />} />
+                                <Route
+                                    path="agregar"
+                                    element={<AddArticle />}
+                                />
+                                <Route
+                                    path="agregar/:id"
+                                    element={<AddArticle />}
+                                />
+                            </Route>
 
-                            <Route
-                                path="/admin/noticias/agregar"
-                                element={<AddArticle />}
-                            />
+                            <Route path="eventos">
+                                <Route path="" element={<AdminEvents />} />
+                                <Route path="agregar" element={<AddEvent />} />
+                                <Route
+                                    path="agregar/:id"
+                                    element={<AddEvent />}
+                                />
+                            </Route>
 
-                            <Route
-                                path="/admin/noticias/agregar/:id"
-                                element={<AddArticle />}
-                            />
+                            <Route path="enlaces">
+                                <Route path="" element={<LinksList />} />
+                                <Route path="agregar" element={<AddLink />} />
+                            </Route>
 
-                            <Route
-                                path="/admin/eventos"
-                                element={<AdminEvents />}
-                            />
+                            <Route path="miembros">
+                                <Route path="" element={<UsersList />} />
+                                <Route path="agregar" element={<Register />} />
+                                <Route path=":id" element={<Profile />} />
+                            </Route>
 
-                            <Route
-                                path="/admin/eventos/agregar/"
-                                element={<AddEvent />}
-                            />
-
-                            <Route
-                                path="/admin/eventos/agregar/:id"
-                                element={<AddEvent />}
-                            />
-
-                            <Route
-                                path="/admin/enlaces"
-                                element={<LinksList />}
-                            />
-
-                            <Route
-                                path="/admin/enlaces/agregar"
-                                element={<AddLink />}
-                            />
-
-                            <Route
-                                path="/admin/miembros"
-                                element={<UsersList />}
-                            />
-
-                            <Route
-                                path="/admin/miembros/agregar"
-                                element={<Register />}
-                            />
-
-                            <Route
-                                path="/admin/miembros/:id"
-                                element={<Profile />}
-                            />
+                            <Route path="difusion" element={<Broadcast />} />
                         </Route>
                     </Route>
                 </Route>
