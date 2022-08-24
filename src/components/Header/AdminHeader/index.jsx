@@ -7,7 +7,8 @@ import {
     FaNewspaper,
     FaLink,
     FaCalendar,
-    FaBook
+    FaBook,
+    FaMailBulk
 } from 'react-icons/fa'
 
 export const AdminHeader = () => {
@@ -20,6 +21,14 @@ export const AdminHeader = () => {
                             <FaUsers />
                         </i>
                         Miembros
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/admin/difusion">
+                        <i>
+                            <FaMailBulk />
+                        </i>
+                        Difusión
                     </Link>
                 </li>
                 <li>
