@@ -77,14 +77,16 @@ export const About = ({ full }) => {
                     </Button>
                 )}
             </Section>
-            <Section id="nosotros">
-                <H2>Nuestros objetivos</H2>
-                <Grid>
-                    {goals.map((goal, i) => (
-                        <Goal text={goal} key={i} />
-                    ))}
-                </Grid>
-            </Section>
+            {!full && (
+                <Section id="nosotros">
+                    <H2>Nuestros objetivos</H2>
+                    <Grid>
+                        {goals.map((goal, i) => (
+                            <Goal text={goal} key={i} />
+                        ))}
+                    </Grid>
+                </Section>
+            )}
         </>
     )
 }
