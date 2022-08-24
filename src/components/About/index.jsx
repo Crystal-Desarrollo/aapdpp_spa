@@ -3,8 +3,7 @@ import { Goal } from './Goal/index.jsx'
 import { Grid } from '../Common/Grid.jsx'
 import { Section } from '../Common/Section.jsx'
 import { PeopleCard } from '../PeopleCard/index.jsx'
-import { useGetUsers } from '../../hooks/users/useGetUsers.js'
-import { useEffect, useState } from 'react'
+import { useGetUsers, USER_TYPES } from '../../hooks/users/useGetUsers.js'
 import moment from 'moment'
 import { Button } from '../Common/Inputs/Button.jsx'
 import { Link } from 'react-router-dom'
@@ -19,53 +18,41 @@ const goals = [
 ]
 
 export const About = ({ full }) => {
-    const users = useGetUsers(full)
-    const [adminUsers, setAdminUsers] = useState([])
-
-    useEffect(() => {
-        setAdminUsers(() =>
-            users.filter(x => x.role?.name === 'admin').map(x => x.id)
-        )
-    }, [users])
+    const members = useGetUsers(full, USER_TYPES.members)
+    const admins = useGetUsers(full, USER_TYPES.admins)
 
     return (
         <>
             <Section>
                 <H2>Autoridades de la asociación</H2>
                 <Grid>
-                    {users.map(
-                        user =>
-                            adminUsers.includes(user.id) && (
-                                <PeopleCard
-                                    key={user.id}
-                                    profilePicture={user?.avatar?.path}
-                                    name={user.name}
-                                    joined={moment(user.created_at).format(
-                                        'DD-MM-YYYY'
-                                    )}
-                                    isActive={user?.active}
-                                />
-                            )
-                    )}
+                    {admins.map(user => (
+                        <PeopleCard
+                            key={user.id}
+                            profilePicture={user?.avatar?.path}
+                            name={user.name}
+                            joined={moment(user.created_at).format(
+                                'DD-MM-YYYY'
+                            )}
+                            isActive={user?.active}
+                        />
+                    ))}
                 </Grid>
             </Section>
             <Section>
                 <H2>Listado de asociados</H2>
                 <Grid>
-                    {users.map(
-                        user =>
-                            !adminUsers.includes(user.id) && (
-                                <PeopleCard
-                                    key={user.id}
-                                    profilePicture={user?.avatar?.path}
-                                    name={user.name}
-                                    joined={moment(user.created_at).format(
-                                        'DD-MM-YYYY'
-                                    )}
-                                    isActive={user.active}
-                                />
-                            )
-                    )}
+                    {members.map(user => (
+                        <PeopleCard
+                            key={user.id}
+                            profilePicture={user?.avatar?.path}
+                            name={user.name}
+                            joined={moment(user.created_at).format(
+                                'DD-MM-YYYY'
+                            )}
+                            isActive={user.active}
+                        />
+                    ))}
                 </Grid>
                 {!full && (
                     <Button
