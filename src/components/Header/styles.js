@@ -27,12 +27,7 @@ export const HeaderStyled = styled.header`
             img {
                 height: var(--header-height);
                 margin-right: 1rem;
-            }
-
-            h1 {
-                font-weight: 700;
-                color: #fff;
-                font-size: 1.5rem;
+                padding: 8px;
             }
         }
     }

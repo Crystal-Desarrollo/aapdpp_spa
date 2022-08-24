@@ -10,7 +10,7 @@ export const HeroStyled = styled.section`
     img {
         width: 100%;
         object-fit: cover;
-        object-position: 50% 20%;
+        object-position: center;
     }
 
     div {

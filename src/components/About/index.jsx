@@ -6,6 +6,8 @@ import { PeopleCard } from '../PeopleCard/index.jsx'
 import { useGetUsers } from '../../hooks/users/useGetUsers.js'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
+import { Button } from '../Common/Inputs/Button.jsx'
+import { Link } from 'react-router-dom'
 
 const goals = [
     'Optimizar el proceso de enseñanza y aprendizaje del derecho procesal penal en todas las facultades de derecho de la República Argentina.',
@@ -16,8 +18,8 @@ const goals = [
     'Participar en la propuesta de temas para los Congresos Nacionales de Derecho Penal y Derecho Procesal.'
 ]
 
-export const About = () => {
-    const users = useGetUsers()
+export const About = ({ full }) => {
+    const users = useGetUsers(full)
     const [adminUsers, setAdminUsers] = useState([])
 
     useEffect(() => {
@@ -65,6 +67,15 @@ export const About = () => {
                             )
                     )}
                 </Grid>
+                {!full && (
+                    <Button
+                        as={Link}
+                        to="/miembros"
+                        style={{ alignSelf: 'center', marginTop: '1rem' }}
+                    >
+                        Ver todas los miembros
+                    </Button>
+                )}
             </Section>
             <Section id="nosotros">
                 <H2>Nuestros objetivos</H2>
