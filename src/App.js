@@ -24,12 +24,11 @@ import { AddEvent } from './pages/admin/Events/AddEvent.jsx'
 import { Events } from './pages/guest/Events.jsx'
 import { NotFound } from './pages/error/NotFound.jsx'
 import { Library } from './pages/guest/Library.jsx'
-
-import { useAuth } from './hooks/auth/useAuth.js'
 import { EventInfo } from './components/Events/EventInfo/index.jsx'
 import { Broadcast } from './pages/admin/Emails/Broadcast.jsx'
 import { Members } from './pages/guest/Members.jsx'
 import { Links } from './pages/guest/Links.jsx'
+import { useAuth } from './hooks/auth/useAuth.js'
 
 function AdminMiddleware() {
     const user = useAuth()
