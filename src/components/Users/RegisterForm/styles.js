@@ -82,16 +82,5 @@ export const RegisterCardStyled = styled(CardStyled)`
         }
     }
 
-    .form-footer {
-        grid-column: 1 / span 1;
-
-        display: flex;
-        align-items: center;
-
-        button {
-            margin-right: 1rem;
-        }
-    }
-
     position: relative;
 `

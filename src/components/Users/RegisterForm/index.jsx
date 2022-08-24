@@ -1,7 +1,6 @@
 import { RegisterCardStyled, RegisterFormStyled } from './styles'
 import { TextField } from '../../Common/Inputs/TextField'
 import { Button } from '../../Common/Inputs/Button'
-import { MessageLabel } from '../../Common/MessageLabel'
 import { H2 } from '../../Common/Texts'
 
 import { FaUpload } from 'react-icons/fa'
@@ -15,7 +14,6 @@ export const RegisterForm = () => {
     const dispatch = useDispatch()
     const [data, setData] = useState({})
     const [picturePreview, setPicturePreview] = useState(null)
-    const [error, setError] = useState('')
 
     const handleUploadPicture = e => {
         const file = e.target.files[0]
@@ -37,7 +35,6 @@ export const RegisterForm = () => {
 
     const onSubmit = e => {
         e.preventDefault()
-        setError('')
 
         let formData = new FormData()
         Object.entries(data).forEach(x => {
@@ -49,7 +46,9 @@ export const RegisterForm = () => {
                 clearData()
                 toast.success(USER_CREATED)
             })
-            .catch(e => setError(e))
+            .catch(e => {
+                toast.error(e)
+            })
     }
 
     const clearData = () => {
@@ -124,11 +123,7 @@ export const RegisterForm = () => {
                     value={data.additional_info || ''}
                 />
 
-                <div className="form-footer">
-                    <Button onClick={onSubmit}>Crear usuario</Button>
-
-                    {error && <MessageLabel text={error} status="error" />}
-                </div>
+                <Button onClick={onSubmit}>Crear usuario</Button>
             </RegisterCardStyled>
         </RegisterFormStyled>
     )
