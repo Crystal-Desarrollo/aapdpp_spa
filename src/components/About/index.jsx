@@ -73,7 +73,7 @@ export const About = ({ full }) => {
                         to="/miembros"
                         style={{ alignSelf: 'center', marginTop: '1rem' }}
                     >
-                        Ver todas los miembros
+                        Ver todos los miembros
                     </Button>
                 )}
             </Section>
