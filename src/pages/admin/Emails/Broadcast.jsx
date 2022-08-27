@@ -7,12 +7,13 @@ import { TextEditor } from '../../../components/Common/Inputs/TextEditor'
 import { Button } from '../../../components/Common/Inputs/Button'
 import { useState } from 'react'
 import styled from 'styled-components'
-// import { useSendEmail } from '../../../hooks/emails/useSendEmail'
 import { toast } from 'react-toastify'
 import {
     BROADCAST_SENT_SUCCCESS,
     EMAIL_SENT_SUCCCESS
 } from '../../../i18n/emails'
+import { useSendBroadcastEmail } from '../../../hooks/emails/useSendBroadcastEmail'
+import { useEffect } from 'react'
 
 const BroadCastFormStyled = styled.div`
     display: flex;
@@ -60,7 +61,7 @@ const BroadCastFormStyled = styled.div`
 export const Broadcast = () => {
     const [email, setEmail] = useState({})
     const [isBroadcast, setIsBroadcast] = useState(false)
-    // const sendEmail = useSendEmail()
+    const sendEmail = useSendBroadcastEmail()
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -72,13 +73,23 @@ export const Broadcast = () => {
     }
 
     const handleSend = () => {
-        // sendEmail().then(() => {
-        //     const message = isBroadcast
-        //         ? BROADCAST_SENT_SUCCCESS
-        //         : EMAIL_SENT_SUCCCESS
-        //     toast.success(message)
-        // })
+        sendEmail(email).then(() => {
+            const message = isBroadcast
+                ? BROADCAST_SENT_SUCCCESS
+                : EMAIL_SENT_SUCCCESS
+            toast.success(message)
+            // setEmail({})
+        })
     }
+
+    useEffect(() => {
+        if (isBroadcast) {
+            setEmail(prev => ({
+                ...prev,
+                to: null
+            }))
+        }
+    }, [isBroadcast])
 
     return (
         <Section>
@@ -92,7 +103,8 @@ export const Broadcast = () => {
                             value={isBroadcast}
                         />
                         <TextField
-                            value={email.to}
+                            type="email"
+                            value={email?.to || ''}
                             labelText="Destinatario"
                             disabled={isBroadcast}
                             name="to"
@@ -100,12 +112,16 @@ export const Broadcast = () => {
                         />
                     </div>
                     <TextField
-                        value={email.to}
+                        value={email?.subject}
                         labelText="Asunto"
                         name="subject"
                         onChange={handleChange}
                     />
-                    <TextEditor name="body" onChange={handleChange} />
+                    <TextEditor
+                        name="body"
+                        onChange={handleChange}
+                        value={email?.body}
+                    />
                     <Button className="send-button" onClick={handleSend}>
                         Enviar
                     </Button>
