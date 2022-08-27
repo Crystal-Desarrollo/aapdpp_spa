@@ -6,11 +6,12 @@ import { TextField } from '../Common/Inputs/TextField.jsx'
 import { Button } from '../Common/Inputs/Button.jsx'
 import { FormStyled } from './styles.js'
 import { Box } from '../Common/Box.jsx'
-import { useSendEmail } from '../../hooks/emails/useSendEmail.js'
+import { useSendContactEmail } from '../../hooks/emails/useSendContactEmail.js'
 import { toast } from 'react-toastify'
 import { CONTACT_EMAIL_SUCCESS } from '../../i18n/emails.js'
+import { SOMETHING_WENT_WRONG } from '../../i18n/common.js'
 export const Contact = () => {
-    const sendEmail = useSendEmail()
+    const sendEmail = useSendContactEmail()
     const [data, setData] = useState({})
     const handleChange = e => {
         const { name, value } = e.target
@@ -24,9 +25,12 @@ export const Contact = () => {
     const handleSubmit = e => {
         e.preventDefault()
 
-        sendEmail(data).then(() => {
-            toast.success(CONTACT_EMAIL_SUCCESS)
-        })
+        sendEmail(data)
+            .then(() => {
+                toast.success(CONTACT_EMAIL_SUCCESS)
+                setData({})
+            })
+            .catch(() => toast.error(SOMETHING_WENT_WRONG))
     }
 
     return (
@@ -40,6 +44,7 @@ export const Contact = () => {
                         name="name"
                         labelText="Nombre completo"
                         onChange={handleChange}
+                        value={data?.name}
                     />
                     <TextField
                         id="email"
@@ -47,12 +52,14 @@ export const Contact = () => {
                         type="email"
                         labelText="Correo electrónico"
                         onChange={handleChange}
+                        value={data?.email}
                     />
                     <TextField
                         id="phone"
                         name="phone"
                         labelText="Teléfono de contacto"
                         onChange={handleChange}
+                        value={data?.phone}
                     />
                     <TextField
                         tag="textarea"
@@ -61,6 +68,7 @@ export const Contact = () => {
                         name="body"
                         id="body"
                         onChange={handleChange}
+                        value={data?.body}
                     />
                     <Button onClick={handleSubmit}>Enviar</Button>
                 </FormStyled>

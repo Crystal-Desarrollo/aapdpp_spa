@@ -4,6 +4,7 @@ export const FormStyled = styled.form`
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 1rem;
+    background-color: #fff;
 
     position: relative;
 

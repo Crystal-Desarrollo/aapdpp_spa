@@ -7,7 +7,7 @@ import { TextEditor } from '../../../components/Common/Inputs/TextEditor'
 import { Button } from '../../../components/Common/Inputs/Button'
 import { useState } from 'react'
 import styled from 'styled-components'
-import { useSendEmail } from '../../../hooks/emails/useSendEmail'
+// import { useSendEmail } from '../../../hooks/emails/useSendEmail'
 import { toast } from 'react-toastify'
 import {
     BROADCAST_SENT_SUCCCESS,
@@ -60,7 +60,7 @@ const BroadCastFormStyled = styled.div`
 export const Broadcast = () => {
     const [email, setEmail] = useState({})
     const [isBroadcast, setIsBroadcast] = useState(false)
-    const sendEmail = useSendEmail()
+    // const sendEmail = useSendEmail()
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -72,12 +72,12 @@ export const Broadcast = () => {
     }
 
     const handleSend = () => {
-        sendEmail().then(() => {
-            const message = isBroadcast
-                ? BROADCAST_SENT_SUCCCESS
-                : EMAIL_SENT_SUCCCESS
-            toast.success(message)
-        })
+        // sendEmail().then(() => {
+        //     const message = isBroadcast
+        //         ? BROADCAST_SENT_SUCCCESS
+        //         : EMAIL_SENT_SUCCCESS
+        //     toast.success(message)
+        // })
     }
 
     return (

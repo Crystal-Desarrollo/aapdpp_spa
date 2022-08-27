@@ -1,8 +1,12 @@
 import axiosInstance from './apiHelper.js'
 
 class EmailsApi {
-    sendEmail(data) {
-        return axiosInstance.post('/emails', data)
+    sendContactEmail(data) {
+        return axiosInstance.post('/contact-us', data)
+    }
+
+    sendBroadcast(data) {
+        return axiosInstance.post('/broadcast', data)
     }
 }
 

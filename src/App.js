@@ -83,11 +83,7 @@ export function App() {
                     <Route path="/miembros" element={<Members />} />
                     <Route path="/links" element={<Links />} />
 
-                    <Route path="/404" element={<NotFound />} />
-                    <Route path="*" element={<Navigate replace to="/404" />} />
-
                     {/* Member only routes */}
-
                     <Route path="" element={<MemberMiddleware />}>
                         <Route path="/noticias/:id" element={<FullArticle />} />
                         <Route path="/noticias" element={<AllNews />} />
@@ -133,6 +129,8 @@ export function App() {
                             <Route path="difusion" element={<Broadcast />} />
                         </Route>
                     </Route>
+                    <Route path="/404" element={<NotFound />} />
+                    <Route path="*" element={<Navigate replace to="/404" />} />
                 </Route>
             </Routes>
         </Router>
