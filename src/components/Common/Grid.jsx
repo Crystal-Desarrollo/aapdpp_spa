@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const GridStyled = styled.section`
+export const GridStyled = styled.section`
     display: grid;
 
     ${({ elementWidth }) =>

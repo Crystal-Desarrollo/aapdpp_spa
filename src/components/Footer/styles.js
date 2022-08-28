@@ -9,6 +9,7 @@ export const MyFooter = styled.footer`
     font-size: 1rem;
     color: white;
     background-color: #1d3557;
+    margin-top: 4rem;
 
     & strong a {
         color: white;
