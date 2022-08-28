@@ -10,11 +10,13 @@ export const Card = styled.div`
     width: 100%;
     margin: 0 auto;
     max-width: ${props => props.maxWidth || 'none'};
+    justify-content: ${props => props.justifyContent || 'normal'};
 `
 
 export const Flex = styled.div`
     display: flex;
     gap: 0.5rem;
+    flex-direction: ${props => props.flexDirection || 'row'};
 `
 export const IconText = styled.p`
     color: #777777;
