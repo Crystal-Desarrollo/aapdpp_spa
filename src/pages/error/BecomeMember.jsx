@@ -1,5 +1,7 @@
+import { HashLink } from 'react-router-hash-link'
 import styled from 'styled-components'
 import { BecomeMemberImage } from '../../asssets/img/images'
+import { Button } from '../../components/Common/Inputs/Button'
 
 const Section = styled.section`
     height: calc(100vh - var(--header-height));
@@ -29,6 +31,11 @@ export const BecomeMember = () => {
             <ImageContainer>
                 <BecomeMemberImage />
             </ImageContainer>
+            <Button>
+                <HashLink to="/#contacto" style={{ color: 'white' }}>
+                    Ponte en contacto con nosotros
+                </HashLink>
+            </Button>
         </Section>
     )
 }

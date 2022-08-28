@@ -9,6 +9,7 @@ import { Box } from '../Common/Box.jsx'
 import { useSendEmail } from '../../hooks/emails/useSendEmail.js'
 import { toast } from 'react-toastify'
 import { CONTACT_EMAIL_SUCCESS } from '../../i18n/emails.js'
+import { FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa'
 export const Contact = () => {
     const sendEmail = useSendEmail()
     const [data, setData] = useState({})
@@ -63,6 +64,33 @@ export const Contact = () => {
                         onChange={handleChange}
                     />
                     <Button onClick={handleSubmit}>Enviar</Button>
+
+                    <div className="networks">
+                        <a
+                            title="Facebook"
+                            target="_blank"
+                            href="https://www.instagram.com/aapdpp.oficial/?hl=es-la"
+                            rel="noreferrer"
+                        >
+                            <FaFacebookF />
+                        </a>
+                        <a
+                            title="Instagram"
+                            target="_blank"
+                            href="https://www.instagram.com/aapdpp.oficial/?hl=es-la"
+                            rel="noreferrer"
+                        >
+                            <FaInstagram />
+                        </a>
+                        <a
+                            title="YouTube"
+                            target="_blank"
+                            href="https://www.youtube.com/channel/UCVn7VGibykL13e35qzSAQ1A"
+                            rel="noreferrer"
+                        >
+                            <FaYoutube />
+                        </a>
+                    </div>
                 </FormStyled>
             </Box>
         </Section>
