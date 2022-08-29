@@ -2,11 +2,14 @@ import styled from 'styled-components'
 
 export const Card = styled.div`
     display: flex;
-    align-items: center;
+    padding: 1rem;
+    align-items: flex-start;
     justify-content: space-between;
     border-radius: 0.5rem;
     background-color: #fff;
+    gap: 8px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    flex-direction: ${props => props.flexDirection || 'row'};
 
     :hover {
         ${({ hover }) =>
@@ -21,7 +24,6 @@ export const FlexRow = styled.div`
     align-items: center;
     justify-content: ${props => props.justifyContent || 'space-between'};
     gap: 0.5rem;
-    padding: 0.75rem;
     width: 100%;
 `
 
@@ -65,7 +67,7 @@ export const Joined = styled.h4`
 export const IsActive = styled.p`
     font-size: 0.625rem;
     color: #ffffff;
-    background-color: #373737;
+    background-color: #1d3557;
     padding: 0.5rem;
     border-radius: 0.5rem;
 `
