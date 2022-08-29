@@ -18,7 +18,14 @@ export const EventsList = () => {
                 text="Eventos"
             />
             <Section>
-                <H2>Eventos</H2>
+                <H2>Próximos eventos</H2>
+                <Grid>
+                    {events?.map(event => (
+                        <EventCard event={event} key={event.id} />
+                    ))}
+                </Grid>
+                <br />
+                <H2>Eventos pasados</H2>
                 <Grid>
                     {events?.map(event => (
                         <EventCard event={event} key={event.id} />
