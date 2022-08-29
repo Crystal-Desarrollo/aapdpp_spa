@@ -8,33 +8,35 @@ export const EventCard = ({ event }) => {
     const { id, date, location, description } = event
 
     return (
-        <Card>
-            <Flex>
-                {date && (
+        <Card justifyContent="space-between">
+            <Flex flexDirection="column">
+                <Flex>
+                    {date && (
+                        <IconText>
+                            <FaCalendarDay />
+                            {moment(date).format('D/MM/yyyy')}
+                        </IconText>
+                    )}
+                    -
+                    {date && (
+                        <IconText>
+                            <FaClock />
+                            {moment(date).format('h:mm a')}
+                        </IconText>
+                    )}
+                </Flex>
+                {location && (
                     <IconText>
-                        <FaCalendarDay />
-                        {moment(date).format('D/MM/yyyy')}
+                        <FaMapPin />
+                        {location}
                     </IconText>
                 )}
-                -
-                {date && (
-                    <IconText>
-                        <FaClock />
-                        {moment(date).format('h:mm a')}
-                    </IconText>
+                {description && (
+                    <Description
+                        dangerouslySetInnerHTML={{ __html: description }}
+                    ></Description>
                 )}
             </Flex>
-            {location && (
-                <IconText>
-                    <FaMapPin />
-                    {location}
-                </IconText>
-            )}
-            {description && (
-                <Description
-                    dangerouslySetInnerHTML={{ __html: description }}
-                ></Description>
-            )}
 
             <Button
                 as={Link}

@@ -21,7 +21,7 @@ export const EventInfo = () => {
             <Tabs tab={tab} setTab={setTab} />
             {tab === 1 && (
                 <>
-                    <Card>
+                    <Card padding="3rem">
                         <H2>Fecha y lugar de encuentro</H2>
                         {event?.date && (
                             <IconText>
@@ -43,7 +43,7 @@ export const EventInfo = () => {
                         )}
                     </Card>
                     <br />
-                    <Card>
+                    <Card padding="3rem">
                         <H2>Descripción</H2>
                         <p
                             dangerouslySetInnerHTML={{
@@ -54,7 +54,7 @@ export const EventInfo = () => {
                 </>
             )}
             {tab === 2 && (
-                <Card>
+                <Card padding="3rem">
                     <H2>Archivos</H2>
                     <Grid>
                         {event?.files &&

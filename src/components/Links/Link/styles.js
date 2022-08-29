@@ -17,5 +17,8 @@ export const LinkStyled = styled(CardStyled)`
         font-size: 1rem;
         font-weight: 500;
         color: #142b4b;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 `

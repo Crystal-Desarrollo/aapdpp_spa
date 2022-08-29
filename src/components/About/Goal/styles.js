@@ -6,7 +6,7 @@ export const GoalStyled = styled.div`
     border-radius: 0.5rem;
     background-color: #fff;
     align-items: stretch;
-    padding: 0.75rem;
+    padding: 1rem;
 
     i {
         font-size: 2.5rem;
