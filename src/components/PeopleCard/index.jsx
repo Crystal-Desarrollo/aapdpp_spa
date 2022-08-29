@@ -4,17 +4,10 @@ import {
     FlexRow,
     ImagenContainer,
     IsActive,
-    Joined,
     Name
 } from './styles'
 
-export const PeopleCard = ({
-    profilePicture,
-    name,
-    joined,
-    isActive,
-    description = true
-}) => {
+export const PeopleCard = ({ profilePicture, name, isActive, description }) => {
     return (
         <Card flexDirection="column" hover>
             <FlexRow justifyContent={isActive ? 'flex-start' : 'space-between'}>
@@ -29,12 +22,7 @@ export const PeopleCard = ({
                 </FlexColumn>
                 {!isActive && <IsActive title="Inactivo">Inactivo</IsActive>}
             </FlexRow>
-            {description && (
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing asd asd asd
-                    asd asd asdss.
-                </p>
-            )}
+            {description && <p>{description}</p>}
         </Card>
     )
 }

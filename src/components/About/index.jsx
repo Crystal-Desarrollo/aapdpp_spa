@@ -35,6 +35,7 @@ export const About = ({ full }) => {
                                 'DD-MM-YYYY'
                             )}
                             isActive={user?.active}
+                            description={user.additional_info}
                         />
                     ))}
                 </Grid>
@@ -51,6 +52,7 @@ export const About = ({ full }) => {
                                 'DD-MM-YYYY'
                             )}
                             isActive={user.active}
+                            description={user.additional_info}
                         />
                     ))}
                 </Grid>

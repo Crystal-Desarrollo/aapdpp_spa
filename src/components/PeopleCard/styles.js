@@ -59,11 +59,6 @@ export const Name = styled.h3`
     word-break: break-word;
 `
 
-export const Joined = styled.h4`
-    font-size: 0.625rem;
-    color: #767676;
-`
-
 export const IsActive = styled.p`
     font-size: 0.625rem;
     color: #ffffff;
