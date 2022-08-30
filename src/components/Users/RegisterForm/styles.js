@@ -8,6 +8,10 @@ export const RegisterFormStyled = styled.div`
     margin: auto;
     display: flex;
     flex-direction: column;
+
+    h2 {
+        margin-bottom: 1rem;
+    }
 `
 export const RegisterCardStyled = styled(CardStyled)`
     display: flex;

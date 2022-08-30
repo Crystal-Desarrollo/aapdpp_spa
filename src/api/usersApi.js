@@ -18,7 +18,7 @@ class UsersApi {
     }
 
     async update(id, data) {
-        return axiosInstance.put(`/users/${id}`, data)
+        return axiosInstance.post(`/users/${id}?_method=PUT`, data)
     }
 
     async updateStatus(id, status) {

@@ -1,12 +1,7 @@
 import styled from 'styled-components'
-import { Section } from '../../Common/Section'
 
-export const PaymentInformationStyled = styled(Section)`
+export const PaymentInformationStyled = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 3rem;
-
-    > :first-child {
-        grid-column: span 2;
-    }
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 2rem;
 `
