@@ -2,7 +2,7 @@ import { RegisterCardStyled, RegisterFormStyled } from './styles'
 import { TextField } from '../../Common/Inputs/TextField'
 import { Button } from '../../Common/Inputs/Button'
 import { H2 } from '../../Common/Texts'
-
+import { Switch } from '../../Common/Inputs/Switch'
 import { FaUpload } from 'react-icons/fa'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -54,6 +54,13 @@ export const RegisterForm = () => {
     const clearData = () => {
         setData({})
         setPicturePreview('')
+    }
+
+    const handleSetIsAdmin = e => {
+        setData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.checked
+        }))
     }
 
     return (
@@ -112,16 +119,21 @@ export const RegisterForm = () => {
                             labelText="Dirección"
                             value={data.address || ''}
                         />
+                        <TextField
+                            onChange={onChange}
+                            name="additional_info"
+                            labelText="Información adicional"
+                            value={data.additional_info || ''}
+                            maxlenght="1"
+                        />
+
+                        <Switch
+                            name="is_admin"
+                            onChange={handleSetIsAdmin}
+                            labelText="Administrador"
+                        />
                     </div>
                 </div>
-
-                <TextField
-                    onChange={onChange}
-                    name="additional_info"
-                    labelText="Información adicional"
-                    tag="textarea"
-                    value={data.additional_info || ''}
-                />
 
                 <Button onClick={onSubmit}>Crear usuario</Button>
             </RegisterCardStyled>

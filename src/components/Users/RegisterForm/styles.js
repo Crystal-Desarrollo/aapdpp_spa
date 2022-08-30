@@ -79,6 +79,10 @@ export const RegisterCardStyled = styled(CardStyled)`
             > :nth-child(4) {
                 grid-column: span 2;
             }
+
+            > :last-child {
+                align-self: center;
+            }
         }
     }
 
