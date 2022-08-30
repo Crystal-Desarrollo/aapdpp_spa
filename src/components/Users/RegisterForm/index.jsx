@@ -131,6 +131,9 @@ export const RegisterForm = () => {
                             name="is_admin"
                             onChange={handleSetIsAdmin}
                             labelText="Administrador"
+                            value={
+                                data.is_admin || data?.role?.name === 'admin'
+                            }
                         />
                     </div>
                 </div>
