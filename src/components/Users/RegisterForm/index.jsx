@@ -45,7 +45,7 @@ export const RegisterForm = ({ user }) => {
         }))
     }
 
-    const onSubmit = async e => {
+    const onSubmit = e => {
         e.preventDefault()
 
         let formData = new FormData()
@@ -53,19 +53,17 @@ export const RegisterForm = ({ user }) => {
             formData.append(x[0], x[1])
         })
 
-        try {
-            if (data?.id) {
-                dispatch(update(user.id, formData)).then(() =>
-                    toast.success(USER_UPDATED)
-                )
-            } else {
-                dispatch(register(formData)).then(() => {
+        if (data?.id) {
+            dispatch(update(user.id, formData))
+                .then(() => toast.success(USER_UPDATED))
+                .catch(() => toast.error(SOMETHING_WENT_WRONG))
+        } else {
+            dispatch(register(formData))
+                .then(() => {
                     clearData()
                     toast.success(USER_CREATED)
                 })
-            }
-        } catch (_) {
-            toast.error(SOMETHING_WENT_WRONG)
+                .catch(() => toast.error(SOMETHING_WENT_WRONG))
         }
     }
 
