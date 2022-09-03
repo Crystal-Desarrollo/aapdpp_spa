@@ -9,6 +9,9 @@ import { useDispatch } from 'react-redux'
 import { remove } from '../../../store/slices/usersSlice'
 import { toast } from 'react-toastify'
 import { USER_DELETD } from '../../../i18n/users'
+import { TextField } from '../../Common/Inputs/TextField'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 const mapUserRole = role => {
     if (role === 'admin') return 'Administrador'
@@ -19,14 +22,35 @@ export const MembersList = () => {
     const dispatch = useDispatch()
     const users = useGetUsers()
     const loggedUser = useAuth()
+    const [query, setQuery] = useState('')
+    const [filteredUsers, setFilteredUsers] = useState(() => users, [users])
 
     const handleDelete = id => {
         dispatch(remove(id)).then(() => toast.success(USER_DELETD))
     }
 
+    const handleSearch = e => {
+        setQuery(e.target.value)
+    }
+
+    useEffect(() => {
+        setFilteredUsers(
+            users.filter(x =>
+                x.name.toLowerCase().includes(query.toLowerCase())
+            )
+        )
+    }, [query, users])
+
     return (
         <Section>
             <MainActionsStyled>
+                <TextField
+                    labelText="Buscar"
+                    name="search"
+                    autoComplete="off"
+                    value={query}
+                    onChange={handleSearch}
+                />
                 <Button as={Link} to="/admin/miembros/agregar">
                     Agregar miembro
                 </Button>
@@ -45,7 +69,7 @@ export const MembersList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map(user => (
+                        {filteredUsers?.map(user => (
                             <tr key={user.id}>
                                 <td>{user.id}</td>
                                 <td>{user.name}</td>

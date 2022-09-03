@@ -61,4 +61,8 @@ export const MainActionsStyled = styled.div`
     justify-content: flex-end;
 
     margin-bottom: 1rem;
+
+    > :first-child {
+        margin-right: 1rem;
+    }
 `
