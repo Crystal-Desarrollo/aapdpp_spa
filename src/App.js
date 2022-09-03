@@ -64,7 +64,7 @@ function GuestMiddleWare({ children }) {
 
 export function App() {
     return (
-        <Router basename="/aapdpp">
+        <Router>
             <Routes>
                 <Route element={<Guest />}>
                     <Route

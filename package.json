@@ -1,6 +1,5 @@
 {
-    "name": "spa",
-    "homepage": "https://crystal-desarrollo.com/aapdpp",
+    "name": "aapdpp",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
