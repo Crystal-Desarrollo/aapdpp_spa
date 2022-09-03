@@ -3,11 +3,9 @@
 ## Considerations
 
 1. If the site is deployed into a subfolder, the component `Router` must have
-   the property `basename` set with the name of the subfolder. (e.g. this site
-   is deployed in /aapdpp so Router has basename="/aapdpp")
-1. The package.json must have the property
-   `"homepage": "https://crystal-desarrollo.com/aapdpp"`so the `index.html` file
-   of the build has the correct path to the static folder
+   the property `basename` set with the name of the subfolder.
+1. To deploy to test env add basename="/aapdpp" to the Router component before
+   building
 
 ## First deploy and releases
 
@@ -19,7 +17,7 @@
 1. Clone the github repo in the folder `aapdpp`
 1. Use `cp -a ./build/. .` to move the files in the build folder into the root
 
-## considerations
+## API URLs
 
 1. test env api url `https://crystal-desarrollo.com/aapdppapi/public/api`
 1. production api url `https://api.aapdpp.com/public/api`
