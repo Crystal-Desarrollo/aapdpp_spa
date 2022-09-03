@@ -11,8 +11,8 @@
 
 ## First deploy and releases
 
-1. Run `REACT_APP_API_URL={test or prod api url} npm run build` to create the
-   production build of react
+1. Set the URLs in the .env.production file
+1. Run `npm run build` to create the production build of react
 1. Push your changes to branch `master` (/build folder must be removed from
    .gitignore in order to upload those files to the server)
 1. Login via ssh to hostinger
