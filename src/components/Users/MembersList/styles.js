@@ -58,7 +58,10 @@ export const MembersListStyled = styled(BoxStyled)`
 
 export const MainActionsStyled = styled.div`
     display: flex;
-    justify-content: flex-end;
+    background-color: #fff;
+    max-width: max-content;
+    padding: 1rem;
+    margin-left: auto;
 
     margin-bottom: 1rem;
 
