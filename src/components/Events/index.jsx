@@ -8,7 +8,8 @@ import { Hero } from '../Hero'
 import HeroImage from '../../asssets/img/hero_library.webp'
 
 export const EventsList = () => {
-    const events = useGetEvents()
+    const futureEvents = useGetEvents()
+    const pastEvents = useGetEvents(false)
 
     return (
         <>
@@ -20,14 +21,14 @@ export const EventsList = () => {
             <Section>
                 <H2>Próximos eventos</H2>
                 <Grid>
-                    {events?.map(event => (
+                    {futureEvents?.map(event => (
                         <EventCard event={event} key={event.id} />
                     ))}
                 </Grid>
                 <br />
                 <H2>Eventos pasados</H2>
                 <Grid>
-                    {events?.map(event => (
+                    {pastEvents?.map(event => (
                         <EventCard event={event} key={event.id} />
                     ))}
                 </Grid>
