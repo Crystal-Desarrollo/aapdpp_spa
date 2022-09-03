@@ -17,7 +17,7 @@
    .gitignore in order to upload those files to the server)
 1. Login via ssh to hostinger
 1. Clone the github repo in the folder `aapdpp`
-1. Use ` cp -a ./build/. .` to move the files in the build folder into the root
+1. Use `cp -a ./build/. .` to move the files in the build folder into the root
 
 ## considerations
 

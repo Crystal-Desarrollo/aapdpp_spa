@@ -1,10 +1,7 @@
 import axiosInstance from './apiHelper.js'
 
 class AuthApi {
-    CSRF_URL = `${process.env.REACT_APP_API_URL.replace(
-        '/api',
-        ''
-    )}/sanctum/csrf-cookie`
+    CSRF_URL = process.env.REACT_APP_CSRF_URL
     async login(userData) {
         await axiosInstance.get(this.CSRF_URL)
 

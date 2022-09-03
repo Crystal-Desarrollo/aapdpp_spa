@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/aapdpp/static/css/main.32f61740.css",
-    "main.js": "/aapdpp/static/js/main.8613d4ae.js",
+    "main.js": "/aapdpp/static/js/main.6f49f938.js",
     "static/js/787.bc9ecdee.chunk.js": "/aapdpp/static/js/787.bc9ecdee.chunk.js",
     "static/media/hero_event.webp": "/aapdpp/static/media/hero_event.e035084d216bb1cbb3e2.webp",
     "static/media/hero_image.webp": "/aapdpp/static/media/hero_image.bedfe5ec0ca27c0596b5.webp",
@@ -10,11 +10,11 @@
     "static/media/logo_apdp.jpg": "/aapdpp/static/media/logo_apdp.2788e634b490798f9935.jpg",
     "index.html": "/aapdpp/index.html",
     "main.32f61740.css.map": "/aapdpp/static/css/main.32f61740.css.map",
-    "main.8613d4ae.js.map": "/aapdpp/static/js/main.8613d4ae.js.map",
+    "main.6f49f938.js.map": "/aapdpp/static/js/main.6f49f938.js.map",
     "787.bc9ecdee.chunk.js.map": "/aapdpp/static/js/787.bc9ecdee.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.32f61740.css",
-    "static/js/main.8613d4ae.js"
+    "static/js/main.6f49f938.js"
   ]
 }
