@@ -5,7 +5,7 @@ import { MessageLabel } from '../../Common/MessageLabel'
 import { TextField } from '../../Common/Inputs/TextField'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import Logo from '../../../asssets/img/logo_apdp.jpg'
+import Logo from '../../../asssets/img/logo_apdp.png'
 export const LoginForm = () => {
     const dispatch = useDispatch()
     const [data, setData] = useState({})

@@ -53,10 +53,15 @@ export const FlexColumn = styled.div`
 `
 
 export const Name = styled.h3`
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #000000;
     word-break: break-word;
+`
+
+export const CardDescription = styled.p`
+    font-size: 0.875rem;
+    color: #000000;
 `
 
 export const IsActive = styled.p`

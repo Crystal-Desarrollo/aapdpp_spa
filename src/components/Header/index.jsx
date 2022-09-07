@@ -2,7 +2,7 @@ import { HeaderStyled } from './styles'
 import { Menu } from './Menu/index.jsx'
 import { AdminHeader } from './AdminHeader'
 
-import Logo from '../../asssets/img/logo_apdp.jpg'
+import Logo from '../../asssets/img/logo_apdp.png'
 import { useAuth } from '../../hooks/auth/useAuth'
 import { SideMenu } from './sideMenu'
 import { useState } from 'react'

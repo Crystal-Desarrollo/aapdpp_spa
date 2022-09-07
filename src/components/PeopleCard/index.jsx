@@ -1,5 +1,6 @@
 import {
     Card,
+    CardDescription,
     FlexColumn,
     FlexRow,
     ImagenContainer,
@@ -22,7 +23,7 @@ export const PeopleCard = ({ profilePicture, name, isActive, description }) => {
                 </FlexColumn>
                 {!isActive && <IsActive title="Inactivo">Inactivo</IsActive>}
             </FlexRow>
-            {description && <p>{description}</p>}
+            {description && <CardDescription>{description}</CardDescription>}
         </Card>
     )
 }
