@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/static/css/main.32f61740.css",
-    "main.js": "/static/js/main.8b132dde.js",
+    "main.js": "/static/js/main.a7f1ba08.js",
     "static/js/787.e688ec29.chunk.js": "/static/js/787.e688ec29.chunk.js",
     "static/media/hero_event.webp": "/static/media/hero_event.e035084d216bb1cbb3e2.webp",
     "static/media/hero_image.webp": "/static/media/hero_image.bedfe5ec0ca27c0596b5.webp",
     "static/media/hero_library.webp": "/static/media/hero_library.3f2823e25f2ca80b3b4c.webp",
     "static/media/default_image.webp": "/static/media/default_image.e38d3094e574fb1fb31a.webp",
-    "static/media/logo_apdp.jpg": "/static/media/logo_apdp.2788e634b490798f9935.jpg",
+    "static/media/logo_apdp.png": "/static/media/logo_apdp.088a317e4f70f72ce682.png",
     "index.html": "/index.html",
     "main.32f61740.css.map": "/static/css/main.32f61740.css.map",
-    "main.8b132dde.js.map": "/static/js/main.8b132dde.js.map",
+    "main.a7f1ba08.js.map": "/static/js/main.a7f1ba08.js.map",
     "787.e688ec29.chunk.js.map": "/static/js/787.e688ec29.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.32f61740.css",
-    "static/js/main.8b132dde.js"
+    "static/js/main.a7f1ba08.js"
   ]
 }
