@@ -32,17 +32,15 @@ export const EventsList = () => {
                 )}
                 <br />
                 <H2>Eventos pasados</H2>
-                <Grid>
-                    {pastEvents?.length > 0 ? (
-                        <Grid>
-                            {pastEvents?.map(event => (
-                                <EventCard event={event} key={event.id} />
-                            ))}
-                        </Grid>
-                    ) : (
-                        <NoContent />
-                    )}
-                </Grid>
+                {pastEvents?.length > 0 ? (
+                    <Grid>
+                        {pastEvents?.map(event => (
+                            <EventCard event={event} key={event.id} />
+                        ))}
+                    </Grid>
+                ) : (
+                    <NoContent />
+                )}
             </Section>
         </>
     )
