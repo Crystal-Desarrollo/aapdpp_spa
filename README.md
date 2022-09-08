@@ -9,13 +9,10 @@
 
 ## First deploy and releases
 
-1. Set the URLs in the .env.production file
-1. Run `npm run build` to create the production build of react
-1. Push your changes to branch `master` (/build folder must be removed from
-   .gitignore in order to upload those files to the server)
 1. Login via ssh to hostinger
-1. Clone the github repo in the folder `aapdpp`
-1. Use `cp -a ./build/. .` to move the files in the build folder into the root
+1. Clone or pull the changes from the github repository
+1. Copy the file .env.example into .env.production
+1. Run the deploy.sh file
 
 ## API URLs
 
