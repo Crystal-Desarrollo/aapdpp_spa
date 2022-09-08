@@ -6,6 +6,7 @@ import { useGetEvents } from '../../hooks/events/useGetEvents'
 import { Hero } from '../Hero'
 
 import HeroImage from '../../asssets/img/hero_library.webp'
+import { NoContent } from '../Common/NoContent'
 
 export const EventsList = () => {
     const futureEvents = useGetEvents()
@@ -20,17 +21,27 @@ export const EventsList = () => {
             />
             <Section>
                 <H2>Próximos eventos</H2>
-                <Grid>
-                    {futureEvents?.map(event => (
-                        <EventCard event={event} key={event.id} />
-                    ))}
-                </Grid>
+                {futureEvents?.length > 0 ? (
+                    <Grid>
+                        {futureEvents?.map(event => (
+                            <EventCard event={event} key={event.id} />
+                        ))}
+                    </Grid>
+                ) : (
+                    <NoContent />
+                )}
                 <br />
                 <H2>Eventos pasados</H2>
                 <Grid>
-                    {pastEvents?.map(event => (
-                        <EventCard event={event} key={event.id} />
-                    ))}
+                    {pastEvents?.length > 0 ? (
+                        <Grid>
+                            {pastEvents?.map(event => (
+                                <EventCard event={event} key={event.id} />
+                            ))}
+                        </Grid>
+                    ) : (
+                        <NoContent />
+                    )}
                 </Grid>
             </Section>
         </>
