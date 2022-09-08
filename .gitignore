@@ -9,7 +9,7 @@
 /coverage
 
 # production
-# /build to allow deploy on hostinger shared hosting
+/build
 
 # misc
 .DS_Store

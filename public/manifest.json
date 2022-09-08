@@ -1,0 +1,13 @@
+{
+    "short_name": "AAPDPP",
+    "name": "Asociación Argentina de Profesores de Derecho Procesal Penal",
+    "icons": [
+        {
+            "src": "favicon.ico"
+        }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+}
