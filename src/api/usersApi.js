@@ -24,6 +24,10 @@ class UsersApi {
     async updateStatus(id, status) {
         return axiosInstance.put(`/users/${id}/status`, status)
     }
+
+    changePassword(id, data) {
+        return axiosInstance.put(`/users/${id}/change-password`, data)
+    }
 }
 
 export default new UsersApi()

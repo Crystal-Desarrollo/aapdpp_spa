@@ -136,3 +136,20 @@ export const updateStatus = (id, data) => async dispatch => {
         dispatch(setLoading(false))
     }
 }
+
+export const changePassword = (id, data) => async dispatch => {
+    try {
+        dispatch(setLoading(true))
+        await UsersApi.changePassword(id, data)
+        return Promise.resolve()
+    } catch (e) {
+        if (e.response.status === 422) {
+            return Promise.reject('Las contraseñas no coinciden')
+        }
+        if (e.response.status === 401) {
+            return Promise.reject('Contraseña actual incorrecta')
+        }
+    } finally {
+        dispatch(setLoading(false))
+    }
+}
