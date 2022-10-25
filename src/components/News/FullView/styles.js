@@ -7,8 +7,8 @@ export const FullViewStyled = styled.section`
     flex-direction: column;
 
     img {
-        height: clamp(200px, 20vmax, 500px);
-        object-fit: cover;
+        //height: clamp(200px, 20vmax, 500px);
+        object-fit: contain;
     }
 
     section {
