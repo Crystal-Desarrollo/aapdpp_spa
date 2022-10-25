@@ -12,6 +12,7 @@ import { USER_CREATED, USER_UPDATED } from '../../../i18n/users'
 import { useEffect } from 'react'
 import { useAuth } from '../../../hooks/auth/useAuth'
 import { SOMETHING_WENT_WRONG } from '../../../i18n/common'
+import {handleApiError} from "../../../utils/handlers";
 
 export const RegisterForm = ({ user }) => {
     const loggedUser = useAuth()
@@ -56,14 +57,14 @@ export const RegisterForm = ({ user }) => {
         if (data?.id) {
             dispatch(update(user.id, formData))
                 .then(() => toast.success(USER_UPDATED))
-                .catch(() => toast.error(SOMETHING_WENT_WRONG))
+                .catch(e => toast.error(handleApiError(e)))
         } else {
             dispatch(register(formData))
                 .then(() => {
                     clearData()
                     toast.success(USER_CREATED)
                 })
-                .catch(() => toast.error(SOMETHING_WENT_WRONG))
+                .catch(e => toast.error(handleApiError(e)))
         }
     }
 
