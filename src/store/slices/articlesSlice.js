@@ -103,7 +103,7 @@ export const create = data => async dispatch => {
         dispatch(createAction(response.data))
         return Promise.resolve(response.data)
     } catch (err) {
-        return Promise.reject(err.message)
+        return Promise.reject(err.response.data.message)
     } finally {
         dispatch(setLoading(false))
     }
@@ -120,7 +120,7 @@ export const edit = (data, id) => async dispatch => {
         dispatch(editAction(response.data))
         return Promise.resolve(response.data)
     } catch (err) {
-        return Promise.reject(err.message)
+        return Promise.reject(err.response.data.message)
     } finally {
         dispatch(setLoading(false))
     }

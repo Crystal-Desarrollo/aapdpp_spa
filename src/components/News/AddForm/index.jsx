@@ -43,11 +43,11 @@ export const AddNewForm = () => {
             dispatch(create(formData)).then(() => {
                 clearForm()
                 toast.success(ARTICLE_ADDED)
-            })
+            }).catch(err => toast.error(err))
         } else {
             dispatch(edit(formData, data.id)).then(() =>
                 toast.success(ARTICLE_UPDATED)
-            )
+            ).catch(err => toast.error(err))
         }
     }
 
@@ -87,7 +87,7 @@ export const AddNewForm = () => {
                             <i>
                                 <FaUpload />
                             </i>
-                            <p>Agregar portada</p>
+                            <p>Agregar portada (jpg, jpeg, png, bmp, gif, svg o webp)</p>
                             <input
                                 type="file"
                                 hidden
