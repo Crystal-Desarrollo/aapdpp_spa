@@ -9,4 +9,7 @@ git pull origin master \
 && npm run build \
 && cp -a ./build/. . \
 && rm -rf ./build \
-&& rm -rf ./node_modules
+&& rm -rf ./node_modules \
+&& cd aapdpp-api \
+&& php ~/composer.phar install \
+&& php artisan migrate --force
