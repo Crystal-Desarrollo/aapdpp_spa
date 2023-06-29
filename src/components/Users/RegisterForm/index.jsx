@@ -11,7 +11,6 @@ import { toast } from 'react-toastify'
 import { USER_CREATED, USER_UPDATED } from '../../../i18n/users'
 import { useEffect } from 'react'
 import { useAuth } from '../../../hooks/auth/useAuth'
-import { SOMETHING_WENT_WRONG } from '../../../i18n/common'
 import {handleApiError} from "../../../utils/handlers";
 
 export const RegisterForm = ({ user }) => {
