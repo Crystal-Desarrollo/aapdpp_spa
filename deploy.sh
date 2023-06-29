@@ -6,4 +6,6 @@ wget -qO- https://cdn.rawgit.com/creationix/nvm/master/install.sh | bash \
 && nvm install 16.10.0 \
 && npm install \
 && npm run build \
-&& cp -a ./build/. .
+&& cp -a ./build/. . \
+&& rm -rf ./build \
+&& rm -rf ./node_modules
