@@ -8,6 +8,7 @@ export const CardStyled = styled(BaseCard)`
     border-radius: 8px;
     color: #1d3557;
     padding: 0;
+  height: 100%;
 
     .img-container {
         height: 150px;
@@ -24,6 +25,7 @@ export const CardStyled = styled(BaseCard)`
     }
 
     .card-information {
+      height: calc(100% - 150px);
         display: flex;
         flex-direction: column;
         padding: 1rem;
@@ -62,6 +64,7 @@ export const CardStyled = styled(BaseCard)`
             width: 100%;
             text-align: center;
             transition: all ease 0.2s;
+          margin-top: auto;
 
             &:hover {
                 border-bottom-color: #1d3557;
