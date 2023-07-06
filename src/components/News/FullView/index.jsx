@@ -13,6 +13,10 @@ export const FullView = props => {
             <img
                 src={cover?.path || DEFAULT_IMAGE}
                 alt="Imagen ilustrativa de la noticia"
+                style={{
+                    maxWidth: '50%',
+                    margin: '0 auto'
+                }}
             />
             <section>
                 <Card>
