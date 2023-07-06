@@ -11,5 +11,6 @@ git pull origin master \
 && rm -rf ./build \
 && rm -rf ./node_modules \
 && cd aapdpp-api \
+&& git pull origin master \
 && php ~/composer.phar install \
 && php artisan migrate --force
