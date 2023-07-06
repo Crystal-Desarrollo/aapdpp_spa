@@ -16,7 +16,7 @@ export const LinksList = ({ full }) => {
 
             {links.length > 0 ? (
                 <>
-                    <Grid elementWidth="250px">
+                    <Grid elementWidth="350px">
                         {links.map(link => (
                             <MyLink {...link} key={link.id} />
                         ))}
