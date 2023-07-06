@@ -82,11 +82,11 @@ export function App() {
                     <Route path="/eventos/:id" element={<EventInfo />} />
                     <Route path="/miembros" element={<Members />} />
                     <Route path="/links" element={<Links />} />
+                    <Route path="/noticias/:id" element={<FullArticle />} />
+                    <Route path="/noticias" element={<AllNews />} />
 
                     {/* Member only routes */}
                     <Route path="" element={<MemberMiddleware />}>
-                        <Route path="/noticias/:id" element={<FullArticle />} />
-                        <Route path="/noticias" element={<AllNews />} />
                         <Route path="/miembros/:id" element={<Profile />} />
                     </Route>
 
