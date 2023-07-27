@@ -1,5 +1,5 @@
-import { About } from '../../components/About'
+import { Members as MembersComponent } from '../../components/About/index'
 
 export const Members = () => {
-    return <About full={true} />
+    return <MembersComponent full={true} />
 }

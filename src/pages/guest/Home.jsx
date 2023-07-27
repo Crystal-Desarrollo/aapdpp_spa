@@ -1,9 +1,9 @@
-import { Hero } from '../../components/Hero/index.jsx'
-import { About } from '../../components/About/index.jsx'
-import { News } from '../../components/News/NewsList/index.jsx'
-import { LinksList } from '../../components/Links/index.jsx'
-import { Contact } from '../../components/Contact/index.jsx'
-import { Estatuto } from '../../components/Estatuto/index.jsx'
+import { Hero } from '../../components/Hero'
+import { Members } from '../../components/About'
+import { News } from '../../components/News/NewsList'
+import { LinksList } from '../../components/Links'
+import { Contact } from '../../components/Contact'
+import { Estatuto } from '../../components/Estatuto'
 
 import HeroImage from '../../asssets/img/hero_image.webp'
 
@@ -15,7 +15,7 @@ export function Home() {
                 imageAlt="Estudiante sentado con una notebook sobre las piernas"
                 text="Asociación Argentina de Profesores de Derecho Procesal Penal"
             />
-            <About full={false} />
+            <Members full={false} />
             <News title="Noticias mas recientes" full={false} />
             <LinksList full={false} />
             <Estatuto />

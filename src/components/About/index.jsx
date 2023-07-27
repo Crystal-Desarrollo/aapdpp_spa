@@ -17,7 +17,7 @@ const goals = [
     'Participar en la propuesta de temas para los Congresos Nacionales de Derecho Penal y Derecho Procesal.'
 ]
 
-export const About = ({ full }) => {
+export const Members = ({ full }) => {
     const members = useGetUsers(full, USER_TYPES.members)
     const admins = useGetUsers(full, USER_TYPES.admins)
 
@@ -39,6 +39,15 @@ export const About = ({ full }) => {
                         />
                     ))}
                 </Grid>
+                {!full && (
+                    <Button
+                        as={Link}
+                        to="/miembros"
+                        style={{ alignSelf: 'center', marginTop: '1rem' }}
+                    >
+                        Ver todas las autoridades
+                    </Button>
+                )}
             </Section>
             <Section>
                 <H2>Listado de asociados</H2>
