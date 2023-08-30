@@ -10,6 +10,7 @@ import { Section } from '../../components/Common/Section'
 import { Grid } from '../../components/Common/Grid'
 import { H2 } from '../../components/Common/Texts'
 import { Goal } from '../../components/About/Goal'
+import Inscriptions from '../../components/Inscriptions/inscriptions'
 
 const goals = [
     'Optimizar el proceso de enseñanza y aprendizaje del derecho procesal penal en todas las facultades de derecho de la República Argentina.',
@@ -28,6 +29,7 @@ export function Home() {
                 imageAlt="Estudiante sentado con una notebook sobre las piernas"
                 text="Asociación Argentina de Profesores de Derecho Procesal Penal"
             />
+            <Inscriptions />
             <Section id="nosotros">
                 <H2>Nuestros objetivos</H2>
                 <Grid>
