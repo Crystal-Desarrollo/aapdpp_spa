@@ -58,7 +58,7 @@ export const Menu = ({ user, setIsOpenSideMenu }) => {
             />
             <StyledMenu>
                 <li>
-                    <HashLink to="/">Inicio</HashLink>
+                    <HashLink to="/#">Inicio</HashLink>
                 </li>
                 <li>
                     <HashLink to="/#nosotros">Nosotros</HashLink>
@@ -73,6 +73,9 @@ export const Menu = ({ user, setIsOpenSideMenu }) => {
                 </li>
                 <li>
                     <HashLink to="/#estatuto">Estatuto</HashLink>
+                </li>
+                <li>
+                    <HashLink to="/#autoridades">Autoridades</HashLink>
                 </li>
                 <li>
                     <HashLink to="/#contacto">Contacto</HashLink>

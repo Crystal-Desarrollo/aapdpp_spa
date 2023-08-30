@@ -18,12 +18,12 @@ const goals = [
 ]
 
 export const Members = ({ full }) => {
+    const admins = useGetUsers(!full, USER_TYPES.admins)
     const members = useGetUsers(full, USER_TYPES.members)
-    const admins = useGetUsers(full, USER_TYPES.admins)
 
     return (
         <>
-            <Section>
+            <Section id="autoridades">
                 <H2>Autoridades de la asociación</H2>
                 <Grid>
                     {admins.map(user => (
@@ -39,7 +39,7 @@ export const Members = ({ full }) => {
                         />
                     ))}
                 </Grid>
-                {!full && (
+                {/* {!full && (
                     <Button
                         as={Link}
                         to="/miembros"
@@ -47,7 +47,7 @@ export const Members = ({ full }) => {
                     >
                         Ver todas las autoridades
                     </Button>
-                )}
+                )} */}
             </Section>
             <Section>
                 <H2>Listado de asociados</H2>
@@ -75,16 +75,6 @@ export const Members = ({ full }) => {
                     </Button>
                 )}
             </Section>
-            {!full && (
-                <Section id="nosotros">
-                    <H2>Nuestros objetivos</H2>
-                    <Grid>
-                        {goals.map((goal, i) => (
-                            <Goal text={goal} key={i} />
-                        ))}
-                    </Grid>
-                </Section>
-            )}
         </>
     )
 }
