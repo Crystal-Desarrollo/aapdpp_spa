@@ -1,6 +1,5 @@
 #!/bin/bash
-git stash \
-&& git pull \
+git pull \
 && npm install \
 && npm run build \
 && cp -a ./build/. . \
