@@ -1,5 +1,5 @@
 import React from 'react'
-import imagenInscripcion from '../../asssets/img/Evento_24_octubre__2024.png'
+import imagenInscripcion from '../../asssets/img/Evento_24_25_octubre__2024.png'
 import documento from '../../asssets/documents/Encuentro_AAPDPP_MDZ_2024.pdf'
 import './inscriptions.css'
 
@@ -23,7 +23,7 @@ function Inscriptions() {
                         </a>
                         <a
                             className="btnPrimario"
-                            href="https://docs.google.com/forms/d/1FaHz8eKlHDZh8l076uN2DRFBZ-78sUQS8jezwJNhv6w/prefill"
+                            href="https://forms.gle/F11o1oLFwxVrXQ3s8"
                             target="_blank"
                         >
                             {' '}
