@@ -1,6 +1,6 @@
 import React from 'react'
 import imagenInscripcion from '../../asssets/img/Evento_24_25_octubre__2024.png'
-import documento from '../../asssets/documents/Encuentro_AAPDPP_MDZ_2024.pdf'
+import documento from '../../asssets/documents/Encuentro_AAPDPP_MDZ_24_25_2024.pdf'
 import './inscriptions.css'
 
 function Inscriptions() {
