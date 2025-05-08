@@ -1,5 +1,5 @@
 import React from 'react'
-import imagenInscripcion from '../../asssets/img/Evento_24_25_octubre__2024.png'
+import imagenInscripcion from '../../asssets/img/inscriptions.png'
 import documento from '../../asssets/documents/Encuentro_AAPDPP_MDZ_24_25_2024.pdf'
 import './inscriptions.css'
 
@@ -10,11 +10,11 @@ function Inscriptions() {
                 <div className="text">
                     <h2>¡Inscripciones abiertas!</h2>
                     <p>
-                        19° Encuentro nacional de profesores de derecho procesal
-                        penal <br /> 24 y 25 de Octubre
+                        20° Encuentro nacional de profesores de derecho procesal penal <br /> 18 y 19 de Septiembre
                     </p>
                     <div className="buttons">
                         <a
+                            rel='noreferrer'
                             className="btnSecundario"
                             href={documento}
                             target="_blank"
@@ -22,6 +22,7 @@ function Inscriptions() {
                             Cronograma
                         </a>
                         <a
+                            rel='noreferrer'
                             className="btnPrimario"
                             href="https://forms.gle/F11o1oLFwxVrXQ3s8"
                             target="_blank"
