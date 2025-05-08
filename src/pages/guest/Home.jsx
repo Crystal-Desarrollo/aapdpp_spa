@@ -29,7 +29,7 @@ export function Home() {
                 imageAlt="Estudiante sentado con una notebook sobre las piernas"
                 text="Asociación Argentina de Profesores de Derecho Procesal Penal"
             />
-            {/* <Inscriptions /> */}
+             <Inscriptions />
             <Section id="nosotros">
                 <H2>Nuestros objetivos</H2>
                 <Grid>
