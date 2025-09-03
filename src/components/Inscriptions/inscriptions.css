@@ -30,8 +30,10 @@
 .inscriptionsContainer .inscriptionsBanner .text h2 {
     font-size: 2.8rem;
 }
-.inscriptionsContainer .inscriptionsBanner .text p {
+
+.inscriptionsContainer .inscriptionsBanner .text h3 {
     font-size: 2rem;
+    text-wrap: balance;
 }
 
 .inscriptionsContainer .inscriptionsBanner .text .buttons {
