@@ -23,7 +23,7 @@ function Inscriptions() {
                         <a
                             rel='noreferrer'
                             className="btnPrimario"
-                            href="https://fundacionformartecursos.com.ar/product/xx-encuentro-de-profesores-de-derecho-procesal-p"
+                            href="https://fundacionformartecursos.com.ar/product/xx-encuentro-de-profesores-de-derecho-procesal-penal"
                             target="_blank"
                         >
                             {' '}
