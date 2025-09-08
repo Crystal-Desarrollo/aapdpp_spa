@@ -1,5 +1,18 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On RewriteBase / RewriteRule ^index\.html$ - [L] RewriteCond
-    %{REQUEST_FILENAME} !-f RewriteCond %{REQUEST_FILENAME} !-d RewriteCond
-    %{REQUEST_FILENAME} !-l RewriteRule . /index.html [L]
+    RewriteEngine On
+
+    # Handle static files
+    RewriteRule ^static/(.*)$ public/static/$1 [L]
+    RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+
+    # Handle other assets
+    RewriteRule ^favicon\.ico$ public/favicon.ico [L]
+    RewriteRule ^logo_apdp\.png$ public/logo_apdp.png [L]
+    RewriteRule ^manifest\.json$ public/manifest.json [L]
+    RewriteRule ^robots\.txt$ public/robots.txt [L]
+
+    # Everything else goes to React app
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.html [L]
 </IfModule>
